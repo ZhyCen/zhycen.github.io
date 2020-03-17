@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>ZC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="ZC">
+<meta property="og:url" content="http://zheyangc.com/page/3/index.html">
+<meta property="og:site_name" content="ZC">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ZC">
+  
+    <link rel="alternate" href="/atom.xml" title="ZC" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ZC</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Hello World</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zheyangc.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Algorithm/2017-11-06-Union-Find" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/06/Algorithm/2017-11-06-Union-Find/" class="article-date">
+  <time datetime="2017-11-06T08:00:00.000Z" itemprop="datePublished">2017-11-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/06/Algorithm/2017-11-06-Union-Find/">Union Find</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Union-Find"><a href="#Union-Find" class="headerlink" title="Union Find"></a>Union Find</h1><p>Typically, Union-find use <code>Tree</code> data structure and provide two methods,</p>
+<ul>
+<li><code>Union</code>: combine two sets into one</li>
+<li><code>Find</code>: Determine which data set that an element belongs to.</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/11/06/Algorithm/2017-11-06-Union-Find/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zheyangc.com/2017/11/06/Algorithm/2017-11-06-Union-Find/" data-id="ck7wfkije000a0zr9q6a9m0w6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Union-Find/">Union Find</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-LeetCode/2017-10-01-LeetCode-DP-1XX" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/01/LeetCode/2017-10-01-LeetCode-DP-1XX/" class="article-date">
+  <time datetime="2017-10-01T07:00:00.000Z" itemprop="datePublished">2017-10-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LeetCode/">LeetCode</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/01/LeetCode/2017-10-01-LeetCode-DP-1XX/">LeetCode DP (100-200)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="121-Best-Time-to-Buy-and-Sell-Stock"><a href="#121-Best-Time-to-Buy-and-Sell-Stock" class="headerlink" title="121. Best Time to Buy and Sell Stock"></a>121. Best Time to Buy and Sell Stock</h1><p><code>easy</code></p>
+<p>Say you have an array for which the <code>ith</code> element is the price of a given stock on day i.</p>
+<p>If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.</p>
+<p>Example 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [7, 1, 5, 3, 6, 4]</span><br><span class="line">Output: 5</span><br></pre></td></tr></table></figure>
+
+<p>max. difference = 6-1 = 5 (not 7-1 = 6, as selling price needs to be larger than buying price)</p>
+<p>Example 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [7, 6, 4, 3, 1]</span><br><span class="line">Output: 0</span><br></pre></td></tr></table></figure>
+
+<p>In this case, no transaction is done, i.e. max profit = 0.</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/10/01/LeetCode/2017-10-01-LeetCode-DP-1XX/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zheyangc.com/2017/10/01/LeetCode/2017-10-01-LeetCode-DP-1XX/" data-id="ck7wfkijx00190zr99p247l46" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Others/2017-09-24-AI-notes" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/24/Others/2017-09-24-AI-notes/" class="article-date">
+  <time datetime="2017-09-24T07:00:00.000Z" itemprop="datePublished">2017-09-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Lecture/">Lecture</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/24/Others/2017-09-24-AI-notes/">AI Search Algorithm</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Problem-Solving-and-Search"><a href="#Problem-Solving-and-Search" class="headerlink" title="Problem Solving and Search"></a>Problem Solving and Search</h1><h2 id="Environment-Types"><a href="#Environment-Types" class="headerlink" title="Environment Types"></a>Environment Types</h2><ul>
+<li>Accessible</li>
+<li>Deterministic</li>
+<li>Episodic</li>
+<li>Static</li>
+<li>Discrete</li>
+</ul>
+<h2 id="Problem-Types"><a href="#Problem-Types" class="headerlink" title="Problem Types"></a>Problem Types</h2><ul>
+<li>single-state problem<ul>
+<li><strong>deterministic, accessible</strong></li>
+<li>agent knows the exact state</li>
+<li>can calculate optimal action on sequence to reach goal state</li>
+</ul>
+</li>
+<li>multiple state problem<ul>
+<li><strong>deterministic, inaccessible</strong></li>
+<li>Agent does not know the exact state</li>
+<li>Assume states while working towards goal state.</li>
+</ul>
+</li>
+<li>contingency problem<ul>
+<li><strong>nondeterministic, inaccessible</strong></li>
+<li>must use sensors during execution (could be in any of the possible states)</li>
+<li>solution is a tree or policy</li>
+<li>often iterative search and execution</li>
+</ul>
+</li>
+<li>exploration problem<ul>
+<li><strong>unknown state space</strong></li>
+</ul>
+</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/09/24/Others/2017-09-24-AI-notes/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zheyangc.com/2017/09/24/Others/2017-09-24-AI-notes/" data-id="ck7wfkiko003c0zr9f0ihhpx3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Search-Algorithm/">Search Algorithm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-LeetCode/2017-09-15-LeetCode-DFS-0XX" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/15/LeetCode/2017-09-15-LeetCode-DFS-0XX/" class="article-date">
+  <time datetime="2017-09-15T07:00:00.000Z" itemprop="datePublished">2017-09-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LeetCode/">LeetCode</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/15/LeetCode/2017-09-15-LeetCode-DFS-0XX/">LeetCode DFS (0-100)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="547-Friend-Circles"><a href="#547-Friend-Circles" class="headerlink" title="547. Friend Circles"></a>547. Friend Circles</h1><p>There are <code>N</code> students in a class. Some of them are friends, while some are not. Their friendship is transitive in nature. For example, if A is a direct friend of B, and B is a direct friend of C, then A is an indirect friend of C. And we defined a friend circle is a group of students who are direct or indirect friends.</p>
+<p>Given a <code>N*N</code> matrix <code>M</code> representing the friend relationship between students in the class. If <code>M[i][j] = 1</code>, then the <code>ith</code> and <code>jth</code> students are direct friends with each other, otherwise not. And you have to output the total number of friend circles among all the students.</p>
+<p>Example 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[[1,1,0],</span><br><span class="line"> [1,1,0],</span><br><span class="line"> [0,0,1]]</span><br></pre></td></tr></table></figure>
+
+<p>Output: 2</p>
+<p><strong>Explanation</strong>:The 0th and 1st students are direct friends, so they are in a friend circle.<br>The 2nd student himself is in a friend circle. So return 2.</p>
+<p>Example 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[[1,1,0],</span><br><span class="line"> [1,1,1],</span><br><span class="line"> [0,1,1]]</span><br></pre></td></tr></table></figure>
+
+<p>Output: 1</p>
+<p><strong>Explanation</strong>:The 0th and 1st students are direct friends, the 1st and 2nd students are direct friends,<br>so the 0th and 2nd students are indirect friends. All of them are in the same friend circle, so return 1.</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/09/15/LeetCode/2017-09-15-LeetCode-DFS-0XX/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zheyangc.com/2017/09/15/LeetCode/2017-09-15-LeetCode-DFS-0XX/" data-id="ck7wfkijw00150zr9yh08f9gc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-LeetCode/2017-09-01-LeetCode-DP-0XX" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/01/LeetCode/2017-09-01-LeetCode-DP-0XX/" class="article-date">
+  <time datetime="2017-09-01T07:00:00.000Z" itemprop="datePublished">2017-09-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LeetCode/">LeetCode</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/01/LeetCode/2017-09-01-LeetCode-DP-0XX/">LeetCode DP (0-100)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="10-Regular-Expression-Matching"><a href="#10-Regular-Expression-Matching" class="headerlink" title="10.Regular Expression Matching"></a>10.Regular Expression Matching</h1><p><code>hard</code></p>
+<p>Implement regular expression matching with support for ‘.’ and ‘*’.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&apos;.&apos; Matches any single character.</span><br><span class="line">&apos;*&apos; Matches zero or more of the preceding element.</span><br><span class="line"></span><br><span class="line">The matching should cover the entire input string (not partial).</span><br><span class="line"></span><br><span class="line">The function prototype should be:</span><br><span class="line">bool isMatch(const char *s, const char *p)</span><br><span class="line"></span><br><span class="line">Some examples:</span><br><span class="line">isMatch(&quot;aa&quot;,&quot;a&quot;) → false</span><br><span class="line">isMatch(&quot;aa&quot;,&quot;aa&quot;) → true</span><br><span class="line">isMatch(&quot;aaa&quot;,&quot;aa&quot;) → false</span><br><span class="line">isMatch(&quot;aa&quot;, &quot;a*&quot;) → true</span><br><span class="line">isMatch(&quot;aa&quot;, &quot;.*&quot;) → true</span><br><span class="line">isMatch(&quot;ab&quot;, &quot;.*&quot;) → true</span><br><span class="line">isMatch(&quot;aab&quot;, &quot;c*a*b&quot;) → true</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2017/09/01/LeetCode/2017-09-01-LeetCode-DP-0XX/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zheyangc.com/2017/09/01/LeetCode/2017-09-01-LeetCode-DP-0XX/" data-id="ck7wfkikj00350zr9aptn654c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Others/2017-08-01-Operating-System-Concepts" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/01/Others/2017-08-01-Operating-System-Concepts/" class="article-date">
+  <time datetime="2017-08-01T07:00:00.000Z" itemprop="datePublished">2017-08-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Lecture/">Lecture</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/01/Others/2017-08-01-Operating-System-Concepts/">OS Concepts and Notes</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Ch-3-Basic-Concepts"><a href="#Ch-3-Basic-Concepts" class="headerlink" title="Ch 3 - Basic Concepts"></a>Ch 3 - Basic Concepts</h1><h2 id="shared-libraries"><a href="#shared-libraries" class="headerlink" title="shared libraries"></a>shared libraries</h2><h3 id="static-library"><a href="#static-library" class="headerlink" title="static library"></a>static library</h3><p>creating a library</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; ar crt libpriv1.a sub1.o sub2.o sub3.o</span><br></pre></td></tr></table></figure>
+
+<p>using a library</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; gcc -o prog prog.c -L. -lpriv1 -L/lib -lc</span><br></pre></td></tr></table></figure>
+
+<h3 id="shared-library"><a href="#shared-library" class="headerlink" title="shared library"></a>shared library</h3><p>save space and use one copy of library in memory.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">% gcc -fPIC -c myputs.c</span><br><span class="line">% ld -shared -o libmyputs.so myputs.o</span><br></pre></td></tr></table></figure>
+
+<p>others are the same</p>
+<h1 id="Ch-4-Operating-System-Design"><a href="#Ch-4-Operating-System-Design" class="headerlink" title="Ch 4 - Operating-System Design"></a>Ch 4 - Operating-System Design</h1><h2 id="devices"><a href="#devices" class="headerlink" title="devices"></a>devices</h2><h3 id="Terminal-and-shell"><a href="#Terminal-and-shell" class="headerlink" title="Terminal and shell"></a>Terminal and shell</h3><h4 id="issues"><a href="#issues" class="headerlink" title="issues"></a>issues</h4><ul>
+<li>terminals are slow and characters generation are too fast</li>
+<li>characters arrive from the keyboard even though there isn’t a waiting read request from an application</li>
+</ul>
+<h4 id="one-approach"><a href="#one-approach" class="headerlink" title="one approach"></a>one approach</h4><p>two threads, one for input and one for output.</p>
+<h4 id="deal-with-backspace"><a href="#deal-with-backspace" class="headerlink" title="deal with backspace"></a>deal with backspace</h4><p>using another input queue</p>
+<ul>
+<li>one for partial-line</li>
+<li>one for completed line</li>
+</ul>
+<h4 id="modularization"><a href="#modularization" class="headerlink" title="modularization"></a>modularization</h4><p><strong>line-discipline module</strong> in some systems, provides the common character-handling code, and make the device independent with the kernel.</p>
+<h4 id="pseudo-terminal"><a href="#pseudo-terminal" class="headerlink" title="pseudo terminal"></a>pseudo terminal</h4><p>window master -&gt; pseudoterminal master -&gt; pseudoterminal slave -&gt; line discipline -&gt; application</p>
+<h3 id="Network-communication"><a href="#Network-communication" class="headerlink" title="Network communication"></a>Network communication</h3><p>…</p>
+<h2 id="virtual-machines-microkernels"><a href="#virtual-machines-microkernels" class="headerlink" title="virtual machines, microkernels"></a>virtual machines, microkernels</h2><h3 id="virtual-machine"><a href="#virtual-machine" class="headerlink" title="virtual machine"></a>virtual machine</h3><h4 id="VMM-virtual-machine-monitor"><a href="#VMM-virtual-machine-monitor" class="headerlink" title="VMM (virtual machine monitor)"></a>VMM (virtual machine monitor)</h4><ul>
+<li>provide hardware abstraction for guest OS</li>
+</ul>
+<h4 id="virtualization-type"><a href="#virtualization-type" class="headerlink" title="virtualization type"></a>virtualization type</h4><ul>
+<li><strong>pure virtualization</strong>: guest is not modified</li>
+<li><strong>para-virtualization</strong>guest is modified</li>
+</ul>
+<h4 id="VMM-mode"><a href="#VMM-mode" class="headerlink" title="VMM mode"></a>VMM mode</h4><ul>
+<li>virtual machine runs in user mode of real machine</li>
+<li>VMM runs in privileged mode of real machine</li>
+<li>guest OS runs in the (virtual) privileged mode</li>
+<li>guest app runs in the (virtual) user mode</li>
+</ul>
+<p>processor in VM is <strong>REAL</strong> processor.</p>
+<h4 id="VMM-operation"><a href="#VMM-operation" class="headerlink" title="VMM operation"></a>VMM operation</h4><p>trap:</p>
+<ul>
+<li>hardware make upcall to VMM</li>
+<li>VMM find out which VM</li>
+<li>VMM deliver trap through VM to OS</li>
+</ul>
+<h4 id="sensitive-and-privileged-mode"><a href="#sensitive-and-privileged-mode" class="headerlink" title="sensitive and privileged mode"></a>sensitive and privileged mode</h4><ul>
+<li>All <strong>sensitive</strong> instructions must be <strong>privileged</strong>, or cannot build VM for the processor.</li>
+<li>sensitive instructions is a <strong>subset</strong> of its privileged instructions</li>
+<li>execute a <strong>sensitive instruction</strong> in virtual user or virtual privileged mode, will <strong>trap into VMM</strong></li>
+</ul>
+<h4 id="problem-with-Intel-x86"><a href="#problem-with-Intel-x86" class="headerlink" title="problem with Intel x86"></a>problem with Intel x86</h4><p>not all <strong>sensitive</strong> instructions are <strong>privileged</strong> instructions, which result that Intel x86 is unable to build VM</p>
+<h4 id="full-virtualization"><a href="#full-virtualization" class="headerlink" title="full virtualization"></a>full virtualization</h4><ul>
+<li>binary rewriting (VMware)<ul>
+<li>replace the sensitive instruction with <strong>hypercalls</strong>, done by VMware.</li>
+<li>guest OS is unmodified</li>
+</ul>
+</li>
+<li>hardware virtualization, fix the hardware (Intel)<ul>
+<li>introduce “ring -1” for root mode</li>
+<li><code>VM-exit</code> to root mode</li>
+<li>no use of root mode</li>
+</ul>
+</li>
+<li>I/O virtualization (VMware)<ul>
+<li>split the driver in VMM</li>
+<li>use Host/Guest model</li>
+</ul>
+</li>
+</ul>
+<h4 id="para-virtualization-Xen"><a href="#para-virtualization-Xen" class="headerlink" title="para-virtualization (Xen)"></a>para-virtualization (Xen)</h4><ul>
+<li>sensitive instructions replaced with  <strong>strong text</strong> calls</li>
+<li>guest machine has <strong>no device drivers</strong></li>
+</ul>
+<h4 id="VM-meet-virtual-memory"><a href="#VM-meet-virtual-memory" class="headerlink" title="VM meet virtual memory"></a>VM meet virtual memory</h4><p>solution:</p>
+<ul>
+<li>Para-virtualization to the Rescue</li>
+<li>Hardware to the Rescue</li>
+</ul>
+<h3 id="microkernels"><a href="#microkernels" class="headerlink" title="microkernels"></a>microkernels</h3><blockquote>
+<p>basic understand of the microkernel</p>
+</blockquote>
+<h1 id="Ch-5-Processor-Management"><a href="#Ch-5-Processor-Management" class="headerlink" title="Ch 5 - Processor Management"></a>Ch 5 - Processor Management</h1><h2 id="threads-implementations"><a href="#threads-implementations" class="headerlink" title="threads implementations"></a>threads implementations</h2><h3 id="one-level-model"><a href="#one-level-model" class="headerlink" title="one level model"></a>one level model</h3><p>All the kernels are created in the kernel, if need to turn into user thread, one need to <code>return from interrupt</code></p>
+<ul>
+<li><strong>pros</strong>: easy to implement, win and linux use this model.</li>
+<li><strong>cons</strong>: system call cost is expensive, so make <code>pthread_mutex</code> <strong>on the user level</strong> (why?).</li>
+</ul>
+<blockquote>
+<p>understand the NPTL, how to make <code>futex</code> on the user level</p>
+</blockquote>
+<h3 id="two-level-model"><a href="#two-level-model" class="headerlink" title="two-level model"></a>two-level model</h3><p>N * 1 (single kernel thread per process)<br>the user thread goes into kernel when making <code>system call</code>.</p>
+<ul>
+<li><strong>pros</strong>: fast</li>
+<li><strong>cons</strong>: when one goes into system call, other threads are blocked.</li>
+</ul>
+<p>M * N (multiple kernel threads per process)<br>similar with N to 1 model, which is fast.</p>
+<h3 id="problem-with-two-level-models"><a href="#problem-with-two-level-models" class="headerlink" title="problem with two-level models"></a>problem with two-level models</h3><ul>
+<li>I/O blocking problem</li>
+<li><strong>Priority Inversion problem</strong>: the priority in userspace and kernel are different.<ul>
+<li>solution: Scheduler Activations Model (<em>understand how it work</em>)</li>
+</ul>
+</li>
+</ul>
+<h3 id="thread-implementation-simple-processor"><a href="#thread-implementation-simple-processor" class="headerlink" title="thread implementation - simple processor"></a>thread implementation - simple processor</h3><ul>
+<li>CurrentThread -&gt; …</li>
+<li>RunQueue -&gt; …</li>
+<li>Mutex Queue, I/O Queue -&gt; …</li>
+</ul>
+<p>each … is a thread data structure, and this is doubly link list.</p>
+<blockquote>
+<p>understand the function of <code>thread_switch</code> for simple processor</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">thread_switch</span><span class="params">( )</span> </span>&#123;</span><br><span class="line">	<span class="keyword">thread_t</span> NextThread, OldCurrent;</span><br><span class="line">	NextThread = dequeue(RunQueue);</span><br><span class="line">	OldCurrent = CurrentThread;</span><br><span class="line">	CurrentThread = NextThread;</span><br><span class="line">	swapcontext(&amp;OldCurrent-&gt;context, &amp;NextThread-&gt;context);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="thread-implementation-multiple-processor"><a href="#thread-implementation-multiple-processor" class="headerlink" title="thread implementation -  multiple processor"></a>thread implementation -  multiple processor</h3><p>the difficulty is locking, when two thinks that they get the mutex.</p>
+<p>solution:</p>
+<ul>
+<li>compare and swap and spin lock</li>
+<li>blocking lock</li>
+<li>futex</li>
+</ul>
+<h3 id="solution-pin-lock-blocking-lock-futex"><a href="#solution-pin-lock-blocking-lock-futex" class="headerlink" title="solution: pin lock, blocking lock, futex"></a>solution: pin lock, blocking lock, futex</h3><p>lock other CPUs when implementing on one CPU</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">spin_lock</span><span class="params">(<span class="keyword">int</span> *mutex)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(CAS(mutex, <span class="number">0</span>, <span class="number">1</span>));</span><br><span class="line">&#125;	<span class="comment">// easy but wasteful.</span></span><br></pre></td></tr></table></figure>
+
+<p> blocking lock</p>
+<p>/? understand why some solutions are not available.</p>
+<p> futex</p>
+<p>/?understand how to implement the futex.</p>
+<h2 id="interrupts"><a href="#interrupts" class="headerlink" title="interrupts"></a>interrupts</h2><p>non-preemption kernels: return to the same thread when interrupted.</p>
+<h3 id="interrupt-masking"><a href="#interrupt-masking" class="headerlink" title="interrupt masking"></a>interrupt masking</h3><p>IPL: set the IPL to n, then block the interrupts below <strong>(&lt;=)</strong> n.</p>
+<p>One cannot use mutex inside a signal handler (why?)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">AccessXThread</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> oldIPL;</span><br><span class="line">	oldIPL = setIPL(IHLevel);</span><br><span class="line">	X = X+<span class="number">1</span>;</span><br><span class="line">	setIPL(oldIPL);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>need to change in the <code>thread_switch</code> function, understand how it works.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">thread_switch</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">thread_t</span> *OldThread;</span><br><span class="line">	<span class="keyword">int</span> oldIPL;</span><br><span class="line">	oldIPL = setIPL(HIGH_IPL);</span><br><span class="line">	<span class="comment">// protect access to RunQueue by</span></span><br><span class="line">	<span class="comment">// masking all interrupts</span></span><br><span class="line">	<span class="keyword">while</span>(queue_empty(RunQueue)) &#123;</span><br><span class="line">		<span class="comment">// repeatedly allow interrupts, then check</span></span><br><span class="line">		<span class="comment">// RunQueue</span></span><br><span class="line">		setIPL(<span class="number">0</span>);</span><br><span class="line">		<span class="comment">// 0 means no interrupts are masked</span></span><br><span class="line">		setIPL(HIGH_IPL);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// We found a runnable thread</span></span><br><span class="line">	OldThread = CurrentThread;</span><br><span class="line">	CurrentThread = dequeue(RunQueue);</span><br><span class="line">	swapcontext(OldThread-&gt;context, CurrentThread-&gt;context);</span><br><span class="line">	setIPL(oldIPL);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Preemptive-Kernels-amp-Multiple-CPUs"><a href="#Preemptive-Kernels-amp-Multiple-CPUs" class="headerlink" title="Preemptive Kernels &amp; Multiple CPUs"></a>Preemptive Kernels &amp; Multiple CPUs</h3><p>the spin lock only lock other CPUs, but have nothing to do with interrupt in the same CPU. e.g.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in CPU 1</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">AccessXThread</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	SpinLock(&amp;L);</span><br><span class="line">	X = X+<span class="number">1</span>;</span><br><span class="line">	SpinUnlock(&amp;L);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//in CPU2</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">AccessXInterrupt</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	...</span><br><span class="line">	SpinLock(&amp;L);</span><br><span class="line">	X = X+<span class="number">1</span>;</span><br><span class="line">	SpinUnlock(&amp;L);</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>this will work if the interrupt are done in CPU2, however, if it is operated in the same CPU, problems may occurred.</p>
+<p>solution:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">SpinLock_t L = UNLOCKED;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">AccessXThread</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	DisablePreemption();</span><br><span class="line">	MaskInterrupts();</span><br><span class="line">	SpinLock(&amp;L);</span><br><span class="line">	X = X+<span class="number">1</span>;</span><br><span class="line">	SpinUnlock(&amp;L);</span><br><span class="line">	UnMaskInterrupts();</span><br><span class="line">	EnablePreemption();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// interrupt code is the same</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Deferred-Work"><a href="#Deferred-Work" class="headerlink" title="Deferred Work"></a>Deferred Work</h3><p>Interrupt handlers run with interrupts masked up to its interrupt priority level.</p>
+<p>sometimes, need to defer most of the work after the interrupt handler returns (e.g. the interrupt handler will do a lot of things), like return from function call.</p>
+<h3 id="Thread-Preemption"><a href="#Thread-Preemption" class="headerlink" title="Thread Preemption"></a>Thread Preemption</h3><ul>
+<li>user level preemption, go to different user thread in the user space.</li>
+<li>kernel level preemption, go to different user thread in the kernel.</li>
+</ul>
+<h3 id="Directed-Processing"><a href="#Directed-Processing" class="headerlink" title="Directed Processing"></a>Directed Processing</h3><ul>
+<li>Signals, e.g. ctrl + c in UNIX is a signal, generated by hardware and invoke the signal handler. Done in <strong>user mode</strong></li>
+<li>APC (Asynchronous Procedure Calls), also may be done in <strong>kernel</strong> mode than signal.</li>
+</ul>
+<p>then when invoking the signal handler,  set up the user stack so that the handler is called as a subroutine and so that when it returns, normal execution of the thread may continue.</p>
+<h2 id="scheduling"><a href="#scheduling" class="headerlink" title="scheduling"></a>scheduling</h2><h3 id="schedule-goals"><a href="#schedule-goals" class="headerlink" title="schedule goals"></a>schedule goals</h3><ul>
+<li>maximize CPU <strong>utilization</strong></li>
+<li>maximize <strong>throughput</strong><ul>
+<li>throughout = job finished / time</li>
+</ul>
+</li>
+<li>minimize wait time<ul>
+<li>wait time = wait time in queue + execution time in CPU.</li>
+<li><strong>average waiting time (AWT)</strong> = wait time / total time.</li>
+</ul>
+</li>
+<li>minimize response time</li>
+<li><strong>fairness</strong></li>
+</ul>
+<h3 id="basic-algorithm"><a href="#basic-algorithm" class="headerlink" title="basic algorithm"></a>basic algorithm</h3><ul>
+<li>FIFO: fair</li>
+<li>SJF: unfair</li>
+<li>SRTN:<ul>
+<li>preemptive version of SJF</li>
+<li>unfair, may cause starvation problem</li>
+</ul>
+</li>
+<li>Round Robin (RR) + FIFO, fair<ul>
+<li>proper q, not too large or small</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>know how to calculate the AWT for RR + FIFO!</p>
+</blockquote>
+<h3 id="Max-min-Fairness"><a href="#Max-min-Fairness" class="headerlink" title="Max-min Fairness"></a>Max-min Fairness</h3><ul>
+<li>sort jobs based on request xi</li>
+<li>initially, assign sum_xi/N to each job</li>
+<li>satisfy x1, redistribute remaining capacity evenly</li>
+<li>recursion</li>
+</ul>
+<h3 id="priority"><a href="#priority" class="headerlink" title="priority"></a>priority</h3><p>Multi-level</p>
+<ul>
+<li>apply RR with multiple level</li>
+</ul>
+<p>Multi-level w/ Feedback*</p>
+<ul>
+<li>apply RR with multiple level</li>
+<li>Priority is dynamic<ul>
+<li>if it uses a full time slice, decrease priority</li>
+<li>if it blocks before using up a full time slice, increase priority</li>
+<li>To avoid starvation, use <strong>aging</strong></li>
+</ul>
+</li>
+<li>not fair</li>
+</ul>
+<h3 id="stride-scheduling"><a href="#stride-scheduling" class="headerlink" title="stride scheduling*"></a>stride scheduling*</h3><p>principle</p>
+<ul>
+<li>every thread is assigned a priority, <strong>pass value</strong></li>
+<li>every thread is assigned a <strong>stride value</strong></li>
+<li>every time slice, pick the thread with the highest priority, smallest first.</li>
+</ul>
+<p>every iteration</p>
+<ul>
+<li>smallest pass value first. (high priority)</li>
+<li>increment the thread’s pass value by its stride value</li>
+<li>iterate<blockquote>
+<p>understand how it works<br>Stride is proportion to 1 / number of tickets<br>use 1 / p  * smallest common multiplier</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Real-Time-algorithm"><a href="#Real-Time-algorithm" class="headerlink" title="Real Time algorithm"></a>Real Time algorithm</h3><p>Rate-monotonic scheduling</p>
+<ul>
+<li>$\sum_{i=0}^{n-1}(T_i/P_i)\leq n(2^{1/n}-1)$</li>
+<li>when the equation satisfied, system works</li>
+<li>or need to <strong>simulate</strong> oneself to see if it works</li>
+</ul>
+<p>Earliest Deadline First (EDF)</p>
+<ul>
+<li>greedy algorithm</li>
+</ul>
+<h3 id="implementing-issue"><a href="#implementing-issue" class="headerlink" title="implementing issue"></a>implementing issue</h3><ul>
+<li>priority inversion problem</li>
+<li>multiple processor<ul>
+<li>cache affinity: thread remember the CPU</li>
+<li>may cause one CPU empty</li>
+<li>solution: load balancing</li>
+</ul>
+</li>
+</ul>
+<h1 id="Ch-6-File-Systems"><a href="#Ch-6-File-Systems" class="headerlink" title="Ch 6 - File Systems"></a>Ch 6 - File Systems</h1><h2 id="the-basics-of-file-systems"><a href="#the-basics-of-file-systems" class="headerlink" title="the basics of file systems"></a>the basics of file systems</h2><h3 id="structure-of-UNIX’s-S5FS"><a href="#structure-of-UNIX’s-S5FS" class="headerlink" title="structure of UNIX’s S5FS"></a>structure of UNIX’s S5FS</h3><ul>
+<li>regarded as an array of blocks of 1KB each</li>
+<li><code>Superblock</code> contains the head of the <code>free list</code>, which is a link list.</li>
+<li><code>I-list</code> is an array of index nodes inodes, each  <code>inodes</code> represent as a file.</li>
+<li>in the inode, there is a disk map that map the inode with the data region.s</li>
+</ul>
+<h4 id="iNode"><a href="#iNode" class="headerlink" title="iNode"></a>iNode</h4><p>Device -&gt; Inode Number -&gt; File type -&gt; Mode -&gt; Link Count  -&gt; Owner/group -&gt;  Size -&gt; Disk map (where data actually stored)</p>
+<h4 id="Disk-Map-each-file"><a href="#Disk-Map-each-file" class="headerlink" title="Disk Map (each file)"></a>Disk Map (each file)</h4><p>13 disk pointers</p>
+<ul>
+<li>pointer 0 - 9 -&gt; 1KB block each</li>
+<li>pointer 10 -&gt; 256 max entries = 256KB</li>
+<li>pointer 11 -&gt; 64MB</li>
+<li>pointer 12 -&gt; 16GB</li>
+</ul>
+<h4 id="Data-block"><a href="#Data-block" class="headerlink" title="Data block"></a>Data block</h4><p>contains data value and metadata, which can be used to reach these files (pointers in DiskMap are metadata)</p>
+<blockquote>
+<p>understand how does disk map do the mapping</p>
+</blockquote>
+<h4 id="Freelist"><a href="#Freelist" class="headerlink" title="Freelist"></a>Freelist</h4><p>superlist: freelist -&gt; freelist -&gt; freelist …</p>
+<p>freelist: (100x) super block -&gt; free disk block</p>
+<p>The superblock contains the addresses of up to 100 free disk blocks</p>
+<h3 id="Disk-Architecture"><a href="#Disk-Architecture" class="headerlink" title="Disk Architecture"></a>Disk Architecture</h3><h4 id="basic-concept"><a href="#basic-concept" class="headerlink" title="basic concept"></a>basic concept</h4><p>disk address = (head/surface#, cylinder/track#, sector#)</p>
+<h4 id="disk-access-time-and-problem"><a href="#disk-access-time-and-problem" class="headerlink" title="disk access time and problem"></a>disk access time and problem</h4><p><strong>access time = seek time + rotational latency + data transfer time</strong></p>
+<p>the data transfer time is fixed, only seek time and rotational time can be improved.</p>
+<p>problem: the rotational time and access time is too slow, which slow down the disk access time.</p>
+<h2 id="performance-improvements"><a href="#performance-improvements" class="headerlink" title="performance improvements"></a>performance improvements</h2><h3 id="some-approaches-FFS"><a href="#some-approaches-FFS" class="headerlink" title="some approaches: FFS"></a>some approaches: FFS</h3><h4 id="enlarge-big-block-size"><a href="#enlarge-big-block-size" class="headerlink" title="enlarge big block size"></a>enlarge big block size</h4><ul>
+<li><strong>pro</strong>: speed up</li>
+<li><strong>con</strong>: increase <strong>internal fragmentation</strong></li>
+</ul>
+<h4 id="use-of-fragments"><a href="#use-of-fragments" class="headerlink" title="use of fragments"></a>use of fragments</h4><p>The number of fragments per block (1, 2, 4, or 8) is fixed.</p>
+<ul>
+<li><strong>pro</strong>: fast, less internal fragmentation</li>
+<li><strong>con</strong>: complicated</li>
+</ul>
+<h4 id="minimize-seek-time"><a href="#minimize-seek-time" class="headerlink" title="minimize seek time:"></a>minimize seek time:</h4><p>keep related things close to another, and unrelated things separate</p>
+<p>use cylinder group rather than i-list and data region.</p>
+<p>because seeking the closed <strong>cylinder group</strong> take less time</p>
+<ul>
+<li><strong>pro</strong>:  better performance</li>
+<li><strong>con</strong>: complicated</li>
+</ul>
+<h4 id="minimize-rotation-latency"><a href="#minimize-rotation-latency" class="headerlink" title="minimize rotation latency"></a>minimize rotation latency</h4><p>the worst case: rotate 360 degree every time.</p>
+<p>solution: block interleaving, only rotate and wait for a sector</p>
+<p><strong>pro</strong>: huge improvement</p>
+<h4 id="buffer-cache"><a href="#buffer-cache" class="headerlink" title="buffer cache"></a>buffer cache</h4><p>one can buffer cache files in large memory</p>
+<p>Dirty/modified blocks: write operation on the buffer cache will label the block as “dirty/modified”, and clear the dirty  bit after updating the disk.</p>
+<ul>
+<li>read is ok</li>
+<li>write <strong>does matter</strong> because eventually files need to write into disk</li>
+</ul>
+<p>solution:</p>
+<ul>
+<li>write-through solution: slow</li>
+<li>write-back solution: write to the disk can wait<ul>
+<li><strong>pros</strong>: high speed</li>
+<li><strong>cons</strong>: longer the wait, higher the risk (if lose power)</li>
+</ul>
+</li>
+</ul>
+<h3 id="log-structured-file-system"><a href="#log-structured-file-system" class="headerlink" title="log-structured file system"></a>log-structured file system</h3><p>solution: write in a <strong>long log</strong>, but still need to consider the risk.</p>
+<p>principle:</p>
+<ul>
+<li><p>never delete/update</p>
+</li>
+<li><p>append only</p>
+<ul>
+<li><strong>pros</strong>: minimize the seek time and rotational latency; can recover from crashes.</li>
+<li><strong>cons</strong>: this will <strong>waste a lot of disk space</strong></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>understand how does it work</p>
+</blockquote>
+<h2 id="crash-resiliency"><a href="#crash-resiliency" class="headerlink" title="crash resiliency"></a>crash resiliency</h2><h3 id="approaches"><a href="#approaches" class="headerlink" title="approaches"></a>approaches</h3><h4 id="consistency-preserving"><a href="#consistency-preserving" class="headerlink" title="consistency-preserving"></a>consistency-preserving</h4><p>write cache contents to disk in same <strong>order</strong> in which cache was updated</p>
+<p>order: use <strong>Topological Sort</strong> to figure it out the order</p>
+<p>exception: circular dependency</p>
+<h4 id="updates-as-transaction"><a href="#updates-as-transaction" class="headerlink" title="updates as transaction"></a>updates as transaction</h4><p>has <strong>ACID</strong> property</p>
+<ul>
+<li>atomic</li>
+<li>consistent</li>
+<li>isolated</li>
+<li>durable</li>
+</ul>
+<p>solution</p>
+<ul>
+<li>journaling</li>
+<li>shadow paging</li>
+</ul>
+<h3 id="journaling"><a href="#journaling" class="headerlink" title="journaling"></a>journaling</h3><h4 id="two-approaches"><a href="#two-approaches" class="headerlink" title="two approaches"></a>two approaches</h4><ul>
+<li>record previous contents: <strong>undo journaling</strong></li>
+<li>record new contents: <strong>redo journaling</strong></li>
+</ul>
+<h4 id="journal-features"><a href="#journal-features" class="headerlink" title="journal features"></a>journal features</h4><ul>
+<li>journal is a separate part of the disk</li>
+<li>journal is <strong>append-only</strong>, append content followed by commit.</li>
+<li>when updating, write to journal first, write to disk after commit to journal</li>
+</ul>
+<p>recovery:</p>
+<ul>
+<li>find all committed transactions</li>
+<li>redo these transactions</li>
+</ul>
+<p>journal options:</p>
+<ul>
+<li>journal everything, <strong>costly</strong></li>
+<li>journal metadata</li>
+</ul>
+<h3 id="shadow-paging"><a href="#shadow-paging" class="headerlink" title="shadow paging"></a>shadow paging</h3><p>copy-on-write towards shadow paging tree.</p>
+<p>update the root of the tree is a commitment.</p>
+<blockquote>
+<p>understand how to perform when modifying leave in the tree</p>
+</blockquote>
+<h2 id="directories-and-naming"><a href="#directories-and-naming" class="headerlink" title="directories and naming"></a>directories and naming</h2><h3 id="Hash-table-approach"><a href="#Hash-table-approach" class="headerlink" title="Hash table approach"></a>Hash table approach</h3><p>cheat direct content as array of hash buckets</p>
+<p>problem: collisions in one bucket</p>
+<h4 id="extensible-hashing"><a href="#extensible-hashing" class="headerlink" title="extensible hashing"></a>extensible hashing</h4><blockquote>
+<p>understand how to rehash the extensible hash table.</p>
+</blockquote>
+<h3 id="B-trees"><a href="#B-trees" class="headerlink" title="B-trees"></a>B-trees</h3><h4 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h4><ul>
+<li>every node (except root &amp; leaves) has ≥ ceil(m/2) children, ≤ m children</li>
+<li>the root has at least 2 children (unless it is also a leaf)</li>
+<li>all leaves appear at the same level and carry no keys</li>
+<li>a non-leaf node with k children contains k-1 keys</li>
+</ul>
+<h4 id="B-trees-1"><a href="#B-trees-1" class="headerlink" title="B+ trees"></a>B+ trees</h4><ul>
+<li>internal nodes contain no data, just keys</li>
+<li>leaf nodes are linked</li>
+</ul>
+<p>Note that the updates are on the top, not the button.</p>
+<h4 id="implementation"><a href="#implementation" class="headerlink" title="implementation"></a>implementation</h4><blockquote>
+<p>understand how to split and combine the b+ tree when add/delete the file.</p>
+</blockquote>
+<h3 id="name-space-management"><a href="#name-space-management" class="headerlink" title="name-space management"></a>name-space management</h3><h4 id="mounting"><a href="#mounting" class="headerlink" title="mounting"></a>mounting</h4><p>for linux, create an entry in the <code>inode</code> to point to the <strong>file system</strong> (it is a system, not a directory or file). e.g.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; mount /dev/disk2 /usr</span><br></pre></td></tr></table></figure>
+
+<h2 id="RAID-flash-memory-case-studies"><a href="#RAID-flash-memory-case-studies" class="headerlink" title="RAID, flash memory, case studies"></a>RAID, flash memory, case studies</h2><h3 id="RAID"><a href="#RAID" class="headerlink" title="RAID"></a>RAID</h3><h4 id="Logical-Volume-Management"><a href="#Logical-Volume-Management" class="headerlink" title="Logical Volume Management"></a>Logical Volume Management</h4><ul>
+<li>spanning, into one larger system</li>
+<li>mirroring, increase the consistancy</li>
+</ul>
+<h4 id="striping-and-parallel"><a href="#striping-and-parallel" class="headerlink" title="striping and parallel"></a>striping and parallel</h4><p><strong>pros</strong>: increase the speed</p>
+<p><strong>cons</strong>: higher variance, worse reliability</p>
+<p>stripe width: parallel number<br>stripe unit: the size for each disk</p>
+<h4 id="striping-strategy"><a href="#striping-strategy" class="headerlink" title="striping strategy"></a>striping strategy</h4><p>performance is <strong>better</strong> with <strong>larger striping unit</strong></p>
+<blockquote>
+<p>know how to calculate the fail probability</p>
+</blockquote>
+<p>if fail prob is f for one, the for all N parallel, the prob would be 1-(1-f)^N<br>solution: <strong>RAID</strong></p>
+<h3 id="RAID-1"><a href="#RAID-1" class="headerlink" title="RAID"></a>RAID</h3><h4 id="Level1"><a href="#Level1" class="headerlink" title="Level1"></a>Level1</h4><p>pure mirroring</p>
+<h4 id="Level2"><a href="#Level2" class="headerlink" title="Level2"></a>Level2</h4><p>Error Correcting Code (ECC)</p>
+<p>data bits + check bits</p>
+<h4 id="Level3"><a href="#Level3" class="headerlink" title="Level3"></a>Level3</h4><p>data bits + Parity bits (which one disk dead)</p>
+<h4 id="Level4"><a href="#Level4" class="headerlink" title="Level4"></a>Level4</h4><p>data block + Parity block</p>
+<h4 id="Level5"><a href="#Level5" class="headerlink" title="Level5"></a>Level5</h4><p>problem: write performance bottleneck at the parity disk</p>
+<p>solution: <strong>Parity blocks</strong> are <strong>spread</strong> among all the disks in a systematic way</p>
+<h3 id="Flash-Memory"><a href="#Flash-Memory" class="headerlink" title="Flash Memory"></a>Flash Memory</h3><p><strong>pros</strong>: Random access, Low power, Vibration-resistant</p>
+<p><strong>cons</strong>: Limited lifetime, Write is expensive</p>
+<h4 id="approach"><a href="#approach" class="headerlink" title="approach"></a>approach</h4><ul>
+<li>NOR: byte addressable</li>
+<li>NAND: page addressable (good)</li>
+</ul>
+<h4 id="writing"><a href="#writing" class="headerlink" title="writing"></a>writing</h4><ul>
+<li>easy to turn 1 to 0</li>
+<li>erase entire block to recover to 1</li>
+<li>log-structured file system is used</li>
+</ul>
+<h1 id="Ch-7-Memory-Management"><a href="#Ch-7-Memory-Management" class="headerlink" title="Ch 7 - Memory Management"></a>Ch 7 - Memory Management</h1><h2 id="virtual-memory"><a href="#virtual-memory" class="headerlink" title="virtual memory"></a>virtual memory</h2><p>remember where does <code>eip</code>, <code>ebp</code>, <code>esp</code> point to.</p>
+<h3 id="Basics"><a href="#Basics" class="headerlink" title="Basics"></a>Basics</h3><h4 id="virtual-address"><a href="#virtual-address" class="headerlink" title="virtual address"></a>virtual address</h4><p>virtual address (32 bits) is translated into physical address via MMU</p>
+<p>approach:</p>
+<ul>
+<li>Memory Fence (and overlays)</li>
+<li>Base and Bounds Registers</li>
+</ul>
+<h4 id="Segments"><a href="#Segments" class="headerlink" title="Segments"></a>Segments</h4><ul>
+<li>One pair of base and bounds registers per segment</li>
+<li>text, data, heap and stack can be in different place.</li>
+</ul>
+<h4 id="Segmentation-Fault"><a href="#Segmentation-Fault" class="headerlink" title="Segmentation Fault*"></a>Segmentation Fault*</h4><ul>
+<li>virtual address not within range of any base-bounds registers</li>
+<li><strong>or access is incompatible</strong></li>
+</ul>
+<h4 id="Memory-Mapped-File"><a href="#Memory-Mapped-File" class="headerlink" title="Memory Mapped File"></a>Memory Mapped File</h4><ul>
+<li>map entire file into segment using <code>mmp()</code> system call</li>
+<li>need additional register to do this, others are the same</li>
+</ul>
+<h4 id="Copy-On-Write"><a href="#Copy-On-Write" class="headerlink" title="Copy-On-Write"></a>Copy-On-Write</h4><ul>
+<li>a process gets a <strong>private</strong> copy of the segment after a thread in the process performs a <strong>write</strong> for the <strong>first time</strong><blockquote>
+<p>understand how <code>Copy-On-Write</code> works</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="Swapping"><a href="#Swapping" class="headerlink" title="Swapping"></a>Swapping</h4><ul>
+<li>condition: no new room for segments</li>
+<li>solution: swap the segments into disk, recorded by <strong>validity</strong> bit</li>
+<li>v=0, not available, v=1 available (in the physical memory)</li>
+<li>can start the program with <strong>all</strong> v=0</li>
+<li>every user memory segment <strong>needs a corresponding disk image</strong>.<blockquote>
+<p>understand the data structure of <code>as_region</code></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Paging"><a href="#Paging" class="headerlink" title="Paging"></a>Paging</h3><h4 id="segmentation-VS-paging"><a href="#segmentation-VS-paging" class="headerlink" title="segmentation VS paging"></a>segmentation VS paging</h4><ul>
+<li>s: divide the address space into variable-size segments, <strong>external</strong> fragmentation</li>
+<li>p: divide the address space into fixed-size pages. <strong>internal</strong> fragmentation</li>
+</ul>
+<h4 id="page"><a href="#page" class="headerlink" title="page"></a>page</h4><p>size: 4 KB, 12 bits.<br><strong>page-aligned</strong>: if the least significant 12 bits of an address are all zero</p>
+<p>virtual memory (address space) and physical memory have pages, need to map virtual page<br>numbers to physical page numbers.</p>
+<p>solution: MMU TLB</p>
+<h4 id="page-frame-VS-physical-page"><a href="#page-frame-VS-physical-page" class="headerlink" title="page frame VS physical page"></a>page frame VS physical page</h4><p>/?</p>
+<h3 id="Page-tables"><a href="#Page-tables" class="headerlink" title="Page tables"></a>Page tables</h3><h4 id="Basic-Two-level-Page-Tables"><a href="#Basic-Two-level-Page-Tables" class="headerlink" title="Basic (Two-level) Page Tables"></a>Basic (Two-level) Page Tables</h4><p>where to store</p>
+<ul>
+<li>page table: in memory</li>
+<li>physical address: (x86) CR3 register</li>
+</ul>
+<p>page table</p>
+<ul>
+<li>every process (including OS) has its own page table</li>
+<li>MMU do the translation</li>
+</ul>
+<p>cons:</p>
+<ul>
+<li>access time is slow, need two access times</li>
+<li>too large, 2^20 * 4 = 4 MB space in memory</li>
+</ul>
+<h4 id="Forward-Mapped-Page-Tables"><a href="#Forward-Mapped-Page-Tables" class="headerlink" title="Forward-Mapped Page Tables"></a>Forward-Mapped Page Tables</h4><p>use multiple level to allocate a physical memory</p>
+<ul>
+<li>in this way, the minimum would be 1MB, because only one segment is used.</li>
+<li>the access time will cost more.</li>
+<li>cut down the overhead table from 3MB into 12KB</li>
+<li>one in page dir table, two in page tables.</li>
+</ul>
+<blockquote>
+<p>understand how to calculate the minimum size</p>
+</blockquote>
+<h4 id="Linear-Page-Tables"><a href="#Linear-Page-Tables" class="headerlink" title="Linear Page Tables"></a>Linear Page Tables</h4><ul>
+<li>space 00,  01 point to a page table that point to virtual table</li>
+<li>space 10 point to  a page table that point to physical table</li>
+</ul>
+<h4 id="Hashes-Page-Tables"><a href="#Hashes-Page-Tables" class="headerlink" title="Hashes Page Tables"></a>Hashes Page Tables</h4><p>hashed page table</p>
+<p>clustered page table</p>
+<p>use the last three bits in the page# as index in each page table entry.</p>
+<p>inverted page tabee</p>
+<ul>
+<li>combined the PID and the page number, compare the each table in page table.</li>
+<li>compare both PID and Tag</li>
+</ul>
+<h3 id="Translation-Lookaside-Buffers"><a href="#Translation-Lookaside-Buffers" class="headerlink" title="Translation Lookaside Buffers"></a>Translation Lookaside Buffers</h3><p>hardware cache to remember the page table entries <strong>only</strong>.</p>
+<p>TLB –cache–&gt; memory (page table entry) –cache–&gt; disk.</p>
+<h4 id="changes-on-PTE"><a href="#changes-on-PTE" class="headerlink" title="changes on PTE"></a>changes on PTE</h4><ul>
+<li>when PTE changes, must flush the corresponding TLB entry</li>
+<li>When switching to a different process, must flush the entire TLB</li>
+</ul>
+<h4 id="some-approaches"><a href="#some-approaches" class="headerlink" title="some approaches"></a>some approaches</h4><ul>
+<li>direct mapping cache</li>
+<li>two-way set-associative cache</li>
+<li>fully associative cache</li>
+</ul>
+<p>in a word, compare the key in VA with the tag in TLB. if hit, the get the value, if not trap into the kernel and fetch the PTE in memory. store and swap in the TLB.</p>
+<h4 id="multiprocessors-situation"><a href="#multiprocessors-situation" class="headerlink" title="multiprocessors situation"></a>multiprocessors situation</h4><p>Before such a mapping is modified, Processor 1 must <strong>shoot-down</strong> (invalidate) the TLB of Processor 2</p>
+<h2 id="OS-issues"><a href="#OS-issues" class="headerlink" title="OS issues"></a>OS issues</h2><h3 id="General-Concerns"><a href="#General-Concerns" class="headerlink" title="General Concerns"></a>General Concerns</h3><p>you should understand this graph thoroughly.</p>
+<h4 id="Demand-paging"><a href="#Demand-paging" class="headerlink" title="Demand paging"></a>Demand paging</h4><p>demand paging (lazy evaluation): bring in pages on demand</p>
+<p>understand the process when the proc start</p>
+<ul>
+<li>all the V = 0</li>
+<li>trap into the system and fetch from disk on demand</li>
+</ul>
+<h4 id="Page-fault"><a href="#Page-fault" class="headerlink" title="Page fault"></a>Page fault</h4><ul>
+<li>Trap occurs</li>
+<li>Find free physical page, by buddy system</li>
+<li>swap page out <strong>if no free physical page</strong></li>
+<li>Fetch page</li>
+<li>Return from trap</li>
+</ul>
+<p>problems: too much swap out will slow down the system</p>
+<p>solution:</p>
+<ul>
+<li>prefetching: bring more pages when fetching one page</li>
+<li><strong>pageout daemon</strong></li>
+</ul>
+<h4 id="pageout-daemon"><a href="#pageout-daemon" class="headerlink" title="pageout daemon"></a>pageout daemon</h4><p>policy</p>
+<ul>
+<li>FIFO (First-In-First-Out), <strong>bad</strong> solution.</li>
+<li>LFU (Least-Frequently-Used)</li>
+<li>LRU (Least-Recently-Used), <strong>reference</strong> bit is used.</li>
+</ul>
+<p>clock algorithm</p>
+<ul>
+<li>Two-handed: use two pageout daemons<ul>
+<li>front hand: scan all the page frame and set all the reference bit to 0</li>
+<li>second hand: wake up sometimes later, swap out all the pages with ref == 0</li>
+</ul>
+</li>
+<li>One-handed: only one pageout daemon<ul>
+<li>if ref == 0, swap out</li>
+<li>if ref != 0, set ref = 0</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>understand the relationship between page frame and physical page.</p>
+</blockquote>
+<h4 id="thrashing"><a href="#thrashing" class="headerlink" title="thrashing"></a>thrashing</h4><p>happens when the need of page &gt; available page</p>
+<p>solution:</p>
+<ul>
+<li>working set principle</li>
+<li>using <strong>local allocation</strong></li>
+</ul>
+<p>global VS local allocation</p>
+<ul>
+<li>global: easy for implementation but bad performance.</li>
+<li>local: every process will preserve several pages their own, will not be swapped out by page daemons.</li>
+</ul>
+<h3 id="Representative-Systems"><a href="#Representative-Systems" class="headerlink" title="Representative Systems"></a>Representative Systems</h3><h4 id="VM-layout"><a href="#VM-layout" class="headerlink" title="VM layout"></a>VM layout</h4><p>4GB in total (2^32 Bytes), 3GB for user, 1GB for kernel, <strong>FOR EACH PROCESS</strong>!!!</p>
+<blockquote>
+<p>have basic understanding when the physical memory is exactly 1GB and when larger than 1GB.</p>
+</blockquote>
+<h4 id="mem-map-page-list"><a href="#mem-map-page-list" class="headerlink" title="mem_map page list"></a>mem_map page list</h4><ul>
+<li>DMA zone: locations &lt; 2^24, for kernel only</li>
+<li>Normal zone: locations &gt;= 2^24 and &lt; 2^30 - 2^27, for kernel + user</li>
+<li>HighMem zone: locations &gt;= 2 30 - 2 27, for user only</li>
+</ul>
+<p>page Lists: free, active, inactive</p>
+<blockquote>
+<p>understand the process of page fault and pageout daemon</p>
+</blockquote>
+<h3 id="Copy-on-Write-and-Fork"><a href="#Copy-on-Write-and-Fork" class="headerlink" title="Copy on Write and Fork"></a>Copy on Write and Fork</h3><h4 id="fork-problem"><a href="#fork-problem" class="headerlink" title="fork problem"></a>fork problem</h4><p><code>fork()</code> makes a copy of the parent’s address space for the child: <strong>inefficient</strong>.</p>
+<p><code>vfork()</code> give the address space of parent to the child, <code>exec()</code> hands back the address space to the parent. efficient, but <strong>risk</strong>.</p>
+<p><code>copy and write fork()</code>, with lazy evaluation, when modified, make a copy. <strong>good solution</strong></p>
+<h4 id="copy-on-write-fork-problem"><a href="#copy-on-write-fork-problem" class="headerlink" title="copy on write fork problem"></a>copy on write fork problem</h4><p>problem happens if <strong>fork after copy on write</strong>.</p>
+<p>need to reset the R/W to R/O</p>
+<h4 id="shadow-object"><a href="#shadow-object" class="headerlink" title="shadow object"></a>shadow object</h4><p>keep track of pages that were originally <strong>copy-on-write</strong> but have been <strong>modified</strong></p>
+<p>if the file is shared, then there is no shadow object.</p>
+<p>pages in the shadow object have to be the resident in the bottom object.</p>
+<blockquote>
+<p>understand the process of change in shadow object when to fork a process</p>
+</blockquote>
+<h3 id="Backing-Store-Issues"><a href="#Backing-Store-Issues" class="headerlink" title="Backing Store Issues"></a>Backing Store Issues</h3><h4 id="written-back-situation"><a href="#written-back-situation" class="headerlink" title="written back situation"></a>written back situation</h4><p>Read-only mapping of a file: <strong>NO</strong></p>
+<p>Read-write shared mapping of a file: <strong>YES</strong></p>
+<p>Read-write private mapping of a file: <strong>YES</strong></p>
+<p>Anonymous memory: <strong>YES</strong></p>
+<h4 id="swap-space"><a href="#swap-space" class="headerlink" title="swap space"></a>swap space</h4><p>radical-<strong>conservative</strong> approach: <strong>eager evaluation</strong></p>
+<p>radical-<strong>liberal</strong> approach: <strong>lazy evaluation</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zheyangc.com/2017/08/01/Others/2017-08-01-Operating-System-Concepts/" data-id="ck7wfkil6003u0zr9ic7q04iq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kernel/">Kernel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Others/2017-07-03-Kernel-Notes" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/03/Others/2017-07-03-Kernel-Notes/" class="article-date">
+  <time datetime="2017-07-03T07:00:00.000Z" itemprop="datePublished">2017-07-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Lecture/">Lecture</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/03/Others/2017-07-03-Kernel-Notes/">Kernel Notes</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="midtern-overview"><a href="#midtern-overview" class="headerlink" title="midtern overview"></a>midtern overview</h1><ul>
+<li>EIP EBP ESP指向的位置以及作用要理解</li>
+<li>Process的几个函数需要知道<code>fork(), exec(), wait(), exit()</code>，PCB的流程，return code，zombie state等等</li>
+<li>Process 中的Adress Space的结构，以及每个结构的作用是什么，通过code来解释每个结构中发生了什么事</li>
+<li>execl的作用，以及如何将代码插入子进程中</li>
+<li>thread的几个函数 <code>pthread_create(), pthread_join(), pthread_exit()</code></li>
+<li>会使用guard command，注意用的是<strong>方括号</strong>不是圆括号</li>
+<li>了解semaphore的概念，以及binary和multiple的情况下的线程情况</li>
+<li>分析consumer和producer的例子，知道semaphore和mutex的区别，以及用mutex实现semaphore的不足之处，这也是为什么要用wait condition的原因</li>
+<li>了解<code>pthread_cond_wait()</code>的使用方法，以及mutex锁住的情况，什么时候锁，什么时候解锁</li>
+<li>reader和writer又是另外一情况（和semaphore相比），主要是reader不需要更改文件，只要没有writer，多个reader可以同时？了解此情况</li>
+<li>barrier问题是如何通过引入generation解决问题的？</li>
+<li>了解线程不安全的原因，大多数是全局变量，例如<code>errorno, stdout</code>等等，还有就是大小未知，课件中用ip地址来举例，了解如何让线程安全。</li>
+<li>了解signal handler的使用方法，清楚的意识到只是借用某一个线程而不是重新创建一个线程</li>
+<li>signal mask的作用以及如何创建mask</li>
+<li>注意signal是以进程为单位的，如果要应用到特定线程需要block signal. 但是不同的信号呢？需要mask吗？</li>
+<li>了解<code>sigwait()</code>是如何运作的，sigwait解决了上述mask的问题，使得mask可以不影响其他线程</li>
+<li>了解signal遇到system call的情况，课件中有读和写两个例子</li>
+<li>理解<code>pthread_cancel()</code>的作用，和<code>pthread_join(), pthread_exit()</code>之间的关系，以及需要注意cancel的时间和清理工作（如何？）</li>
+<li>cancellation的几个规则，以及cancellation常规点以及创建<code>pthread_testcancel()</code>，具体到clean handler里面的结构，其最终还是<code>pthread_exit()</code>，注意<code>pthread_cleanup_push()</code>和<code>pthread_cleanup_pop()</code>成对出现，pop这里的index的含义是什么？push和pop之间必须要lock。</li>
+<li>context在address space中是如何运作的，需要初步读懂汇编语言（用于cpu的执行），结合汇编语言知道每个stack frame的结构，从下至上分别是：<strong>arguments, eip, ebp, saved registers, local variables</strong></li>
+<li>了解thread <code>switch()</code>的运作方式，和cpu中的esp有关，注意switch function中的return是<strong>针对改变之后的那个线程</strong>。thread的switch是系统层面的，一个线程休眠，一个线程唤醒。CPU不知道线程。</li>
+<li>signal和interrupt的区别，signal是kernel层向user space层的中断，interrupt是从硬件层到kernel层的中断。了解trap以及interrupt中的HAL的作用，如何从系统的层面实现interrupt的。需要注意的是硬件和软件的interrupt在kernel以及HAL层的应对措施是完全相似的。</li>
+<li>了解interrupt在user space和kernel时候 interrupt handler（这个handler在哪？）借用kernel stack的情形。对应的context保存在stack的下方。注意区分context和kernel stack。interrupt可以套interrupt，但是必须要所有interrupt执行完之后才可以执行user/kernel thread。</li>
+<li>了解两种interrupt mask的形式：bit mask 和 hierarchical interrupt level，其中后者有优先级别，低于IPL的被锁住，高于的则不锁住。</li>
+<li>了解计算机结构，总线以及各个硬件的控制器的作用。总线上设备的分类：PIO/DMA，大致了解一下两种设备的区别，以及内部寄存器的结构。</li>
+<li>了解device driver和device controller的关系，driver和kernel的关系。driver提供了device和OS之间的interface，device 使之independent。</li>
+<li>了解first fit和best fit内存分配的机制，<strong>注意这里的内存指的的dynamic的内存</strong>，什么情况下哪种分配比较好，一般用first fit比较多。两种fragmentaton problem：internal（buddy system）和external（best-fit）的概念和区别。</li>
+<li>了解内存非配中可使用的内存列表的表示，用<code>doubly linkedlist</code>表示，如果空闲则有前后link，如果被使用，则没有flink或者blink；注意每个可用空间的前后都有一个block表明size。（为什么？便于前后追踪，因为不知道每一个你block的具体size），熟悉list空间大小的计算，注意size一栏的值，以及prev和next值得改动。（很有可能计算题）</li>
+<li>知道如何用buddy system表示以及计算，知道如何用slab allocation，weenix中有描述。</li>
+<li>了解linker和loader的作用，linker preforms <strong>relocation</strong> and <strong>symbol resolution</strong>, loader <strong>loads programs into memory</strong>. loader is evoked by <strong>exec()</strong></li>
+<li>了解.o文件描述的文件位置和参数等内容，以及reallocation的描述也在obj文件中。(这块内容不是很好懂，需要花时间理解透彻)</li>
+<li>系统启动需要一个简易的OS把kernel的代码加载到内存中去。了解bios系统启动的步骤，很可能考简答题。开机-cpu加载64kb-进入POST-初始化硬件-定位内存-寻找boot设备并复制到内存并运行boot program</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zheyangc.com/2017/07/03/Others/2017-07-03-Kernel-Notes/" data-id="ck7wfkik2001m0zr9qezmvliu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kernel/">Kernel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Structure/">Data Structure</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Full-Stack/">Full-Stack</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lecture/">Lecture</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/">DP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Doubly-LinkedList/">Doubly LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/">Dynamic Programming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph/">Graph</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Retrieval/">Information Retrieval</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kernel/">Kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LRU/">LRU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Permutation/">Permutation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RESTful/">RESTful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Search-Algorithm/">Search Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Search-Engine/">Search Engine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Segment-Tree/">Segment Tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sort/">Sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Topological-Sort/">Topological Sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tree/">Tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Trie/">Trie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Union-Find/">Union Find</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/DP/" style="font-size: 13.33px;">DP</a> <a href="/tags/Doubly-LinkedList/" style="font-size: 10px;">Doubly LinkedList</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13.33px;">Dynamic Programming</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Graph/" style="font-size: 13.33px;">Graph</a> <a href="/tags/Information-Retrieval/" style="font-size: 10px;">Information Retrieval</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Kernel/" style="font-size: 13.33px;">Kernel</a> <a href="/tags/LRU/" style="font-size: 10px;">LRU</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/LinkedList/" style="font-size: 10px;">LinkedList</a> <a href="/tags/Permutation/" style="font-size: 10px;">Permutation</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/Search-Algorithm/" style="font-size: 10px;">Search Algorithm</a> <a href="/tags/Search-Engine/" style="font-size: 10px;">Search Engine</a> <a href="/tags/Segment-Tree/" style="font-size: 10px;">Segment Tree</a> <a href="/tags/Sort/" style="font-size: 10px;">Sort</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/Topological-Sort/" style="font-size: 10px;">Topological Sort</a> <a href="/tags/Tree/" style="font-size: 16.67px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10px;">Trie</a> <a href="/tags/Union-Find/" style="font-size: 10px;">Union Find</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/24/Data Structure/2018-03-23-Segment-Tree/">Segment Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/21/Data Structure/2018-03-20-LRU-Cache/">LRU Cache</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/20/Algorithm/2018-03-19-Topological-Sort/">Topological Sort</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/18/Data Structure/2018-03-18-Graph-Representation/">Graph Representation</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/03/LeetCode/2018-03-03-LeetCode-Majority-Element/">LeetCode Majority Element</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 zheyangc<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

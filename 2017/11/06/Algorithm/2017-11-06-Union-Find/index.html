@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Union Find | ZC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Union FindTypically, Union-find use Tree data structure and provide two methods,  Union: combine two sets into one Find: Determine which data set that an element belongs to.">
+<meta name="keywords" content="Union Find">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Union Find">
+<meta property="og:url" content="http://zheyangc.com/2017/11/06/Algorithm/2017-11-06-Union-Find/index.html">
+<meta property="og:site_name" content="ZC">
+<meta property="og:description" content="Union FindTypically, Union-find use Tree data structure and provide two methods,  Union: combine two sets into one Find: Determine which data set that an element belongs to.">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-03-17T21:50:13.641Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Union Find">
+<meta name="twitter:description" content="Union FindTypically, Union-find use Tree data structure and provide two methods,  Union: combine two sets into one Find: Determine which data set that an element belongs to.">
+  
+    <link rel="alternate" href="/atom.xml" title="ZC" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ZC</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Hello World</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zheyangc.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Algorithm/2017-11-06-Union-Find" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/06/Algorithm/2017-11-06-Union-Find/" class="article-date">
+  <time datetime="2017-11-06T08:00:00.000Z" itemprop="datePublished">2017-11-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Union Find
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Union-Find"><a href="#Union-Find" class="headerlink" title="Union Find"></a>Union Find</h1><p>Typically, Union-find use <code>Tree</code> data structure and provide two methods,</p>
+<ul>
+<li><code>Union</code>: combine two sets into one</li>
+<li><code>Find</code>: Determine which data set that an element belongs to.</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="Abstractions"><a href="#Abstractions" class="headerlink" title="Abstractions"></a>Abstractions</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Objects</span><br><span class="line">0 1 2 3 4 5 6 7 8 9</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Disjoint sets of objects</span><br><span class="line">0 1 &#123; 2 3 9 &#125; &#123; 5 6 &#125; 7 &#123; 4 8 &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Find query: are objects 2 and 9 in the same set?</span><br><span class="line">0 1 &#123; 2 3 9 &#125; &#123; 5 6 &#125; 7 &#123; 4 8 &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Union command: merge sets containing 3 and 8.</span><br><span class="line">0 1 &#123; 2 3 4 8 9 &#125; &#123; 5 6 &#125; 7</span><br></pre></td></tr></table></figure>
+
+<h2 id="Example-in-life-Friend-Circle"><a href="#Example-in-life-Friend-Circle" class="headerlink" title="Example in life: Friend Circle"></a>Example in life: Friend Circle</h2><p>Imaging that we have n students in school. At the beginning, they don’t know each other.</p>
+<p>When the time goes by, circle of friends start to form and grow. If a and b are friends, b and c are friend, then we say that a and c becomes indirect friends, and a, b, c are in the same friend circle.</p>
+<p>We can use <code>Union</code> function to establish connections between two students, and use <code>find</code> function to determine if <code>student i</code> and <code>student j</code> are in the same friend circle.</p>
+<h2 id="Basic-Idea"><a href="#Basic-Idea" class="headerlink" title="Basic Idea"></a>Basic Idea</h2><p>we can use <code>Tree</code> data structure to store the root (group ID) information of a<br>node. In the above example, each student is in a group of themselves at the beginning.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">id[i] is parent of i</span><br><span class="line"></span><br><span class="line">i       0 1 2 3 4 5 6 7 8 9</span><br><span class="line">id[i]   0 1 9 9 9 6 6 7 8 9</span><br></pre></td></tr></table></figure>
+
+<p>we define an array <code>group[]</code>, each value denote as group ID. (Obviously, at the beginning, group ID are index of themselves)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] group = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">    group[i] = i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Union"><a href="#Union" class="headerlink" title="Union"></a>Union</h2><p><code>Union(x,y)</code></p>
+<p>The idea of union is that, we unite their root. (which means that, we find roots of <code>x</code> and <code>y</code> respectively, and let one root point to another root)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Union(2,9);</span><br><span class="line">Union(4,9);</span><br><span class="line">Union(3,4);</span><br><span class="line">Union(5,6);</span><br><span class="line"></span><br><span class="line">id[i] is parent of i, and we have</span><br><span class="line"></span><br><span class="line">i       0 1 2 3 4 5 6 7 8 9</span><br><span class="line">id[i]   0 1 9 4 9 6 6 7 8 9</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unite</span><span class="params">(<span class="keyword">int</span> e, <span class="keyword">int</span> g)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> c = root(e);</span><br><span class="line">    <span class="keyword">int</span> f = root(g);</span><br><span class="line">    id[c] = f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Find"><a href="#Find" class="headerlink" title="Find"></a>Find</h2><p><code>Find(x,y)</code></p>
+<p>the function is quite simple, just check if they have the same root (ID).</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> root(p) == root(q);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Find-Root"><a href="#Find-Root" class="headerlink" title="Find Root"></a>Find Root</h3><p>How do we know that the value is the Group ID?</p>
+<p>When <code>root(i) == i</code>, we are sure that id(i) is the root and i is the group ID.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">root</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (id(i) != i) &#123;</span><br><span class="line">        i = id(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>We’ve known that we use <code>tree</code> to store the parent information so that we can traverse and find the root.</p>
+<p>but if the tree is very deep, it may take long time to operate <code>root</code> function.</p>
+<p>The worst case for finding root (group ID) is <strong>O(N)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i       0 1 2 3 4 5 6 7 8 9</span><br><span class="line">id[i]   1 2 3 4 5 6 7 9 9 9</span><br></pre></td></tr></table></figure>
+
+<h2 id="Improvement"><a href="#Improvement" class="headerlink" title="Improvement"></a>Improvement</h2><p>To avoid this problem, one possible solution is <code>Path Compression</code></p>
+<p>Just after computing the root of i, set the id of each examined node to root(i).</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">root</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (i != id[i]) &#123;</span><br><span class="line">        id[i] = id[id[i]];</span><br><span class="line">        i = id[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Sample-Question-Friend-Circle"><a href="#Sample-Question-Friend-Circle" class="headerlink" title="Sample Question: Friend Circle"></a>Sample Question: Friend Circle</h2><p>There are <code>N</code> students in a class. Some of them are friends, while some are not. Their friendship is transitive in nature. For example, if A is a direct friend of B, and B is a direct friend of C, then A is an indirect friend of C. And we defined a friend circle is a group of students who are direct or indirect friends.</p>
+<p>Given a <code>N*N</code> matrix <code>M</code> representing the friend relationship between students in the class. If <code>M[i][j] = 1</code>, then the <code>ith</code> and <code>jth</code> students are direct friends with each other, otherwise not. And you have to output the total number of friend circles among all the students.</p>
+<p>Example 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[[1,1,0],</span><br><span class="line"> [1,1,0],</span><br><span class="line"> [0,0,1]]</span><br></pre></td></tr></table></figure>
+
+<p>Output: 2</p>
+<p><strong>Explanation</strong>:The 0th and 1st students are direct friends, so they are in a friend circle.<br>The 2nd student himself is in a friend circle. So return 2.</p>
+<p>Example 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[[1,1,0],</span><br><span class="line"> [1,1,1],</span><br><span class="line"> [0,1,1]]</span><br></pre></td></tr></table></figure>
+
+<p>Output: 1</p>
+<p><strong>Explanation</strong>:The 0th and 1st students are direct friends, the 1st and 2nd students are direct friends,<br>so the 0th and 2nd students are indirect friends. All of them are in the same friend circle, so return 1.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">UnionFind</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span>[] parent, rank;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">UnionFind</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">            count = n;</span><br><span class="line">            parent = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">            rank = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">                parent[i] = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line">        	<span class="keyword">while</span> (p != parent[p]) &#123;</span><br><span class="line">                parent[p] = parent[parent[p]];    <span class="comment">// path compression by halving</span></span><br><span class="line">                p = parent[p];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> p;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">union</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> q)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> rootP = find(p);</span><br><span class="line">            <span class="keyword">int</span> rootQ = find(q);</span><br><span class="line">            <span class="keyword">if</span> (rootP == rootQ) <span class="keyword">return</span>;</span><br><span class="line">            <span class="keyword">if</span> (rank[rootQ] &gt; rank[rootP]) &#123;</span><br><span class="line">                parent[rootP] = rootQ;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                parent[rootQ] = rootP;</span><br><span class="line">                <span class="keyword">if</span> (rank[rootP] == rank[rootQ]) &#123;</span><br><span class="line">                    rank[rootP]++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            count--;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">count</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> count;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findCircleNum</span><span class="params">(<span class="keyword">int</span>[][] M)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = M.length;</span><br><span class="line">        UnionFind uf = <span class="keyword">new</span> UnionFind(n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (M[i][j] == <span class="number">1</span>) uf.union(i, j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> uf.count();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Reference <a href="https://www.cs.princeton.edu/~rs/AlgsDS07/01UnionFind.pdf" target="_blank" rel="noopener">Algorithm-Union-Find</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zheyangc.com/2017/11/06/Algorithm/2017-11-06-Union-Find/" data-id="ck7wfkije000a0zr9q6a9m0w6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Union-Find/">Union Find</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/17/Java/2017-11-17-Java-Exception/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java Exception
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/01/LeetCode/2017-10-01-LeetCode-DP-1XX/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">LeetCode DP (100-200)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Structure/">Data Structure</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Full-Stack/">Full-Stack</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lecture/">Lecture</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/">DP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Doubly-LinkedList/">Doubly LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/">Dynamic Programming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph/">Graph</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Retrieval/">Information Retrieval</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kernel/">Kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LRU/">LRU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Permutation/">Permutation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RESTful/">RESTful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Search-Algorithm/">Search Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Search-Engine/">Search Engine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Segment-Tree/">Segment Tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sort/">Sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Topological-Sort/">Topological Sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tree/">Tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Trie/">Trie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Union-Find/">Union Find</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/DP/" style="font-size: 13.33px;">DP</a> <a href="/tags/Doubly-LinkedList/" style="font-size: 10px;">Doubly LinkedList</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13.33px;">Dynamic Programming</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Graph/" style="font-size: 13.33px;">Graph</a> <a href="/tags/Information-Retrieval/" style="font-size: 10px;">Information Retrieval</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Kernel/" style="font-size: 13.33px;">Kernel</a> <a href="/tags/LRU/" style="font-size: 10px;">LRU</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/LinkedList/" style="font-size: 10px;">LinkedList</a> <a href="/tags/Permutation/" style="font-size: 10px;">Permutation</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/Search-Algorithm/" style="font-size: 10px;">Search Algorithm</a> <a href="/tags/Search-Engine/" style="font-size: 10px;">Search Engine</a> <a href="/tags/Segment-Tree/" style="font-size: 10px;">Segment Tree</a> <a href="/tags/Sort/" style="font-size: 10px;">Sort</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/Topological-Sort/" style="font-size: 10px;">Topological Sort</a> <a href="/tags/Tree/" style="font-size: 16.67px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10px;">Trie</a> <a href="/tags/Union-Find/" style="font-size: 10px;">Union Find</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/24/Data Structure/2018-03-23-Segment-Tree/">Segment Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/21/Data Structure/2018-03-20-LRU-Cache/">LRU Cache</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/20/Algorithm/2018-03-19-Topological-Sort/">Topological Sort</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/18/Data Structure/2018-03-18-Graph-Representation/">Graph Representation</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/03/LeetCode/2018-03-03-LeetCode-Majority-Element/">LeetCode Majority Element</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 zheyangc<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

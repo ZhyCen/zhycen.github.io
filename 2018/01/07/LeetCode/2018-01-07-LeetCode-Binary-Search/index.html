@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>LeetCode Binary Search | ZC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="二分法二分法的两个前提条件  数组有序 以数组的形式储存  满足二分法的条件并使用二分法会使搜索变得很快(O(log(N)), 但是同时也有不少的问题  无序数组无法使用 由于是数组, 插入删除变得很低效  二分法刷题的时候注意点 while (lo ? hi)这里?号的使用, 根据不同的情况进行调整 mid = lo + (hi - lo) / 2 or mid = hi - (hi - lo)">
+<meta name="keywords" content="LeetCode,Binary Search,Algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode Binary Search">
+<meta property="og:url" content="http://zheyangc.com/2018/01/07/LeetCode/2018-01-07-LeetCode-Binary-Search/index.html">
+<meta property="og:site_name" content="ZC">
+<meta property="og:description" content="二分法二分法的两个前提条件  数组有序 以数组的形式储存  满足二分法的条件并使用二分法会使搜索变得很快(O(log(N)), 但是同时也有不少的问题  无序数组无法使用 由于是数组, 插入删除变得很低效  二分法刷题的时候注意点 while (lo ? hi)这里?号的使用, 根据不同的情况进行调整 mid = lo + (hi - lo) / 2 or mid = hi - (hi - lo)">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-03-17T21:50:13.645Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode Binary Search">
+<meta name="twitter:description" content="二分法二分法的两个前提条件  数组有序 以数组的形式储存  满足二分法的条件并使用二分法会使搜索变得很快(O(log(N)), 但是同时也有不少的问题  无序数组无法使用 由于是数组, 插入删除变得很低效  二分法刷题的时候注意点 while (lo ? hi)这里?号的使用, 根据不同的情况进行调整 mid = lo + (hi - lo) / 2 or mid = hi - (hi - lo)">
+  
+    <link rel="alternate" href="/atom.xml" title="ZC" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ZC</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Hello World</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zheyangc.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-LeetCode/2018-01-07-LeetCode-Binary-Search" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/07/LeetCode/2018-01-07-LeetCode-Binary-Search/" class="article-date">
+  <time datetime="2018-01-07T22:22:19.000Z" itemprop="datePublished">2018-01-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LeetCode/">LeetCode</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LeetCode Binary Search
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="二分法"><a href="#二分法" class="headerlink" title="二分法"></a>二分法</h1><p>二分法的两个前提条件</p>
+<ul>
+<li>数组有序</li>
+<li>以数组的形式储存</li>
+</ul>
+<p>满足二分法的条件并使用二分法会使搜索变得很快(O(log(N)), 但是同时也有不少的问题</p>
+<ul>
+<li>无序数组无法使用</li>
+<li>由于是数组, 插入删除变得很低效</li>
+</ul>
+<h1 id="二分法刷题的时候注意点"><a href="#二分法刷题的时候注意点" class="headerlink" title="二分法刷题的时候注意点"></a>二分法刷题的时候注意点</h1><ol>
+<li><code>while (lo ? hi)</code>这里?号的使用, 根据不同的情况进行调整</li>
+<li><code>mid = lo + (hi - lo) / 2</code> or <code>mid = hi - (hi - lo) / 2</code>. 一方面这种形式可以防止溢出, 另一方面不同的写法决定了corner case的时候lo和hi的指向.</li>
+<li>更新lo和hi的值, 要知道更新的意义是什么.</li>
+<li>判断循环什么什么时候停止, 已经停止后lo和hi指针指向的数字.</li>
+</ol>
+<p>下面是对二分法出现的场景的总结.</p>
+<a id="more"></a>
+
+
+<h1 id="第一类-在sorted-array中搜索值-插入点-边界"><a href="#第一类-在sorted-array中搜索值-插入点-边界" class="headerlink" title="第一类: 在sorted array中搜索值/插入点/边界"></a>第一类: 在sorted array中搜索值/插入点/边界</h1><h2 id="Find-existed-target"><a href="#Find-existed-target" class="headerlink" title="Find existed target"></a>Find existed target</h2><p>given an array of integers and a target number, return the index of target. If target does not exist, return -1 instead.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lo = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> hi = nums.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (lo &lt;= hi) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &gt; target) &#123;</span><br><span class="line">            hi = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">            lo = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Find-insert-position"><a href="#Find-insert-position" class="headerlink" title="Find insert position"></a>Find insert position</h2><p>Given an array of integers and a target number, return the index of target. If target does not exist, return the index that target should be inserted. e.g. given <code>[1,3,4,5,6]</code> and target <code>2</code>, the answer should be <code>1</code>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">findIndex</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lo = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> hi = nums.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (lo &lt;= hi) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &gt; target) &#123;</span><br><span class="line">            hi = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">            lo = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> lo;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Java-binarySearch-函数"><a href="#Java-binarySearch-函数" class="headerlink" title="Java: binarySearch()函数"></a>Java: binarySearch()函数</h3><p>java中有binarySearch()函数, 如果找到就返回index的值, 如果找不到返回-(insert position + 1)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearch0</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> fromIndex, <span class="keyword">int</span> toIndex, <span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> low = fromIndex;</span><br><span class="line">    <span class="keyword">int</span> high = toIndex - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (low + high) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> midVal = a[mid];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (midVal &lt; key)</span><br><span class="line">            low = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (midVal &gt; key)</span><br><span class="line">            high = mid - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> mid; <span class="comment">// key found</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -(low + <span class="number">1</span>);  <span class="comment">// key not found.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Find-Boundary"><a href="#Find-Boundary" class="headerlink" title="Find Boundary"></a>Find Boundary</h2><h3 id="Find-Upper-bound"><a href="#Find-Upper-bound" class="headerlink" title="Find Upper-bound"></a>Find Upper-bound</h3><p>for example, given an array <code>[1,3,5,7,9]</code> and a target number <code>7</code> (or <code>8</code>), the upper bound value of given number should be 9. If upper bound index does not exist, retun -1 instead.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearchUpper</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums.length == <span class="number">0</span> || target &gt;= nums[nums.length-<span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> lo = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> hi = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid = lo +( hi - lo) / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (lo &lt; hi) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &gt; target) &#123;</span><br><span class="line">            hi = mid;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            lo = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        mid = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> mid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Different from finding the target value, which use &lt; = &gt; for determination.<br>When searching for boundary, only need two criteria. (smaller and no smaller, or larger and no larger)</p>
+<h3 id="Find-Lower-bound"><a href="#Find-Lower-bound" class="headerlink" title="Find Lower-bound"></a>Find Lower-bound</h3><p>for example, given an array <code>[1,3,5,7,9]</code> and a target number <code>7</code> (or <code>6</code>), the upper bound value of given number should be 5. If upper bound index does not exist, retun -1 instead.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearchUpper</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums.length == <span class="number">0</span> || target &lt;= nums[<span class="number">0</span>]) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> lo = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> hi = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid = hi - (hi - lo) / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (lo &lt; hi) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">            lo = mid;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            hi = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        mid = hi - (hi - lo) / <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> mid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Search-for-Region"><a href="#Search-for-Region" class="headerlink" title="Search for Region"></a>Search for Region</h3><p>The follow up question for binary search. There might be duplicates in the array.<br>For example, the array is <code>[1, 2, 3, 5, 5, 5, 5, 7, 7, 9]</code>, given the target value <code>5</code>, calculate the region of given target. If array does not contain target, return [-1, -1] instead.</p>
+<p>分别用search upper bound和lower bound即可.</p>
+<h1 id="第二类-在数学上的运用"><a href="#第二类-在数学上的运用" class="headerlink" title="第二类: 在数学上的运用"></a>第二类: 在数学上的运用</h1><p>显然数字是有序的, 如果要从1-N找到一个数满足一定的条件, 则可以考虑使用二分法. </p>
+<h2 id="Sqrt-x"><a href="#Sqrt-x" class="headerlink" title="Sqrt(x)"></a>Sqrt(x)</h2><p>Implement int sqrt(int x).</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> lo = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> hi = x;</span><br><span class="line">        <span class="keyword">while</span> (lo &lt; hi) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = hi - (hi - lo) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> ((<span class="keyword">long</span>) mid * mid &gt; (<span class="keyword">long</span>) x) &#123;</span><br><span class="line">                hi = mid - <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> ((<span class="keyword">long</span>) mid * mid &lt; (<span class="keyword">long</span>) x) &#123;</span><br><span class="line">                lo = mid;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> lo;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第三类-多维度的二分法"><a href="#第三类-多维度的二分法" class="headerlink" title="第三类: 多维度的二分法"></a>第三类: 多维度的二分法</h1><h2 id="Search-a-2D-Matrix"><a href="#Search-a-2D-Matrix" class="headerlink" title="Search a 2D Matrix"></a>Search a 2D Matrix</h2><p>Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:</p>
+<ul>
+<li>Integers in each row are sorted from left to right.</li>
+<li>The first integer of each row is greater than the last integer of the previous row.</li>
+</ul>
+<p>For example, Consider the following matrix:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [1,   3,  5,  7],</span><br><span class="line">  [10, 11, 16, 20],</span><br><span class="line">  [23, 30, 34, 50]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>Given target = 3, return true.</p>
+<p>首先参考一下<a href="https://leetcode.com/problems/search-a-2d-matrix-ii/description/" target="_blank" rel="noopener">search a 2D matrix II</a>, 这题非常经典, O(M+N)的时间复杂度, 从matrix的右上角开始搜索.<br>而这题可以用II的做法做, 但是有更快的方法即用二分法, 因为从头到尾都是有序排列的.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">searchMatrix</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (matrix == <span class="keyword">null</span> || matrix.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> row = matrix.length;</span><br><span class="line">        <span class="keyword">int</span> col = matrix[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span> lo = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> hi = row * col - <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (lo &lt;= hi) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> x = mid / col;</span><br><span class="line">            <span class="keyword">int</span> y = mid % col;</span><br><span class="line">            <span class="keyword">if</span> (matrix[x][y] &gt; target) &#123;</span><br><span class="line">                hi = mid - <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (matrix[x][y] &lt; target) &#123;</span><br><span class="line">                lo = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第四类-局部sorted二分法的运用"><a href="#第四类-局部sorted二分法的运用" class="headerlink" title="第四类: 局部sorted二分法的运用"></a>第四类: 局部sorted二分法的运用</h1><p>和sorted不同, 此类问题可以归结为局部sorted, 关键点在于找到局部sort的边界.<br>除了rotated sorted, 其余的变种也是同样的思路. 例如用二分法找极值.</p>
+<h2 id="Find-Peak-Element"><a href="#Find-Peak-Element" class="headerlink" title="Find Peak Element"></a>Find Peak Element</h2><p>A peak element is an element that is greater than its neighbors.</p>
+<p>Given an input array where num[i] ≠ num[i+1], find a peak element and return its index. The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.<br>You may imagine that num[-1] = num[n] = -∞.</p>
+<p>For example, in array [1, 2, 3, 1], 3 is a peak element and your function should return the index number 2.</p>
+<p>这题比较tricky的地方在于, 虽然数组不是sorted的, 但是可以利用局部最优的特点使用binary search.<br>如果mid大于lo和hi, 则在lo和hi之间必定存在一个local peak.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findPeakElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> candidate = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (candidate &lt; nums.length-<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[candidate] &gt; nums[candidate + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> candidate;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                candidate++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums.length - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Rotated-Sorted-Array系列"><a href="#Rotated-Sorted-Array系列" class="headerlink" title="Rotated Sorted Array系列"></a>Rotated Sorted Array系列</h2><h3 id="Search-in-Rotated-Sorted-Array"><a href="#Search-in-Rotated-Sorted-Array" class="headerlink" title="Search in Rotated Sorted Array"></a>Search in Rotated Sorted Array</h3><p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.<br>(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).<br>You are given a target value to search. If found in the array return its index, otherwise return -1.<br>You may assume no duplicate exists in the array.  </p>
+<h1 id="How-to-prevent-from-looping-forever"><a href="#How-to-prevent-from-looping-forever" class="headerlink" title="How to prevent from looping forever"></a>How to prevent from looping forever</h1><p>there are two approaches for looping</p>
+<ul>
+<li><code>while (lo &lt;= hi)</code></li>
+<li><code>while (lo &lt; hi)</code></li>
+</ul>
+<p>It is obvious that when we search for the specific target or insert position, we use first approach and the final <code>lo</code> value is target index or insert index.</p>
+<p>note that there are three ways to calculate mid value</p>
+<ul>
+<li><code>mid = (lo+hi)/2</code>, this might cause overflow</li>
+<li><code>mid = lo+(hi-lo)/2</code></li>
+<li><code>mid = hi-(hi-lo)/2</code></li>
+</ul>
+<p>both approach 2 and 3 are okay, but can be used in different cases.<br>The spacial case is when <code>lo+1 = hi</code></p>
+<ul>
+<li><code>mid = lo+(hi-lo)/2 = lo</code></li>
+<li><code>mid = hi-(hi-lo)/2 = hi</code></li>
+</ul>
+<p>Make sure that code jump out of the while loop.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zheyangc.com/2018/01/07/LeetCode/2018-01-07-LeetCode-Binary-Search/" data-id="ck7wfkikk00380zr9s1e8f3ez" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/15/LeetCode/2018-01-15-LeetCode-Stock-Problems/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          LeetCode Stock Problems
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/07/Others/2018-01-06-Git/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Git</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Structure/">Data Structure</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Full-Stack/">Full-Stack</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lecture/">Lecture</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/">DP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Doubly-LinkedList/">Doubly LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/">Dynamic Programming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph/">Graph</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Retrieval/">Information Retrieval</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kernel/">Kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LRU/">LRU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Permutation/">Permutation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RESTful/">RESTful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Search-Algorithm/">Search Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Search-Engine/">Search Engine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Segment-Tree/">Segment Tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sort/">Sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Topological-Sort/">Topological Sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tree/">Tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Trie/">Trie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Union-Find/">Union Find</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/DP/" style="font-size: 13.33px;">DP</a> <a href="/tags/Doubly-LinkedList/" style="font-size: 10px;">Doubly LinkedList</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13.33px;">Dynamic Programming</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Graph/" style="font-size: 13.33px;">Graph</a> <a href="/tags/Information-Retrieval/" style="font-size: 10px;">Information Retrieval</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Kernel/" style="font-size: 13.33px;">Kernel</a> <a href="/tags/LRU/" style="font-size: 10px;">LRU</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/LinkedList/" style="font-size: 10px;">LinkedList</a> <a href="/tags/Permutation/" style="font-size: 10px;">Permutation</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/Search-Algorithm/" style="font-size: 10px;">Search Algorithm</a> <a href="/tags/Search-Engine/" style="font-size: 10px;">Search Engine</a> <a href="/tags/Segment-Tree/" style="font-size: 10px;">Segment Tree</a> <a href="/tags/Sort/" style="font-size: 10px;">Sort</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/Topological-Sort/" style="font-size: 10px;">Topological Sort</a> <a href="/tags/Tree/" style="font-size: 16.67px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10px;">Trie</a> <a href="/tags/Union-Find/" style="font-size: 10px;">Union Find</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/24/Data Structure/2018-03-23-Segment-Tree/">Segment Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/21/Data Structure/2018-03-20-LRU-Cache/">LRU Cache</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/20/Algorithm/2018-03-19-Topological-Sort/">Topological Sort</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/18/Data Structure/2018-03-18-Graph-Representation/">Graph Representation</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/03/LeetCode/2018-03-03-LeetCode-Majority-Element/">LeetCode Majority Element</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 zheyangc<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

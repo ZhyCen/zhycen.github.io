@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Search Engine Final Review | ZC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天刚考完CSCI 571的Final，把这几天整理的资料传上来。 Map Reduce MapReduce was developed at Google Hadoop is an open source implementation of MapReduce Assumptions Files are distributed Files are rarely updated, often re">
+<meta name="keywords" content="Search Engine,Information Retrieval">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Search Engine Final Review">
+<meta property="og:url" content="http://zheyangc.com/2017/11/27/Others/2017-11-27-Search-Engine-Final-Review/index.html">
+<meta property="og:site_name" content="ZC">
+<meta property="og:description" content="今天刚考完CSCI 571的Final，把这几天整理的资料传上来。 Map Reduce MapReduce was developed at Google Hadoop is an open source implementation of MapReduce Assumptions Files are distributed Files are rarely updated, often re">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-03-17T21:50:13.645Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Search Engine Final Review">
+<meta name="twitter:description" content="今天刚考完CSCI 571的Final，把这几天整理的资料传上来。 Map Reduce MapReduce was developed at Google Hadoop is an open source implementation of MapReduce Assumptions Files are distributed Files are rarely updated, often re">
+  
+    <link rel="alternate" href="/atom.xml" title="ZC" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ZC</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Hello World</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zheyangc.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Others/2017-11-27-Search-Engine-Final-Review" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/27/Others/2017-11-27-Search-Engine-Final-Review/" class="article-date">
+  <time datetime="2017-11-27T17:09:31.000Z" itemprop="datePublished">2017-11-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Lecture/">Lecture</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Search Engine Final Review
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天刚考完CSCI 571的Final，把这几天整理的资料传上来。</p>
+<h1 id="Map-Reduce"><a href="#Map-Reduce" class="headerlink" title="Map Reduce"></a>Map Reduce</h1><ol>
+<li>MapReduce was developed at Google</li>
+<li>Hadoop is an open source implementation of MapReduce</li>
+<li>Assumptions<ul>
+<li>Files are distributed</li>
+<li>Files are rarely updated, often read and sometimes appended to</li>
+<li>Files are divided into chunks and chunks are replicated</li>
+</ul>
+</li>
+<li>What Map reduce provide<ul>
+<li>Automatic parallelization of code &amp; distribution across - multiple processors</li>
+<li>Fault tolerance in the event of failure of one or more nodes</li>
+<li>I/O scheduling</li>
+<li>Monitoring &amp; Status updates</li>
+</ul>
+</li>
+<li>The Map/Reduce Paradigm<ul>
+<li>Records are broken into segments</li>
+<li>Map: extract something of interest from each segment</li>
+<li>Group and sort intermediate results from each segment</li>
+<li>Reduce: aggregate intermediate results</li>
+<li>Generate final output</li>
+</ul>
+</li>
+<li>Map<ul>
+<li>The master controller process knows how many Reduce tasks there will be, say r.</li>
+<li>Map tasks turn the chunk into a sequence of k-v pairs by applying Map function.</li>
+<li>Each k-v pair will be put into r files. (depends on hash of their keys)</li>
+</ul>
+</li>
+<li>Reduce<ul>
+<li>keys are divided among all the Reduce tasks, so all key-value pairs with the same key wind up at the same Reduce task</li>
+<li>output from all reduce tasks are merged into a single file.</li>
+<li>*The Reduce function is generally associative and commutative implying values can be combined in any order yielding the same result</li>
+</ul>
+</li>
+<li>Coping with Node Failure<ul>
+<li>Master is executing fail<ul>
+<li>Restart map-reduce job</li>
+</ul>
+</li>
+<li>Map worker fails<ul>
+<li>The Master detect and sets the status of each Map task to idle and re-schedules them when a worker becomes available</li>
+</ul>
+</li>
+<li>Reduce worker fails<ul>
+<li>The Master detect and sets the status of its currently executing Reduce tasks to idle and they will be re-scheduled on another reduce worker later</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<a id="more"></a>
+
+<h1 id="The-Search-Engine-Business-Model-Advertising"><a href="#The-Search-Engine-Business-Model-Advertising" class="headerlink" title="The Search Engine Business Model Advertising"></a>The Search Engine Business Model Advertising</h1><ol>
+<li>Type of On-line advertising<ul>
+<li>Banner Advertising</li>
+<li>Pay-per-click advertising</li>
+<li>Website advertising</li>
+<li>Affiliate Marketing</li>
+<li>Social Media Marketing</li>
+</ul>
+</li>
+<li>Search Engine Optimization (SEO)<ul>
+<li>Making pages show up higher in search engine’s organic results</li>
+<li>Optimizing content to target certain keyword phrases</li>
+<li>Developing web page content that responds to each seeker’s interests</li>
+</ul>
+</li>
+<li>Four types of keyword matching<ul>
+<li>Broad match</li>
+<li>Exact match</li>
+<li>Phrase match</li>
+<li>Negative keywords</li>
+</ul>
+</li>
+<li>Broad Match<ul>
+<li>Kw: tennis shoes, ad will appears when searching tennis and shoes</li>
+<li>Extended matches, synonyms, plurals</li>
+</ul>
+</li>
+<li>Exact Match<ul>
+<li>“Tennis shoes” would only match a user request for “tennis shoes” and not for “red tennis shoes”, exact word match</li>
+<li>Exact match will now ignore function words (in, to), conjunctions (for, but), articles (a, the) and other words that don’t impact the intent of the query</li>
+</ul>
+</li>
+<li>Phrase Match<ul>
+<li>Your AD appears when users search on the exact phrase and when their search contains additional terms</li>
+<li>Tennis shoes will match red tennis shoes but not shoes for tennis</li>
+</ul>
+</li>
+<li>Negative Keyword<ul>
+<li>Allow you to eliminate searches that you know are not related to your message</li>
+<li>If “-table” add to “tennis” then table will not appear when searching tennis.</li>
+</ul>
+</li>
+<li>Google AdWords<ul>
+<li>Each bidder specifies<ul>
+<li>Search terms that trigger its bid</li>
+<li>The amount to bid for each search term</li>
+</ul>
+</li>
+<li>Bit Rank = click through rate * bid amount.</li>
+<li>Google get paid when ad clicked</li>
+<li>Ad Rank determines ad position<ul>
+<li>Ad Rank= Bid * Click Probability</li>
+</ul>
+</li>
+<li>Actual cost-per-click determined by next ad with highest ad-rank below</li>
+</ul>
+</li>
+<li>Some of payment approaches<ul>
+<li>Cost-per-click</li>
+<li>Cost per Thousand displays</li>
+<li>Cost per Engagement, (pay when users actively engaged with ads)</li>
+</ul>
+</li>
+<li>AdSense<ul>
+<li>service for placing Google ads on web pages</li>
+<li>written in JavaScript, and use JSON to display content fetched by Google’s servers</li>
+<li>Content match based on WordNet</li>
+</ul>
+</li>
+<li>Some components in today’s advertisement system<ul>
+<li>Client</li>
+<li>Publisher</li>
+<li>Tracker</li>
+<li>Advertisers</li>
+<li>Broker (Ad exchanger): understand this, this is important</li>
+</ul>
+</li>
+<li>Web Beacons<ul>
+<li>Small strings of HTML code that are placed in a Web page.</li>
+<li>Often used in conjunction with cookies</li>
+<li>1 pixel high by 1 pixel wide, invisible but send some useful information to server.</li>
+</ul>
+</li>
+</ol>
+<p> </p>
+<h1 id="Search-Engines-and-the-Growth-of-Knowledge-Based-Systems"><a href="#Search-Engines-and-the-Growth-of-Knowledge-Based-Systems" class="headerlink" title="Search Engines and the Growth of Knowledge-Based Systems"></a>Search Engines and the Growth of Knowledge-Based Systems</h1><ol>
+<li>Knowledge Bases: store complex structured and unstructured information used by a computer system, which contains two elements<ul>
+<li>a knowledge-base that represents facts about the world</li>
+<li>an inference engine that can reason about those facts</li>
+</ul>
+</li>
+<li>Difference between taxonomy and ontology<ul>
+<li>A taxonomy (分类学) is usually only a hierarchy of concepts (i.e. parent/child, subclass/superclass, etc); tree structure</li>
+<li>In an ontology (本体论), arbitrary complex relations between concepts can be expressed as well, e.g. (X marriedTo Y; or A worksFor B, etc ); directed, labeled, cyclic graph.</li>
+<li>Taxonomies are narrower than ontologies</li>
+</ul>
+</li>
+<li>Some Types of knowledges in KBs<ul>
+<li>Taxonomic knowledge</li>
+<li>Factual knowledge</li>
+<li>Temporal knowledge</li>
+<li>Emerging knowledge</li>
+<li>Terminological knowledge</li>
+</ul>
+</li>
+<li>List some digital KBs<ul>
+<li>WordNet: Lexical (词汇的) Knowledge base for English<ul>
+<li>Synset: groups English words into sets of synonyms called synsets</li>
+<li>Hyponym: More specific</li>
+<li>Meronym: Denoting the whole</li>
+<li>Holonym: A broad or superordinate</li>
+</ul>
+</li>
+<li>Wikipedia</li>
+<li>Wolfram Alpha</li>
+<li>Freebase</li>
+</ul>
+</li>
+<li>Notations for KB<ul>
+<li>Triple notation: Subject: Predicate: Object</li>
+<li>Logical Notation: e.g. bornIn(Elvis, Tupelo)</li>
+</ul>
+</li>
+<li>Inference on KB<ul>
+<li>Apply logical rules to deduce new information</li>
+<li>Has two models<ul>
+<li>Forward chaining starts with the known facts and asserts new facts.</li>
+<li>Back ward chaining starts with goals, and works backward to determine what facts must be asserted so that the goals can be achieved</li>
+<li>Three sequential steps: match rules, select rules, execute rules</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Forward chaining<ul>
+<li>Is repeated application of modules ponens, understand the examples</li>
+<li>Module ponens: ((P→Q)∧P)→ Q</li>
+</ul>
+</li>
+<li>Google Knowledge Graph Enhance Google search in 3 ways<ul>
+<li>To improve the variety of search results</li>
+<li>To provide deeper and broader results</li>
+<li>To provide the best summary</li>
+</ul>
+</li>
+<li>Wikipedia<ul>
+<li>Related projects to Wikipedia<ul>
+<li>Commons for multimedia</li>
+<li>Wiktionary as free dictionary</li>
+<li>Wikidata for structured data</li>
+<li>WikiData is an effort to convert the Wikipedia data into a - knowledge base</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p> </p>
+<h1 id="Query-Processing"><a href="#Query-Processing" class="headerlink" title="Query Processing"></a>Query Processing</h1><ol>
+<li>Cosine similarity is a proxy for satisfying user’s query<ul>
+<li>Challenges<ul>
+<li>find the K docs in the collection “nearest” to the query</li>
+<li>find the K docs efficiently</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Understand the process of calculate cosine similarity and get top K</li>
+<li>Five Refinements for Choosing Documents Matching the Query<ul>
+<li>Only consider high-idf query terms</li>
+<li>Only consider docs containing many (or all) of the query terms</li>
+<li>Introduce Champion Lists Heuristic</li>
+<li>Introduce an Authority Measure</li>
+<li>Reorganize the Inverted List</li>
+</ul>
+</li>
+<li>Only consider high-idf query terms<ul>
+<li>Idf: inverse document frequency</li>
+<li>E.g. searching ‘catcher in the rye’, calculate ‘catcher’ and ‘rye’</li>
+</ul>
+</li>
+<li>Only consider docs containing many (or all) of the query terms<ul>
+<li>e.g. For multi-term queries, only compute cosine scores for docs containing several of the query terms (like 2 or 3)</li>
+</ul>
+</li>
+<li>Introduce Champion Lists Heuristic<ul>
+<li>Pre-compute for each dictionary term t, the r docs of highest weight (tf-idf) in t’s postings</li>
+<li>At query time, only compute scores for docs in the champion list of some query term</li>
+</ul>
+</li>
+<li>Introduce an Authority Measure<ul>
+<li>Relevant and authoritative<ul>
+<li>Relevance is being modeled by cosine scores</li>
+<li>Authority is typically a query-independent property of a document, e.g. Wikipedia among websites, A paper with high citations, High PageRank etc.</li>
+</ul>
+</li>
+<li>Assign to each document a query-independent quality score in [0,1] to each document d, g(d) evaluate the authoritative of that document.</li>
+<li>Net-score(q,d) = g(d) + cosine(q,d)</li>
+</ul>
+</li>
+<li>Reorganize the Inverted List**<ul>
+<li>Champion lists in g(d)-ordering<ul>
+<li>Champion list of the r docs with highest g(d) + tf-idftd</li>
+</ul>
+</li>
+<li>High and Low Lists Heuristic<ul>
+<li>High as the champion list</li>
+<li>When traversing postings on a query, only traverse high lists first</li>
+</ul>
+</li>
+<li>Impact-Ordered Postings Heuristic<ul>
+<li>Sort each postings list by wft,d, in decreasing order</li>
+</ul>
+</li>
+<li>Early Termination</li>
+</ul>
+</li>
+</ol>
+<p> </p>
+<h1 id="Spell-Checking-and-Correction"><a href="#Spell-Checking-and-Correction" class="headerlink" title="Spell Checking and Correction"></a>Spell Checking and Correction</h1><ol>
+<li>The Two Main Spelling Tasks<ul>
+<li>Spelling Error Detection</li>
+<li>Spelling Error Correction</li>
+</ul>
+</li>
+<li>Three Types of Spelling Errors<ul>
+<li>Non-word errors</li>
+<li>Typographical errors</li>
+<li>Cognitive errors (homophones, sounds alike)</li>
+</ul>
+</li>
+<li>Non-Word Spelling Errors</li>
+</ol>
+<ul>
+<li>Detection: not in dict -&gt; error</li>
+<li>Correction:<ul>
+<li>Shortest weighted Edit Distance. Why weighted? some letters are more likely to be mistyped than others</li>
+<li>Highest noisy channel probability</li>
+</ul>
+</li>
+<li>Understand some challenges and cases<ul>
+<li>Context is needed for spell checking</li>
+<li>Insertion or deletion of hyphen of spaces</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li>Bayes Rules<ul>
+<li>Bayes Rules: P(a│b)=(P(b|a)P(a))/(P(b))</li>
+<li>w^’=argmax (P(x|w)P(w))/(P(x))=argmaxP(x│w)P(w)</li>
+<li>Understand how this algorithm work based on (b) [16]</li>
+</ul>
+</li>
+<li>Dictionary and Autocomplete<ul>
+<li>From left to right</li>
+<li>Using data structure for prefix matching: prefix tree: O(m)</li>
+<li>N-gram model: probabilistic language model for predicting next item.</li>
+</ul>
+</li>
+<li>Peter Norvig’s Spelling Corrector<ul>
+<li>Both edit distance 1 and distance 2</li>
+<li>big.txt contains a million words (dict)</li>
+</ul>
+</li>
+<li>Edit Distance and Levenshtein Algorithm<ul>
+<li>In Levenshtein algorithm, substitutions cost 2 while deletions and insertions still cost 1</li>
+</ul>
+</li>
+</ol>
+<p> </p>
+<h1 id="Snippets-Normal-and-Rich"><a href="#Snippets-Normal-and-Rich" class="headerlink" title="Snippets (Normal and Rich)"></a>Snippets (Normal and Rich)</h1><ol>
+<li>Snippets are created automatically based on the site’s content and the query terms.</li>
+<li>two general approaches to automatic summarization<ul>
+<li>Extraction: selecting a subset of existing words</li>
+<li>Abstraction: build an internal semantic representation and create a summary</li>
+</ul>
+</li>
+<li>Google Snippets<ul>
+<li>Begins with ellipses (…) =&gt; extract from body, end with (…) =&gt; truncated</li>
+<li>Maximum length of a snippet is 156</li>
+<li>Google uses the meta description as the default</li>
+<li>Open Directory Project meta data</li>
+</ul>
+</li>
+<li>Snippet Algorithm<ul>
+<li>Identify the paragraphs that include the query terms</li>
+<li>Score the paragraphs and determining the paragraph with the highest score</li>
+<li>Return the phrase in that paragraph that includes the query terms</li>
+</ul>
+</li>
+<li>Rich Snippets<ul>
+<li>a mechanism for website developers to include information that Google’s results algorithm will display as a snippet</li>
+<li>Advantages<ul>
+<li>Additional Traffic to a webpage</li>
+<li>Higher click through rate</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Schema of Rich Snippets</li>
+</ol>
+<ul>
+<li>Specification for rich snippets<ul>
+<li>Microdata formalism</li>
+<li>RDFa</li>
+<li>Microformat Encoding</li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li>Schema.org defines an object hierarchy</li>
+</ol>
+<ul>
+<li>Thing (the most general item)<ul>
+<li>Name (Properties)</li>
+<li>Description (Properties)</li>
+<li>URL (Properties)</li>
+<li>Image (Properties)</li>
+</ul>
+</li>
+<li>Understand the hierarchy<ul>
+<li>Person, place, Organization, etc. are hierarchy of things</li>
+</ul>
+</li>
+</ul>
+<ol start="7">
+<li>Some Examples<ul>
+<li>Google: know some entities [18]</li>
+<li>Microsoft: use class attributes in HTML tags</li>
+</ul>
+</li>
+</ol>
+<p> </p>
+<h1 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h1><ol>
+<li><p>What is clustering</p>
+<ul>
+<li>process of grouping a set of objects into classes of similar objects</li>
+<li>most common form of unsupervised learning</li>
+<li>hypothesis: Documents with similar text are related</li>
+</ul>
+</li>
+<li><p>Some Examples</p>
+<ul>
+<li>Cluster images based on visual content</li>
+<li>Cluster webpages based on content, related search</li>
+<li>Cluster similar proteins together in bioinformatics, etc.</li>
+</ul>
+</li>
+<li><p>Yippy: emphasizes clusters of results</p>
+</li>
+<li><p>Why for search engines</p>
+<ul>
+<li>Improve recall in search applications</li>
+<li>Speed up vector space retrieval</li>
+<li>Cleaner user interface</li>
+</ul>
+</li>
+<li><p>criterion for a good clustering</p>
+<ul>
+<li>the intra-class (that is, intra-cluster) similarity is high</li>
+<li>the inter-class similarity is low</li>
+<li>the measured quality of a clustering depends on document representation and the similarity measure used</li>
+</ul>
+</li>
+<li><p>Criteria of Adequacy for Clustering Methods</p>
+<ul>
+<li>The method produces a clustering which is unlikely to be altered drastically when further objects are incorporated</li>
+<li>The method is stable in the sense that small errors in the description of objects lead to small changes in the clustering</li>
+<li>The method is independent of the initial ordering of the objects</li>
+</ul>
+</li>
+<li><p>Difference between clustering and classification</p>
+<ul>
+<li>In classification, there is a set of predefined classes and want to know which class a new object belongs to; while clustering tries to group objects and find some relationships between objects</li>
+<li>Classification is supervised learning and clustering is unsupervised learning</li>
+</ul>
+</li>
+<li><p>Supervised learning</p>
+<ul>
+<li>Definition: inferring a function from labeled training data</li>
+<li>Documents in each cluster define the training docs for each category</li>
+<li>Documents are in a cluster based on the similarity measure used.</li>
+<li>A classifier is an algorithm that will classify new docs</li>
+<li>Given a new doc, figure out which partition it falls into</li>
+</ul>
+</li>
+<li><p>Clustering</p>
+<ul>
+<li>Vector space represent for documents</li>
+<li>Use cosine similarity to calculate similarity, while Euclidean distance is a close alternative.</li>
+<li>Hard vs. soft clustering<ul>
+<li>Hard clustering: each document belongs to exactly one cluster</li>
+<li>Soft clustering: A document can belong to more than one cluster</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>K-Means Clustering Algorithm</p>
+<ul>
+<li>Step1: Select K points as initial centroids<ul>
+<li>Randomly or by methods such as most distant points from each other’s (k-means++ algorithm)</li>
+</ul>
+</li>
+<li>Step2: form K clusters by assigning each point to its closest centroid and recalculate the centroids of each clusters</li>
+<li>Step3: until centroids do not change<ul>
+<li>fixed number of iterations</li>
+<li>document partition does not change</li>
+<li>centroid does not change, etc.</li>
+</ul>
+</li>
+<li>Complexity of K-means<ul>
+<li>Calculate distance: O(M) (M=dimension)</li>
+<li>Re-assign clusters O(kN) * O(M) = O(kMN)</li>
+<li>Compute new centroid: O(MN)</li>
+<li>Total: O(IKMN) (I=number of iterations)</li>
+</ul>
+</li>
+<li>Optimal K-Means Clustering: NP-hard problem</li>
+</ul>
+</li>
+<li><p>Agglomerative Clustering Algorithm: Bottom-up</p>
+<ul>
+<li>Step1: all document is one cluster</li>
+<li>Step2: Repeat<ul>
+<li>Calculate distance matrix, distance between each clusters</li>
+<li>Merge two closet matrix</li>
+<li>Update matrix</li>
+</ul>
+</li>
+<li>Step3: Until meet the condition</li>
+<li>Time Complexity<ul>
+<li>Calculate matrix: O(N^2)</li>
+<li>Find closet pair: O(N) (Heap)</li>
+<li>Update O(Nlog(N)) (Heap)</li>
+<li>Total: O(N^2)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Divisive Clustering: Top-down</p>
+</li>
+<li><p>Dendrogram</p>
+<ul>
+<li>A dendrogram is a tree diagram frequently used to illustrate the arrangement of the clusters produced by hierarchical clustering</li>
+</ul>
+</li>
+<li><p>Labeling – two approaches</p>
+<ul>
+<li>Show titles of typical documents</li>
+<li>Show words/phrases prominent in cluster</li>
+</ul>
+</li>
+<li><p>Evaluation clustering algorithm</p>
+<ul>
+<li>Anecdotal</li>
+<li>User inspection</li>
+<li>Ground “truth” comparison</li>
+<li>Purely quantitative measures</li>
+<li>Purity Measure - accuracy is measured by the number of correctly assigned documents divided by the total number of documents<ul>
+<li>Rand index (RI) measures the percentage of decisions that are correct.</li>
+<li>RI=(TP+TN)/(TP+TN+FN+FP)
+ <h1 id="Search-Engine-Question-Answering"><a href="#Search-Engine-Question-Answering" class="headerlink" title="Search Engine Question Answering"></a>Search Engine Question Answering</h1></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Difference between information retrieval and question answering</p>
+</li>
+<li><p>Some Popular Approaches</p>
+<ul>
+<li>Siri: map to known entities and use existing databases (Knowledge-Based)</li>
+<li>ask.com: detect question type and use a search engine’s results<ul>
+<li>Question processing, detect question type</li>
+<li>Passage Retrieval</li>
+<li>Answer Processing</li>
+</ul>
+</li>
+<li>IBM’s Watson: combine (a) and (b)</li>
+<li>Google’s Knowledge Graph: entity-relationship graph</li>
+</ul>
+</li>
+<li><p>Typical QA pipeline</p>
+</li>
+<li><p>AskMSR Details</p>
+<ul>
+<li>Step 1: Rewrite Queries<ul>
+<li>Transform</li>
+<li>Datatype</li>
+</ul>
+</li>
+<li>Step 2: Query Search Engine<ul>
+<li>Retrieve top N answers</li>
+<li>Snippets</li>
+</ul>
+</li>
+<li>Step 3: Mining N-Grams<ul>
+<li>Occurrence count</li>
+</ul>
+</li>
+<li>Step 4: Filtering N-Grams: filter data type</li>
+<li>Step 5: Tiling the Answers</li>
+</ul>
+</li>
+</ol>
+<p> </p>
+<h1 id="Classification"><a href="#Classification" class="headerlink" title="Classification"></a>Classification</h1><ol>
+<li>What is classification: assign labels to each documents or web-pages</li>
+<li>Understand the difference between clustering and classification (discussed in clustering)</li>
+<li>Classification Using Vector Spaces<ul>
+<li>Premise 1: Contiguity Hypothesis: Documents in the same class form a contiguous region of space</li>
+<li>Premise 2: Documents from different classes don’t overlap (much)</li>
+</ul>
+</li>
+<li>Classification methods<ul>
+<li>Manual classification</li>
+<li>Rocchio Classification</li>
+<li>kNN – k Nearest Neighbor Method</li>
+</ul>
+</li>
+<li>Rocchio Classification Algoithm<ul>
+<li>For relevance feedback, determine two classes: relevant and non-relevant</li>
+<li>Rocchio Algorithm<ul>
+<li>Train<ul>
+<li>Input: initial class ids in C and set of documents in D</li>
+<li>Output: centroid for each Dj</li>
+</ul>
+</li>
+<li>Apply<ul>
+<li>Input: centroid of each Dj and a document d</li>
+<li>Output: the target centroid that d belongs to that cluster</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Classes in Rocchio classification for relevance will have the approximate shape of spheres with similar radii.</li>
+<li>Another decision rule is used<ul>
+<li>Assign d to class c iff |μ ⃗(c)-v ⃗(d)|&lt;|μ ⃗(c)-v ⃗(d)|-b</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>kNN - k Nearest Neighbor Method<ul>
+<li>basic idea: pick the k nearest document given a document and account for the occurrence and choose the largest one as the cluster.</li>
+<li>KNN algorithm<ul>
+<li>Training phase: storing features and labels of the training samples</li>
+<li>Classification phase: an unlabeled vector is classified by assigning the label which is most frequent among the k training samples nearest to the query</li>
+</ul>
+</li>
+<li>Chose of K depends upon data:</li>
+<li>Larger K: reduce the effect of noise but make boundaries less distinct<ul>
+<li>Non-linear classifier (compared with Rocchio, which is linear)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Features of KNN<ul>
+<li>No feature selection necessary</li>
+<li>No training necessary</li>
+<li>Scales well with large number of classes</li>
+<li>Classes can influence each other</li>
+<li>In most cases it’s more accurate than Rocchi</li>
+</ul>
+</li>
+<li>Voroni Diagram<ul>
+<li>partitioning of a plane into regions based on distance to points in a specific subset of the plane</li>
+<li>1NN  </li>
+</ul>
+</li>
+</ol>
+<h1 id="Click-Fraud"><a href="#Click-Fraud" class="headerlink" title="Click Fraud"></a>Click Fraud</h1><ol>
+<li>Some terms<ul>
+<li>Click thru: when a viewer clicks on an ad</li>
+<li>CTR: click through rate</li>
+<li>CPM: click per thousand</li>
+</ul>
+</li>
+<li>Two basic problems<ul>
+<li>good click-through rates (CTRs) are still not indicative of good conversion rates</li>
+<li>It does not offer any “built-in” fundamental protection mechanisms against click fraud</li>
+</ul>
+</li>
+<li>Invalid clicks (click fraud)<ul>
+<li>Def: a person, automated script or computer program imitates a legitimate user of a web browser clicking on an ad</li>
+<li>Click id valid if it leads to a purchase or subscription</li>
+<li>Not possible to distinguish all the invalid click</li>
+</ul>
+</li>
+<li>7 ways that click fraud may be done<ul>
+<li>Automated clicking programs or software applications</li>
+<li>Employing low-cost workers to click on the ads</li>
+<li>Website publishers manually clicking on the ads</li>
+<li>Website manipulating web pages in such a way that interaction with ad clicking</li>
+<li>Website publishers subscribing to paid traffic websites that artificially bring extra traffic to the site</li>
+<li>Advertisers manually clicking on the ads of their competitors</li>
+<li>Website publishers being sabotaged by their competitors or other ill-wishers</li>
+</ul>
+</li>
+<li>Google’s View of Click Fraud (4 layers)<ul>
+<li>1st layer for both search and AdSense partner</li>
+<li>2nd layer remove invalid clicks from the AdSense system.</li>
+<li>3rd layer: manually review</li>
+<li>4th layer: detailed investigation</li>
+</ul>
+</li>
+<li>What to look for anomalous behaviors<ul>
+<li>Keyword performance</li>
+<li>number of clicks from the same IP address</li>
+<li>Decline in the number of conversions (click -&gt; purchase)</li>
+<li>Large numbers of visitors who leave your site quickly</li>
+<li>Large number of impressions, without clicks on ad</li>
+<li>high clicks and impressions on affiliate websites</li>
+<li>clicks coming from countries outside of your normal market area</li>
+<li>Accidental click fraud</li>
+</ul>
+</li>
+<li>Botnet attack<ul>
+<li>Bots, Botmaster, command and control server</li>
+<li>DDos, Information leakage, click fraud, phishing mail, etc.</li>
+</ul>
+</li>
+<li>Google reports<ul>
+<li>Clicking and billing activities</li>
+<li>Smallest unit is one day</li>
+<li>Advertisers don’t know a click is valid or not</li>
+</ul>
+</li>
+<li>Recall the calculation of precision and recall.</li>
+</ol>
+<p> </p>
+<h1 id="Legal-Issues-for-search-Engines"><a href="#Legal-Issues-for-search-Engines" class="headerlink" title="Legal Issues for search Engines"></a>Legal Issues for search Engines</h1><ol>
+<li>Intellectual property protections Categories:<ul>
+<li>Copyright<ul>
+<li>Automatically when work is created</li>
+<li>No need for © or All Rights Reserved</li>
+<li>term of copyright protection is the length of the author’s life plus fifty years.</li>
+</ul>
+</li>
+<li>Patents<ul>
+<li>Must be registered</li>
+<li>Owner has rights to exclude all others from making, using, selling, or importing the invention.</li>
+<li>20 years for most patents.</li>
+</ul>
+</li>
+<li>Trademarks<ul>
+<li>Legally registered as representing a company or product</li>
+<li>USPTO</li>
+</ul>
+</li>
+<li>Trade secrets<ul>
+<li>confidential information</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Not allowed to provide links to<ul>
+<li>Pornographic/child pornographic/ Revenge porn</li>
+<li>Nazi, white supremacist, racist</li>
+<li>damaging or libelous individuals</li>
+</ul>
+</li>
+<li>A Search Engine Can Sell Ads on Trademarked Terms</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zheyangc.com/2017/11/27/Others/2017-11-27-Search-Engine-Final-Review/" data-id="ck7wfkil8003w0zr983nh5hpq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Information-Retrieval/">Information Retrieval</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Search-Engine/">Search Engine</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/12/Algorithm/2017-12-12-Tree-Traversal/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Tree Traversal
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/26/Algorithm/2017-11-25-Edit-Distance/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Edit Distance and Levenshtein Algorithm</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Structure/">Data Structure</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Full-Stack/">Full-Stack</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lecture/">Lecture</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/">DP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Doubly-LinkedList/">Doubly LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/">Dynamic Programming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph/">Graph</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Retrieval/">Information Retrieval</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kernel/">Kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LRU/">LRU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Permutation/">Permutation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RESTful/">RESTful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Search-Algorithm/">Search Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Search-Engine/">Search Engine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Segment-Tree/">Segment Tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sort/">Sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Topological-Sort/">Topological Sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tree/">Tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Trie/">Trie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Union-Find/">Union Find</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/DP/" style="font-size: 13.33px;">DP</a> <a href="/tags/Doubly-LinkedList/" style="font-size: 10px;">Doubly LinkedList</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13.33px;">Dynamic Programming</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Graph/" style="font-size: 13.33px;">Graph</a> <a href="/tags/Information-Retrieval/" style="font-size: 10px;">Information Retrieval</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Kernel/" style="font-size: 13.33px;">Kernel</a> <a href="/tags/LRU/" style="font-size: 10px;">LRU</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/LinkedList/" style="font-size: 10px;">LinkedList</a> <a href="/tags/Permutation/" style="font-size: 10px;">Permutation</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/Search-Algorithm/" style="font-size: 10px;">Search Algorithm</a> <a href="/tags/Search-Engine/" style="font-size: 10px;">Search Engine</a> <a href="/tags/Segment-Tree/" style="font-size: 10px;">Segment Tree</a> <a href="/tags/Sort/" style="font-size: 10px;">Sort</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/Topological-Sort/" style="font-size: 10px;">Topological Sort</a> <a href="/tags/Tree/" style="font-size: 16.67px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10px;">Trie</a> <a href="/tags/Union-Find/" style="font-size: 10px;">Union Find</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/24/Data Structure/2018-03-23-Segment-Tree/">Segment Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/21/Data Structure/2018-03-20-LRU-Cache/">LRU Cache</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/20/Algorithm/2018-03-19-Topological-Sort/">Topological Sort</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/18/Data Structure/2018-03-18-Graph-Representation/">Graph Representation</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/03/LeetCode/2018-03-03-LeetCode-Majority-Element/">LeetCode Majority Element</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 zheyangc<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>LeetCode Stock Problems | ZC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Stock Problems在刷题过程中遇到股票买卖一类的问题，把该类问题归类为线性查找的subarray问题，一般方法有two pointer, greedy, dynamic programming等。下面对该类题型进行总结和拓展。 Stock Problem I给定一列整数数组，表示每天股票的价格，求多次交易使得获利最大，有两个条件  卖出在买入之后 买入之后只有卖出之后才可再买入  For">
+<meta name="keywords" content="LeetCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode Stock Problems">
+<meta property="og:url" content="http://zheyangc.com/2018/01/15/LeetCode/2018-01-15-LeetCode-Stock-Problems/index.html">
+<meta property="og:site_name" content="ZC">
+<meta property="og:description" content="Stock Problems在刷题过程中遇到股票买卖一类的问题，把该类问题归类为线性查找的subarray问题，一般方法有two pointer, greedy, dynamic programming等。下面对该类题型进行总结和拓展。 Stock Problem I给定一列整数数组，表示每天股票的价格，求多次交易使得获利最大，有两个条件  卖出在买入之后 买入之后只有卖出之后才可再买入  For">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://zheyangc.com/images/stock-3.JPG">
+<meta property="og:image" content="http://zheyangc.com/images/stock-1.JPG">
+<meta property="og:image" content="http://zheyangc.com/images/stock-2.JPG">
+<meta property="og:image" content="http://zheyangc.com/images/stock-3.JPG">
+<meta property="og:updated_time" content="2020-03-17T21:50:13.645Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode Stock Problems">
+<meta name="twitter:description" content="Stock Problems在刷题过程中遇到股票买卖一类的问题，把该类问题归类为线性查找的subarray问题，一般方法有two pointer, greedy, dynamic programming等。下面对该类题型进行总结和拓展。 Stock Problem I给定一列整数数组，表示每天股票的价格，求多次交易使得获利最大，有两个条件  卖出在买入之后 买入之后只有卖出之后才可再买入  For">
+<meta name="twitter:image" content="http://zheyangc.com/images/stock-3.JPG">
+  
+    <link rel="alternate" href="/atom.xml" title="ZC" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ZC</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Hello World</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zheyangc.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-LeetCode/2018-01-15-LeetCode-Stock-Problems" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/15/LeetCode/2018-01-15-LeetCode-Stock-Problems/" class="article-date">
+  <time datetime="2018-01-15T19:52:34.000Z" itemprop="datePublished">2018-01-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LeetCode/">LeetCode</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LeetCode Stock Problems
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Stock-Problems"><a href="#Stock-Problems" class="headerlink" title="Stock Problems"></a>Stock Problems</h1><p>在刷题过程中遇到股票买卖一类的问题，把该类问题归类为线性查找的subarray问题，一般方法有two pointer, greedy, dynamic programming等。下面对该类题型进行总结和拓展。</p>
+<h2 id="Stock-Problem-I"><a href="#Stock-Problem-I" class="headerlink" title="Stock Problem I"></a>Stock Problem I</h2><p>给定一列整数数组，表示每天股票的价格，求多次交易使得获利最大，有两个条件</p>
+<ul>
+<li>卖出在买入之后</li>
+<li>买入之后只有卖出之后才可再买入</li>
+</ul>
+<p>For Example, given an array [1, 4, 3, 8, 4, 3, 1, 3, 6, 9]<br>The max profit can made is <code>16</code>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 典型的贪心算法，增长买入不增长卖出。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">calMax</span> <span class="params">(<span class="keyword">int</span> nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> diff = nums[i] - nums[i-<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">           sum += diff;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度O(N)，空间复杂度O(1)</p>
+<a id="more"></a>
+
+<h2 id="Stock-Problem-II-Transaction-limitation"><a href="#Stock-Problem-II-Transaction-limitation" class="headerlink" title="Stock Problem II - Transaction limitation"></a>Stock Problem II - Transaction limitation</h2><h3 id="Transaction-only-once"><a href="#Transaction-only-once" class="headerlink" title="Transaction only once"></a>Transaction only once</h3><p>在Stock Problem I的基础上，如果限制买卖的次数为一次，求最大的利润。</p>
+<p>Example 1:<br>Input: [7, 1, 5, 3, 6, 4]<br>Output: 5</p>
+<p>Example 2:<br>Input: [7, 6, 4, 3, 1]<br>Output: 0</p>
+<p>最简单的方法是brute force，两两组合求最大。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">calMax</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> maxP = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i+<span class="number">1</span>; j &lt; nums.length; j++) &#123;</span><br><span class="line">            maxP = Math.max(maxP, nums[j] - nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxP;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度为O(N^2)，空间复杂度O(1)</p>
+<h4 id="Follow-up"><a href="#Follow-up" class="headerlink" title="Follow up"></a>Follow up</h4><p>换个思路，给定一组数组，表示的是相邻两天的差值，那么该问题就转换成在array中找subarray，使得sum值最大，则这题就转化成<a href="https://leetcode.com/problems/maximum-subarray/description/" target="_blank" rel="noopener">LeetCode #53. Maximum Subarray</a>。可以用dp的思路去考虑。</p>
+<p>先介绍一下Kadane’s Algorithm，该算法可以用来解决maximum subarray的问题，用到的思想就是DP。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Initialize:</span><br><span class="line">    max_so_far = 0</span><br><span class="line">    max_ending_here = 0</span><br><span class="line"></span><br><span class="line">Loop for each element of the array</span><br><span class="line">  (a) max_ending_here = max_ending_here + a[i]</span><br><span class="line">  (b) if(max_ending_here &lt; 0)</span><br><span class="line">            max_ending_here = 0</span><br><span class="line">  (c) if(max_so_far &lt; max_ending_here)</span><br><span class="line">            max_so_far = max_ending_here</span><br><span class="line"></span><br><span class="line">return max_so_far</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// given an array, calculate the subarray that have maximum sum</span></span><br><span class="line"><span class="comment">// example, given [-2,1,-3,4,-1,2,1,-5,4]</span></span><br><span class="line"><span class="comment">// return 6, ([4,-1,2,1])</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// dp[] denote as the maximum sum end with ith value</span></span><br><span class="line"><span class="comment">// dp[i] = Math.max(dp[i-1]+arr[i], arr[i]);</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">calMax</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> max_sofar = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> max_ending_here = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        max_ending_here = Math.max(max_ending_here+nums[i]-nums[i-<span class="number">1</span>], nums[i]-nums[i-<span class="number">1</span>]);</span><br><span class="line">        max_sofar = Math.max(max_sofar, max_ending_here);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> max_sofar;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度O(N)，空间复杂度O(1)。</p>
+<h3 id="Transaction-at-most-twice"><a href="#Transaction-at-most-twice" class="headerlink" title="Transaction at most twice"></a>Transaction at most twice</h3><p>在Stock Problem I的基础上，如果限制买卖的次数至多两次，求最大的利润。</p>
+<p><strong>（重要）此类有条件的一维/多维问题显然用DP做，但在这之前要想清楚两件事情</strong></p>
+<ol>
+<li><strong>可能存在的状态</strong></li>
+<li><strong>每个状态之间的关系</strong></li>
+</ol>
+<img src="/images/stock-3.JPG" alt style="width:40%">
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">there are five states</span></span><br><span class="line"><span class="comment">s0 s1 s2 s3 s4</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">relations</span></span><br><span class="line"><span class="comment">s1 = Math.max(s1, s0-prices[i])</span></span><br><span class="line"><span class="comment">s2 = Math.max(s2, s1+prices[i])</span></span><br><span class="line"><span class="comment">s3 = Math.max(s3, s2-prices[i])</span></span><br><span class="line"><span class="comment">s4 = Math.max(s4, s3+prices[i])</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">base case</span></span><br><span class="line"><span class="comment">s0 = 0</span></span><br><span class="line"><span class="comment">s1 = -prices[0]</span></span><br><span class="line"><span class="comment">s2 = s3 = s4 = Integer.MIN_VALUE</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">calMaxTwice</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (prices.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> s0 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> s1 = -prices[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> s2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> s3 = Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">int</span> s4 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> maxP = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> st1 = Math.max(s1, s0-prices[i]);</span><br><span class="line">        <span class="keyword">int</span> st2 = Math.max(s2, s1+prices[i]);</span><br><span class="line">        <span class="keyword">int</span> st3 = Math.max(s3, s2-prices[i]);</span><br><span class="line">        <span class="keyword">int</span> st4 = Math.max(s4, s3+prices[i]);</span><br><span class="line">        maxP = Math.max(maxP, Math.max(Math.max(st1, st2), Math.max(st3, st4)));</span><br><span class="line">        s1 = st1;</span><br><span class="line">        s2 = st2;</span><br><span class="line">        s3 = st3;</span><br><span class="line">        s4 = st4;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> maxP;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Transaction-at-most-k-times"><a href="#Transaction-at-most-k-times" class="headerlink" title="Transaction at most k times (*)"></a>Transaction at most k times (*)</h3><p>在Stock Problem I的基础上，如果限制买卖的次数至多k次，求最大的利润。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">calMaxKTimes</span><span class="params">(<span class="keyword">int</span>[] prices, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (prices.length == <span class="number">0</span> || k == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] states = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>*k+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span> maxP = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    states[<span class="number">1</span>] = -prices[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; k; i++) &#123;</span><br><span class="line">        states[<span class="number">2</span>*i+<span class="number">1</span>] = Integer.MIN_VALUE;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; states.length; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j%<span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">                states[j] = Math.max(states[j], states[j-<span class="number">1</span>]-prices[i]);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                states[j] = Math.max(states[j], states[j-<span class="number">1</span>]+prices[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            maxP = Math.max(maxP, states[j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> maxP;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Stock-Problem-III-with-Cool-Down"><a href="#Stock-Problem-III-with-Cool-Down" class="headerlink" title="Stock Problem III - with Cool Down"></a>Stock Problem III - with Cool Down</h2><p>在Stock Problem I的基础上，新增一个cool down时间，即在卖出股票之后第二天无法进行任何交易。求最大利润。<br>这个问题的最大挑战在于cool down上面，错误的选择可能会导致不能获得最大的利润。</p>
+<p>例如：[1, 2, 3, 0, 2]<br>如果1买入3卖出，则最大的利润为2；<br>而如果1买入2卖出，冷却过后0买入2卖出则可以获得3利润。</p>
+<img src="/images/stock-1.JPG" alt style="width:40%">
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">there are three states, s0, s1 and s2.</span></span><br><span class="line"><span class="comment">we have three arrays which denote the maximum profit that can make at time i</span></span><br><span class="line"><span class="comment">s0[] s1[] and s2[]</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">the relationship among them are:</span></span><br><span class="line"><span class="comment">s0[i] = Math.max(s0[i-1], s2[i-1])</span></span><br><span class="line"><span class="comment">s1[i] = Math.max(s0[i-1] - prices[i], s1[i-1])</span></span><br><span class="line"><span class="comment">s2[i] = s1[i-1] + prices[i]</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">base case</span></span><br><span class="line"><span class="comment">s0[0] = 0</span></span><br><span class="line"><span class="comment">s1[0] = -prices[0]</span></span><br><span class="line"><span class="comment">s2[0] = Integer.MIN_VALUE</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">calMaxWithCoolDown</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (prices.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] s0 = <span class="keyword">new</span> <span class="keyword">int</span>[prices.length];</span><br><span class="line">    <span class="keyword">int</span>[] s1 = <span class="keyword">new</span> <span class="keyword">int</span>[prices.length];</span><br><span class="line">    <span class="keyword">int</span>[] s2 = <span class="keyword">new</span> <span class="keyword">int</span>[prices.length];</span><br><span class="line"></span><br><span class="line">    s0[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    s1[<span class="number">0</span>] = -prices[<span class="number">0</span>];</span><br><span class="line">    s2[<span class="number">0</span>] = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> maxP = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.length; i++) &#123;</span><br><span class="line">        s0[i] = Math.max(s0[i-<span class="number">1</span>], s2[i-<span class="number">1</span>]);</span><br><span class="line">        s1[i] = Math.max(s0[i-<span class="number">1</span>] - prices[i], s1[i-<span class="number">1</span>]);</span><br><span class="line">        s2[i] = s1[i-<span class="number">1</span>] + prices[i];</span><br><span class="line">        maxP = Math.max(Math.max(s0[i],s1[i]), Math.max(s2[i],maxP));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> maxP;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Improve-Space"><a href="#Improve-Space" class="headerlink" title="Improve Space"></a>Improve Space</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">calMaxWithCoolDown</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (prices.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> s0 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> s1 = -prices[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> s2 = Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">int</span> maxP = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> st0 = Math.max(s0, s2);</span><br><span class="line">        <span class="keyword">int</span> st1 = Math.max(s0 - prices[i], s1);</span><br><span class="line">        <span class="keyword">int</span> st2 = s1 + prices[i];</span><br><span class="line">        maxP = Math.max(Math.max(st0, st1), Math.max(st2, maxP));</span><br><span class="line">        s0 = st0;</span><br><span class="line">        s1 = st1;</span><br><span class="line">        s2 = st2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> maxP;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Follow-up-1"><a href="#Follow-up-1" class="headerlink" title="Follow up"></a>Follow up</h3><p>在Stock Problem III的基础上，cool down为变量，即输入一个数组和一个整数代表冷却的天数（k &gt;= 0)，求最大的利润。</p>
+<p>Example<br>input: prices[] = [1, 2, 3, 0, 2], k = 1<br>output: 3</p>
+<img src="/images/stock-2.JPG" alt style="width:40%">
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">now there will be 2+k states</span></span><br><span class="line"><span class="comment">say s0, s1, sd0, sd1 ... sdk-1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">the relationship among them are:</span></span><br><span class="line"><span class="comment">s0[i] = Math.max(s0[i-1], sdk-1[i-1])</span></span><br><span class="line"><span class="comment">s1[i] = Math.max(s0[i-1] - prices[i], s1[i-1])</span></span><br><span class="line"><span class="comment">sd0[i] = s1[i-1] + prices[i]</span></span><br><span class="line"><span class="comment">sd1[i] = sd0[i-1]</span></span><br><span class="line"><span class="comment">sd2[i] = sd1[i-1]</span></span><br><span class="line"><span class="comment">...</span></span><br><span class="line"><span class="comment">sdk-1[i] = sdk-1[i-1]</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">base case</span></span><br><span class="line"><span class="comment">s0[0] = 0;</span></span><br><span class="line"><span class="comment">s1[0] = -prices[0];</span></span><br><span class="line"><span class="comment">sd0[0] = sd1[0] = ... = sdk-1[0] = Integer.MIN_VALUE</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">calMaxWithCoolDown</span><span class="params">(<span class="keyword">int</span>[] prices, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (prices.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (k &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> diff = nums[i] - nums[i-<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">               sum += diff;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// k &gt; 0</span></span><br><span class="line">    <span class="keyword">int</span>[] states = <span class="keyword">new</span> <span class="keyword">int</span>[k+<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">int</span>[] curr = <span class="keyword">new</span> <span class="keyword">int</span>[k+<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">int</span> maxP = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    Arrays.fill(states, Integer.MIN_VALUE);</span><br><span class="line">    states[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    states[<span class="number">1</span>] = -prices[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.length; i++) &#123;</span><br><span class="line">         curr[<span class="number">0</span>] = Math.max(states[<span class="number">0</span>], states[k+<span class="number">1</span>]);</span><br><span class="line">         curr[<span class="number">1</span>] = Math.max(states[<span class="number">0</span>] - prices[i], states[<span class="number">1</span>]);</span><br><span class="line">         curr[<span class="number">2</span>] = states[<span class="number">1</span>] + prices[i];</span><br><span class="line">         maxP = Math.max(Math.max(curr[<span class="number">0</span>], curr[<span class="number">1</span>]), Math.max(curr[<span class="number">2</span>], maxP));</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">3</span>; j &lt; curr.length; j++) &#123;</span><br><span class="line">             curr[j] = states[j-<span class="number">1</span>];</span><br><span class="line">             maxP = Math.max(maxP, curr[j]);</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">int</span>[] temp = states;</span><br><span class="line">         states = curr;</span><br><span class="line">         curr = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> maxP;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Stock-Problem-IV-with-Transaction-Fee"><a href="#Stock-Problem-IV-with-Transaction-Fee" class="headerlink" title="Stock Problem IV - with Transaction Fee"></a>Stock Problem IV - with Transaction Fee</h2><p>在Stock Problem I的基础下新增transaction fee，即每笔买卖都需要一定的手续费用，求最大的利润。</p>
+<p>Example 1:<br>Input: prices = [1, 3, 2, 8, 4, 9], fee = 2<br>Output: 8</p>
+<p>Explanation: The maximum profit can be achieved by:<br>Buying at prices[0] = 1<br>Selling at prices[3] = 8<br>Buying at prices[4] = 4<br>Selling at prices[5] = 9<br>The total profit is ((8 - 1) - 2) + ((9 - 4) - 2) = 8.</p>
+<img src="/images/stock-3.JPG" alt style="width:40%">
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxValWithFee</span><span class="params">(<span class="keyword">int</span>[] prices, <span class="keyword">int</span> fee)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (prices.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> s0 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> s1 = -prices[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> maxP = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> st0 = Math.max(s0, s1+prices[i]-fee);</span><br><span class="line">        <span class="keyword">int</span> st1 = Math.max(s0-prices[i], s1);</span><br><span class="line">        maxP = Math.max(maxP, Math.max(st0, st1));</span><br><span class="line">        s0 = st0;</span><br><span class="line">        s1 = st1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> maxP;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zheyangc.com/2018/01/15/LeetCode/2018-01-15-LeetCode-Stock-Problems/" data-id="ck7wfkikn003a0zr9cacvpbrm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/02/03/Algorithm/2018-02-03-Dynamic-Programming/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Dynamic Programming
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/07/LeetCode/2018-01-07-LeetCode-Binary-Search/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">LeetCode Binary Search</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Structure/">Data Structure</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Full-Stack/">Full-Stack</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lecture/">Lecture</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/">DP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Doubly-LinkedList/">Doubly LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/">Dynamic Programming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph/">Graph</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Retrieval/">Information Retrieval</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kernel/">Kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LRU/">LRU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Permutation/">Permutation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RESTful/">RESTful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Search-Algorithm/">Search Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Search-Engine/">Search Engine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Segment-Tree/">Segment Tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sort/">Sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Topological-Sort/">Topological Sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tree/">Tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Trie/">Trie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Union-Find/">Union Find</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/DP/" style="font-size: 13.33px;">DP</a> <a href="/tags/Doubly-LinkedList/" style="font-size: 10px;">Doubly LinkedList</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13.33px;">Dynamic Programming</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Graph/" style="font-size: 13.33px;">Graph</a> <a href="/tags/Information-Retrieval/" style="font-size: 10px;">Information Retrieval</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Kernel/" style="font-size: 13.33px;">Kernel</a> <a href="/tags/LRU/" style="font-size: 10px;">LRU</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/LinkedList/" style="font-size: 10px;">LinkedList</a> <a href="/tags/Permutation/" style="font-size: 10px;">Permutation</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/Search-Algorithm/" style="font-size: 10px;">Search Algorithm</a> <a href="/tags/Search-Engine/" style="font-size: 10px;">Search Engine</a> <a href="/tags/Segment-Tree/" style="font-size: 10px;">Segment Tree</a> <a href="/tags/Sort/" style="font-size: 10px;">Sort</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/Topological-Sort/" style="font-size: 10px;">Topological Sort</a> <a href="/tags/Tree/" style="font-size: 16.67px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10px;">Trie</a> <a href="/tags/Union-Find/" style="font-size: 10px;">Union Find</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/24/Data Structure/2018-03-23-Segment-Tree/">Segment Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/21/Data Structure/2018-03-20-LRU-Cache/">LRU Cache</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/20/Algorithm/2018-03-19-Topological-Sort/">Topological Sort</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/18/Data Structure/2018-03-18-Graph-Representation/">Graph Representation</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/03/LeetCode/2018-03-03-LeetCode-Majority-Element/">LeetCode Majority Element</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 zheyangc<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>AI Search Algorithm | ZC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Problem Solving and SearchEnvironment Types Accessible Deterministic Episodic Static Discrete  Problem Types single-state problem deterministic, accessible agent knows the exact state can calculate op">
+<meta name="keywords" content="Search Algorithm,AI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Search Algorithm">
+<meta property="og:url" content="http://zheyangc.com/2017/09/24/Others/2017-09-24-AI-notes/index.html">
+<meta property="og:site_name" content="ZC">
+<meta property="og:description" content="Problem Solving and SearchEnvironment Types Accessible Deterministic Episodic Static Discrete  Problem Types single-state problem deterministic, accessible agent knows the exact state can calculate op">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-03-17T21:50:13.645Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI Search Algorithm">
+<meta name="twitter:description" content="Problem Solving and SearchEnvironment Types Accessible Deterministic Episodic Static Discrete  Problem Types single-state problem deterministic, accessible agent knows the exact state can calculate op">
+  
+    <link rel="alternate" href="/atom.xml" title="ZC" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ZC</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Hello World</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zheyangc.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Others/2017-09-24-AI-notes" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/24/Others/2017-09-24-AI-notes/" class="article-date">
+  <time datetime="2017-09-24T07:00:00.000Z" itemprop="datePublished">2017-09-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Lecture/">Lecture</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AI Search Algorithm
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Problem-Solving-and-Search"><a href="#Problem-Solving-and-Search" class="headerlink" title="Problem Solving and Search"></a>Problem Solving and Search</h1><h2 id="Environment-Types"><a href="#Environment-Types" class="headerlink" title="Environment Types"></a>Environment Types</h2><ul>
+<li>Accessible</li>
+<li>Deterministic</li>
+<li>Episodic</li>
+<li>Static</li>
+<li>Discrete</li>
+</ul>
+<h2 id="Problem-Types"><a href="#Problem-Types" class="headerlink" title="Problem Types"></a>Problem Types</h2><ul>
+<li>single-state problem<ul>
+<li><strong>deterministic, accessible</strong></li>
+<li>agent knows the exact state</li>
+<li>can calculate optimal action on sequence to reach goal state</li>
+</ul>
+</li>
+<li>multiple state problem<ul>
+<li><strong>deterministic, inaccessible</strong></li>
+<li>Agent does not know the exact state</li>
+<li>Assume states while working towards goal state.</li>
+</ul>
+</li>
+<li>contingency problem<ul>
+<li><strong>nondeterministic, inaccessible</strong></li>
+<li>must use sensors during execution (could be in any of the possible states)</li>
+<li>solution is a tree or policy</li>
+<li>often iterative search and execution</li>
+</ul>
+</li>
+<li>exploration problem<ul>
+<li><strong>unknown state space</strong></li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="Problem-Formulation"><a href="#Problem-Formulation" class="headerlink" title="Problem Formulation"></a>Problem Formulation</h2><p>a problem is defined by four items</p>
+<ul>
+<li>initial state</li>
+<li>operators</li>
+<li>goal test</li>
+<li>path cost</li>
+</ul>
+<h2 id="General-Search"><a href="#General-Search" class="headerlink" title="General Search"></a>General Search</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Function General-Search(problem, strategy) returns a solution, or failure</span><br><span class="line">    initialize the search tree using the initial state problem</span><br><span class="line">    loop do</span><br><span class="line">        if there are no candidates for expansion then return failure</span><br><span class="line"></span><br><span class="line">        choose a leaf node for expansion according to strategy</span><br><span class="line">        if the node contains a goal state then</span><br><span class="line">            return the corresponding solution</span><br><span class="line">        else expand the node and add resulting nodes to the search tree</span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
+
+<p>for more detailed implementation,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Function General-Search(problem, Queuing-Fn) returns a solution, or failure</span><br><span class="line">    nodes &lt;- make-queue(make-node(initial-state[problem]))</span><br><span class="line">    loop do</span><br><span class="line">        if nodes is empty then return failure</span><br><span class="line">        node &lt;- Remove-Front(nodes)</span><br><span class="line">        if Goal-Test[problem] applied to State(node) succeeds then return node</span><br><span class="line">        nodes &lt;- Queuing-Fn(nodes, Expand(node, Operators[problem]))</span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
+
+<h2 id="Node-and-State"><a href="#Node-and-State" class="headerlink" title="Node and State"></a>Node and State</h2><p>Know the difference between state in state-space and tree node in a search tree, they are <strong>Different</strong>! <code>p58 in 02-04</code></p>
+<p>A state is a representation of physical configuration.</p>
+<p>A node is a data structure, which includes <code>parent</code>, <code>children</code>, <code>depth</code>, <code>path</code> and <code>cost(g)</code>, and expanded by some kind of <code>EXPAND</code> function.</p>
+<h2 id="Evaluation-of-Search"><a href="#Evaluation-of-Search" class="headerlink" title="Evaluation of Search"></a>Evaluation of Search</h2><p>Analyze</p>
+<ul>
+<li>Completeness</li>
+<li>Time complexity</li>
+<li>Space complexity<ul>
+<li>b - max branching factor</li>
+<li>d - depth of the least-cost solution</li>
+<li>m - max depth of the search tree</li>
+</ul>
+</li>
+<li>optimality</li>
+</ul>
+<h1 id="Uninformed-Search"><a href="#Uninformed-Search" class="headerlink" title="Uninformed Search"></a>Uninformed Search</h1><h2 id="Breadth-First-Search-BFS"><a href="#Breadth-First-Search-BFS" class="headerlink" title="Breadth-First Search (BFS)"></a>Breadth-First Search (BFS)</h2><p>Enqueue expanded (children) nodes to the back of the queue (<strong>FIFO</strong> order)</p>
+<p>Analyze</p>
+<ul>
+<li>Completeness: yes, <strong>if b is finite</strong></li>
+<li>Time: O(b^d)</li>
+<li>Space: O(b^d)</li>
+<li>Optimality: yes, assuming cost = 1 per step</li>
+</ul>
+<h2 id="Uniform-Cost-Search-UCS"><a href="#Uniform-Cost-Search-UCS" class="headerlink" title="Uniform Cost Search (UCS)"></a>Uniform Cost Search (UCS)</h2><p>The <strong>queuing function</strong> keeps the node list sorted by increasing path cost, and expand the first unexpanded node (hence with smallest path cost)</p>
+<p>Analyze</p>
+<ul>
+<li>Completeness: Yes, if step cost &gt; 0</li>
+<li>Time: # nodes with g &lt;= cost of optimal solution, &lt;= O(b^d)</li>
+<li>Space: # nodes with g &lt;= cost of optimal solution, &lt;= O(b^d)</li>
+<li>Optimality: Yes, as long as path cost never decrease ?</li>
+</ul>
+<h3 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h3><p>Uniform-cost search <strong>not optimal</strong> if it is terminated when any node in the queue has goal state.</p>
+<p>Here is the example</p>
+<h3 id="Improved-UCS"><a href="#Improved-UCS" class="headerlink" title="Improved UCS"></a>Improved UCS</h3><p>refine the queuing function for optimal search, queue-up node if</p>
+<ul>
+<li>Its state does not match the state of any parent</li>
+<li>path cost smaller than path cost of any unexpanded node with same state in the queue</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Function UniformCost-Search(problem, Queuing-Fn) returns a solution, or failure</span><br><span class="line">    open &lt;- make-queue(make-node(initial-state[problem]))</span><br><span class="line">    closed &lt;- [empty]</span><br><span class="line"></span><br><span class="line">    loop do</span><br><span class="line">        if open is empty then return failure</span><br><span class="line">        currnode &lt;- Remove-Front(open)</span><br><span class="line">        if Goal-Test[problem] applied to State(currnode) then return currnode</span><br><span class="line">        children &lt;- Expand(currnode, Operators[problem])</span><br><span class="line">        while children not empty</span><br><span class="line">            [...]</span><br><span class="line">        end</span><br><span class="line">        closed &lt;- Insert(closed, currnode)</span><br><span class="line">        open &lt;- Sort-By-PathCost(open)</span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
+
+<p>here is the codes in <code>[...]</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">children &lt;- Expand(currnode, Operators[problem])</span><br><span class="line">while children not empty</span><br><span class="line">    child &lt;- Remove-Front(children)</span><br><span class="line">    if no node in open or closed has child’s state</span><br><span class="line">        open &lt;- Queuing-Fn(open, child)</span><br><span class="line">    else if there exists node in open that has child’s state</span><br><span class="line">        if PathCost(child) &lt; PathCost(node)</span><br><span class="line">            open &lt;- Delete-Node(open, node)</span><br><span class="line">            open &lt;- Queuing-Fn(open, child)</span><br><span class="line">    else if there exists node in closed that has child’s state</span><br><span class="line">        if PathCost(child) &lt; PathCost(node)</span><br><span class="line">            closed &lt;- Delete-Node(closed, node)</span><br><span class="line">            open &lt;- Queuing-Fn(open, child)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h2 id="Depth-First-Search-DFS"><a href="#Depth-First-Search-DFS" class="headerlink" title="Depth-First Search (DFS)"></a>Depth-First Search (DFS)</h2><p>Enqueue expanded (children) nodes to the front of the queue (<strong>LIFO</strong> order)</p>
+<p>Analyze</p>
+<ul>
+<li>Completeness: no ? infinite state space / yes ? finite state space</li>
+<li>Time: O(b^m)</li>
+<li>Space: O(bm)</li>
+<li>Optimality: No</li>
+</ul>
+<h2 id="Depth-limited-Search"><a href="#Depth-limited-Search" class="headerlink" title="Depth-limited Search"></a>Depth-limited Search</h2><p>A depth-first search with depth limit <code>l</code></p>
+<p>Analyze</p>
+<ul>
+<li>Completeness: yes</li>
+<li>Optimality: No</li>
+</ul>
+<h2 id="Iterative-Deepening-Search"><a href="#Iterative-Deepening-Search" class="headerlink" title="Iterative Deepening Search"></a>Iterative Deepening Search</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Function Iterative-deepening-Search(problem) returns a solution, or failure</span><br><span class="line">    for depth = 0 to infinite do</span><br><span class="line">        result &lt;- Depth-Limited-Search(problem, depth)</span><br><span class="line">        if result succeeds then</span><br><span class="line">            return result</span><br><span class="line">    end</span><br><span class="line">    return failure</span><br></pre></td></tr></table></figure>
+
+<p>Analyze</p>
+<ul>
+<li>Completeness: Yes,</li>
+<li>Time: O(b^d)</li>
+<li>Space: O(bd)</li>
+<li>Optimality: Yes, if step cost = 1</li>
+</ul>
+<p>Iterative deepening is preferred to depth-first or breadth-first when search space large and <strong>depth of solution not known</strong></p>
+<h2 id="Comparing-Uninformed-Search-Strategies"><a href="#Comparing-Uninformed-Search-Strategies" class="headerlink" title="Comparing Uninformed Search Strategies"></a>Comparing Uninformed Search Strategies</h2><table>
+<thead>
+<tr>
+<th align="left">Type</th>
+<th align="left">TimeO</th>
+<th align="left">SpaceO</th>
+<th align="left">Optimal</th>
+<th align="left">Complete</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">BFS</td>
+<td align="left">O(b^d)</td>
+<td align="left">O(b^d)</td>
+<td align="left">Yes</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">UCS</td>
+<td align="left">O(b^d)</td>
+<td align="left">O(b^d)</td>
+<td align="left">Yes</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">DFS</td>
+<td align="left">O(b^m)</td>
+<td align="left">O(bm)</td>
+<td align="left">No</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">DIS</td>
+<td align="left">O(b^l)</td>
+<td align="left">O(bl)</td>
+<td align="left">No</td>
+<td align="left">Yes, if I &gt;= d</td>
+</tr>
+<tr>
+<td align="left">IDS</td>
+<td align="left">O(b^d)</td>
+<td align="left">O(bd)</td>
+<td align="left">Yes</td>
+<td align="left">Yes</td>
+</tr>
+</tbody></table>
+<h1 id="Informed-Search"><a href="#Informed-Search" class="headerlink" title="Informed Search"></a>Informed Search</h1><p>Use heuristics to guide the search</p>
+<h2 id="Best-First-Search"><a href="#Best-First-Search" class="headerlink" title="Best First Search"></a>Best First Search</h2><ul>
+<li>Idea: use an evaluation function for each node, estimate of “desirability”</li>
+<li>Queuing function: Insert successors in decreasing order of <strong>desirability</strong></li>
+<li>Special cases:<ul>
+<li>Greedy search</li>
+<li>A* search</li>
+</ul>
+</li>
+</ul>
+<h2 id="Greedy-Search"><a href="#Greedy-Search" class="headerlink" title="Greedy Search"></a>Greedy Search</h2><p>Estimation function: h(n) = estimate of cost from n to <strong>goal</strong> (heuristic)</p>
+<p>Analyze</p>
+<ul>
+<li>Complete: No, can get stuck in loops<ul>
+<li>Complete in finite space with <strong>repeated-state checking.</strong></li>
+</ul>
+</li>
+<li>Time: O(b^m), but a good heuristic can give dramatic improvement</li>
+<li>Space: O(b^m), keeps all nodes in memory</li>
+<li>Optimal: No.</li>
+</ul>
+<h2 id="A-Search"><a href="#A-Search" class="headerlink" title="A* Search"></a>A* Search</h2><p>A* search uses an admissible heuristic</p>
+<p><code>f(n) = g(n) + h(n)</code></p>
+<ul>
+<li><code>f(n)</code> is the estimated total cost through n to the goal.</li>
+<li><code>g(n)</code> is the cost so far to reach n</li>
+<li><code>h(n)</code> is the estimated cost from n</li>
+</ul>
+<p>Analyze</p>
+<ul>
+<li>Complete: Yes, unless infinitely many nodes with f &lt;= f(G)</li>
+<li>Time: Exponential in <code>[(relative error in h) x (length of solution)]</code></li>
+<li>Space: Keeps all nodes in memory</li>
+<li>Optimal: Yes – cannot expand fi+1 until fi is finished</li>
+</ul>
+<h3 id="Optimality-of-A"><a href="#Optimality-of-A" class="headerlink" title="Optimality of A*"></a>Optimality of A*</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f(G2) = g(G2) + f(G2) = g(G2) &gt; g(G1) &gt;= f(n)</span><br><span class="line"></span><br><span class="line">Since f(G2) &gt; f(n), A* will never select G2 for expansion</span><br></pre></td></tr></table></figure>
+
+<h3 id="F-n-Increment"><a href="#F-n-Increment" class="headerlink" title="F(n) Increment"></a>F(n) Increment</h3><p>A* expands nodes in order of increasing f value.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">assuming n --d--&gt; n&apos;</span><br><span class="line"></span><br><span class="line">n ----d---&gt; n&apos;</span><br><span class="line"> \         /</span><br><span class="line"> h(n)    h(n&apos;)</span><br><span class="line">   \     /</span><br><span class="line">    \   /</span><br><span class="line">     tar</span><br><span class="line"></span><br><span class="line">g(n&apos;) = g(n) + d</span><br><span class="line">f(n&apos;) = g(n&apos;) + h(n&apos;) = g(n) + d + h(n&apos;) &gt;= g(n) + h(n) = f(n)</span><br><span class="line">thus f(n&apos;) &gt;= f(n)</span><br></pre></td></tr></table></figure>
+
+<p>so when traversing the node, <strong><code>f&#39;(n) = max (g(n&#39;)+h(n&#39;), f(n))</code></strong></p>
+<h2 id="Hill-climbing-Search"><a href="#Hill-climbing-Search" class="headerlink" title="Hill-climbing Search"></a>Hill-climbing Search</h2><p>Iteratively maximize “value” of current state, by replacing it by successor state that has highest value, as long as possible.</p>
+<p>here is the pseudo code</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function Hill-Climbing(problem) returns a solution state</span><br><span class="line">    inputs: problem, a problem</span><br><span class="line">    local vars: current, a node</span><br><span class="line">                next, a node</span><br><span class="line"></span><br><span class="line">    current &lt;- Make-Node(Initial-State[Problem])</span><br><span class="line"></span><br><span class="line">    loop do</span><br><span class="line">        next &lt;- a highest-valued successor of current</span><br><span class="line">        if Value[next] &lt; Value[current] then return current</span><br><span class="line">        current &lt;- next</span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
+
+<p>weakness: can only find the <strong>local minimum/maximum</strong></p>
+<h2 id="Simulated-Annealing"><a href="#Simulated-Annealing" class="headerlink" title="Simulated Annealing"></a>Simulated Annealing</h2><p>Boltzmann distribution</p>
+<p>P(A)/P(B) = exp((E(A)-E(B))/T) = exp(E(B)/T)/exp(E(A)/T)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function SIMULATED-ANNEALING(problem, schedule) returns a solution state</span><br><span class="line">    inputs: problem, a problem</span><br><span class="line">            schedule, a mapping from time to “temperature”</span><br><span class="line"></span><br><span class="line">    current &lt;- MAKE-NODE(problem.INITIAL-STATE)</span><br><span class="line">    for t = 1 to ∞ do</span><br><span class="line">        T &lt;- schedule(t)</span><br><span class="line">        if T = 0 then return current</span><br><span class="line">        next &lt;- a randomly selected successor of current</span><br><span class="line">        ΔE &lt;- next.VALUE – current.VALUE</span><br><span class="line">        if ΔE &gt; 0 then current &lt;- next</span><br><span class="line">        else current &lt;- next only with probability e^(ΔE/T)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">Case</th>
+<th align="left">ΔE</th>
+<th align="left">ΔE/T</th>
+<th align="left">exp(ΔE/T)</th>
+<th align="left">accept bad move</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">T is large</td>
+<td align="left">&lt;0</td>
+<td align="left">&lt;0, very small</td>
+<td align="left">close to 1</td>
+<td align="left">high probability</td>
+</tr>
+<tr>
+<td align="left">T is small</td>
+<td align="left">&lt;0</td>
+<td align="left">&lt;0, very large</td>
+<td align="left">close to 0</td>
+<td align="left">low probability</td>
+</tr>
+</tbody></table>
+<h1 id="Game-playing"><a href="#Game-playing" class="headerlink" title="Game playing"></a>Game playing</h1><h2 id="Basic-Concepts"><a href="#Basic-Concepts" class="headerlink" title="Basic Concepts"></a>Basic Concepts</h2><ul>
+<li>Initial state</li>
+<li>Operators</li>
+<li>Terminal state</li>
+<li>Utility function: AKA <strong>payoff function</strong></li>
+</ul>
+<h2 id="The-Minimax-Algorithm"><a href="#The-Minimax-Algorithm" class="headerlink" title="The Minimax Algorithm"></a>The Minimax Algorithm</h2><p>Minimize opponent’s chance and thus? maximize your chance</p>
+<p>Pseudo code of minimax algorithm</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function minimax_decision(game) return an operator</span><br><span class="line">for each operators in operators[game] do</span><br><span class="line">    values[op] = minimax_value(apply(op,game),game)</span><br><span class="line">end</span><br><span class="line">return the op with highest values[op]</span><br><span class="line"></span><br><span class="line">------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">function minimax_value(state,game) returns a utility value</span><br><span class="line">if terminate_test[game](state) then</span><br><span class="line">    return utility[game](state)</span><br><span class="line">else if MAX is to move in state then //what does this mean?</span><br><span class="line">    return the the highest minimax_value of successors(state)</span><br><span class="line">else</span><br><span class="line">    return the lowest minimax_value of the successors(state)</span><br></pre></td></tr></table></figure>
+
+<p>Statistic</p>
+<ul>
+<li>Complete: Yes, for finite state-space</li>
+<li>Optimal: Yes</li>
+<li>Time Complexity: <strong>O(b^m)</strong></li>
+<li>Space Complexity: O(bm)</li>
+</ul>
+<h2 id="Resource-Limitations"><a href="#Resource-Limitations" class="headerlink" title="Resource Limitations"></a>Resource Limitations</h2><ul>
+<li>Evaluation function: evaluates value of state using heuristics and cuts off search</li>
+<li>Using new minimax<ul>
+<li>CUTOFF-TEST: cutoff test to replace the termination condition</li>
+<li>EVAL: evaluation function to replace utility function</li>
+</ul>
+</li>
+</ul>
+<p>Note: <strong>exact values</strong> do no matter, only <strong>the order</strong> matters.</p>
+<h2 id="Alpha-beta-Pruning"><a href="#Alpha-beta-Pruning" class="headerlink" title="Alpha-beta Pruning"></a>Alpha-beta Pruning</h2><ul>
+<li>prune portions of the search tree that cannot improve the utility value.</li>
+<li>pruning does not affect the final result.</li>
+<li>time complexity: O(b^(m/2)) if perfect</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">function max_value (state, game, a, b) return the minimum value of state</span><br><span class="line">    inputs: state,</span><br><span class="line">            game,</span><br><span class="line">            a, the best score for MAX along the path to state</span><br><span class="line">            b, the best score for MIN along the path to state</span><br><span class="line">            // a and b are both local variables</span><br><span class="line">            // at the start of the algorithm, a = - infinity, b = infinity</span><br><span class="line"></span><br><span class="line">    if cutoff(state) then return eval(state)</span><br><span class="line"></span><br><span class="line">    for each s in successors(state) do</span><br><span class="line">        a = max(a, min_value(s,game,a,b)</span><br><span class="line">        if(a&gt;b) then return b</span><br><span class="line">    end</span><br><span class="line">    return a</span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">function min_value (state, game, a, b) return the maximum value of the state</span><br><span class="line">    inputs: state,</span><br><span class="line">            game,</span><br><span class="line">            a, the best score for MAX along the path to state</span><br><span class="line">            b, the best score for MIN along the path to state</span><br><span class="line"></span><br><span class="line">    if cutoff(state) then return eval(state)</span><br><span class="line"></span><br><span class="line">    for each s in successors(state) do</span><br><span class="line">        b = min(b, max_value(s,game,a,b))</span><br><span class="line">        if (b&lt;a) then return a</span><br><span class="line">    end</span><br><span class="line">    return b</span><br></pre></td></tr></table></figure>
+
+<h2 id="Elements-Of-Chance"><a href="#Elements-Of-Chance" class="headerlink" title="Elements Of Chance"></a>Elements Of Chance</h2><p>expectimax and expectimin, expected values over all possible outcomes. In this way, order-preserving transformation do not necessarily behave the same!</p>
+<h1 id="Constraint-Satisfaction"><a href="#Constraint-Satisfaction" class="headerlink" title="Constraint Satisfaction"></a>Constraint Satisfaction</h1><h2 id="Constraint-Satisfaction-Problems-CSP"><a href="#Constraint-Satisfaction-Problems-CSP" class="headerlink" title="Constraint Satisfaction Problems (CSP)"></a>Constraint Satisfaction Problems (CSP)</h2><h3 id="Basic-Concepts-1"><a href="#Basic-Concepts-1" class="headerlink" title="Basic Concepts"></a>Basic Concepts</h3><ul>
+<li>Variables</li>
+<li>Domains</li>
+<li>Constraints</li>
+<li>Consistent</li>
+<li>Complete</li>
+</ul>
+<h3 id="Varieties-of-CSPs"><a href="#Varieties-of-CSPs" class="headerlink" title="Varieties of CSPs"></a>Varieties of CSPs</h3><ul>
+<li>Discrete variables<ul>
+<li>finite domains</li>
+<li>infinite domains</li>
+</ul>
+</li>
+<li>Continuous variables</li>
+</ul>
+<h3 id="Varieties-Of-Constraints"><a href="#Varieties-Of-Constraints" class="headerlink" title="Varieties Of Constraints"></a>Varieties Of Constraints</h3><ul>
+<li>Unary</li>
+<li>Binary</li>
+<li>Higher-order</li>
+</ul>
+<h3 id="Example-Crypt-arithmetic"><a href="#Example-Crypt-arithmetic" class="headerlink" title="Example: Crypt-arithmetic"></a>Example: Crypt-arithmetic</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    T W O</span><br><span class="line">+   T W O</span><br><span class="line">----------</span><br><span class="line">  F O U R</span><br></pre></td></tr></table></figure>
+
+<h2 id="Backtracking-Search-For-CSPs"><a href="#Backtracking-Search-For-CSPs" class="headerlink" title="Backtracking Search For CSPs"></a>Backtracking Search For CSPs</h2><p>Depth-first search for CSPs with single-variable assignments is called<br>backtracking search</p>
+<figure class="highlight plain"><figcaption><span>code</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function BACKTRACKING-SEARCH(csp) returns a solution, or failure</span><br><span class="line">    return BACKTRACK(&#123; &#125;, csp)</span><br><span class="line"></span><br><span class="line">----------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">function BACKTRACK(assignment, csp) returns a solution, or failure</span><br><span class="line"></span><br><span class="line">    if assignment is complete then return assignment</span><br><span class="line">    var &lt;- SELECT-UNASSIGNED-VARIABLE(csp)</span><br><span class="line">    for each value in ORDER-DOMAIN-VALUES(var, assignment, csp) do</span><br><span class="line">        if value is consistent with assignment then</span><br><span class="line">            add &#123;var = value&#125; to assignment</span><br><span class="line">            result &lt;- BACKTRACK(assignment, csp)</span><br><span class="line">            if result != failure then return result</span><br><span class="line">            remove &#123;var = value&#125;</span><br><span class="line">    return failure</span><br></pre></td></tr></table></figure>
+
+<h3 id="Improved-Backtracking"><a href="#Improved-Backtracking" class="headerlink" title="Improved Backtracking"></a>Improved Backtracking</h3><ul>
+<li>choose the variable with the fewest legal values</li>
+<li>choose the variable with the most constraints on remaining variables</li>
+</ul>
+<h3 id="Arc-Consistency"><a href="#Arc-Consistency" class="headerlink" title="Arc Consistency"></a>Arc Consistency</h3><ul>
+<li>node-consistent: all the values in its domain satisfy the variable’s unary constraints</li>
+<li>arc-consistent: every value in its domain satisfies the binary constraints</li>
+</ul>
+<h2 id="Local-Search-For-CSPs"><a href="#Local-Search-For-CSPs" class="headerlink" title="Local Search For CSPs"></a>Local Search For CSPs</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zheyangc.com/2017/09/24/Others/2017-09-24-AI-notes/" data-id="ck7wfkiko003c0zr9f0ihhpx3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Search-Algorithm/">Search Algorithm</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/10/01/LeetCode/2017-10-01-LeetCode-DP-1XX/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          LeetCode DP (100-200)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/15/LeetCode/2017-09-15-LeetCode-DFS-0XX/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">LeetCode DFS (0-100)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Structure/">Data Structure</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Full-Stack/">Full-Stack</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Lecture/">Lecture</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LeetCode/">LeetCode</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binary-Search/">Binary Search</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/">DP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Doubly-LinkedList/">Doubly LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/">Dynamic Programming</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Exception/">Exception</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph/">Graph</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Retrieval/">Information Retrieval</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kernel/">Kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LRU/">LRU</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LinkedList/">LinkedList</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Permutation/">Permutation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RESTful/">RESTful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Search-Algorithm/">Search Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Search-Engine/">Search Engine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Segment-Tree/">Segment Tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sort/">Sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/String/">String</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Topological-Sort/">Topological Sort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tree/">Tree</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Trie/">Trie</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Union-Find/">Union Find</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/Binary-Search/" style="font-size: 10px;">Binary Search</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/DP/" style="font-size: 13.33px;">DP</a> <a href="/tags/Doubly-LinkedList/" style="font-size: 10px;">Doubly LinkedList</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13.33px;">Dynamic Programming</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Graph/" style="font-size: 13.33px;">Graph</a> <a href="/tags/Information-Retrieval/" style="font-size: 10px;">Information Retrieval</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Kernel/" style="font-size: 13.33px;">Kernel</a> <a href="/tags/LRU/" style="font-size: 10px;">LRU</a> <a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a> <a href="/tags/LinkedList/" style="font-size: 10px;">LinkedList</a> <a href="/tags/Permutation/" style="font-size: 10px;">Permutation</a> <a href="/tags/RESTful/" style="font-size: 10px;">RESTful</a> <a href="/tags/Search-Algorithm/" style="font-size: 10px;">Search Algorithm</a> <a href="/tags/Search-Engine/" style="font-size: 10px;">Search Engine</a> <a href="/tags/Segment-Tree/" style="font-size: 10px;">Segment Tree</a> <a href="/tags/Sort/" style="font-size: 10px;">Sort</a> <a href="/tags/String/" style="font-size: 13.33px;">String</a> <a href="/tags/Topological-Sort/" style="font-size: 10px;">Topological Sort</a> <a href="/tags/Tree/" style="font-size: 16.67px;">Tree</a> <a href="/tags/Trie/" style="font-size: 10px;">Trie</a> <a href="/tags/Union-Find/" style="font-size: 10px;">Union Find</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/03/24/Data Structure/2018-03-23-Segment-Tree/">Segment Tree</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/21/Data Structure/2018-03-20-LRU-Cache/">LRU Cache</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/20/Algorithm/2018-03-19-Topological-Sort/">Topological Sort</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/18/Data Structure/2018-03-18-Graph-Representation/">Graph Representation</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/03/LeetCode/2018-03-03-LeetCode-Majority-Element/">LeetCode Majority Element</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 zheyangc<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
