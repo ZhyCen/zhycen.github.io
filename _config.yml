@@ -3,8 +3,8 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: ZC
-subtitle: Hello World
+title: Zheyang's Blog
+subtitle: 
 description:
 keywords: 
 author: zheyangc
@@ -13,7 +13,7 @@ timezone: America/Los_Angeles
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://zheyangc.com
+url: http://zheyangc.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
