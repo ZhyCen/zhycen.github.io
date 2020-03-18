@@ -154,6 +154,83 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://zheyangc.github.io/2018/02/20/LeetCode/2018-02-19-LeetCode-LinkedList/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="zheyangc">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zheyang's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/02/20/LeetCode/2018-02-19-LeetCode-LinkedList/" class="post-title-link" itemprop="url">LeetCode LinkedList</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-02-19 16:33:35" itemprop="dateCreated datePublished" datetime="2018-02-19T16:33:35-08:00">2018-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-17 23:24:31" itemprop="dateModified" datetime="2020-03-17T23:24:31-07:00">2020-03-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Reverse-a-LinkedList"><a href="#Reverse-a-LinkedList" class="headerlink" title="Reverse a LinkedList"></a>Reverse a LinkedList</h1><h2 id="Iterative"><a href="#Iterative" class="headerlink" title="Iterative"></a>Iterative</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ListNode <span class="title">reverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">       <span class="keyword">return</span> head;</span><br><span class="line">   &#125;</span><br><span class="line">   ListNode prev = <span class="keyword">null</span>;</span><br><span class="line">   ListNode curr = head;</span><br><span class="line">   ListNode next = head.next;</span><br><span class="line">   <span class="keyword">while</span> (next != <span class="keyword">null</span>) &#123;</span><br><span class="line">       ListNode nextNext = next.next;</span><br><span class="line">       curr.next = prev;</span><br><span class="line">       next.next = curr;</span><br><span class="line">       prev = curr;</span><br><span class="line">       curr = next;</span><br><span class="line">       next = nextNext;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> curr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Recursive"><a href="#Recursive" class="headerlink" title="Recursive"></a>Recursive</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ListNode lastEnd = head.next;</span><br><span class="line">    ListNode lastStart = reverseList(head.next);</span><br><span class="line">    lastEnd.next = head;</span><br><span class="line">    head.next = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> lastStart;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://zheyangc.github.io/2018/02/03/Data Structure/2018-02-03-Trie/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,7 +262,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-17 23:20:41" itemprop="dateModified" datetime="2020-03-17T23:20:41-07:00">2020-03-17</time>
+                <time title="Modified: 2020-03-17 23:24:31" itemprop="dateModified" datetime="2020-03-17T23:24:31-07:00">2020-03-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,7 +343,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-17 23:20:41" itemprop="dateModified" datetime="2020-03-17T23:20:41-07:00">2020-03-17</time>
+                <time title="Modified: 2020-03-17 23:24:31" itemprop="dateModified" datetime="2020-03-17T23:24:31-07:00">2020-03-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -353,7 +430,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-17 23:20:41" itemprop="dateModified" datetime="2020-03-17T23:20:41-07:00">2020-03-17</time>
+                <time title="Modified: 2020-03-17 23:24:31" itemprop="dateModified" datetime="2020-03-17T23:24:31-07:00">2020-03-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -443,7 +520,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-17 23:20:41" itemprop="dateModified" datetime="2020-03-17T23:20:41-07:00">2020-03-17</time>
+                <time title="Modified: 2020-03-17 23:24:31" itemprop="dateModified" datetime="2020-03-17T23:24:31-07:00">2020-03-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -540,7 +617,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-17 23:20:41" itemprop="dateModified" datetime="2020-03-17T23:20:41-07:00">2020-03-17</time>
+                <time title="Modified: 2020-03-17 23:24:31" itemprop="dateModified" datetime="2020-03-17T23:24:31-07:00">2020-03-17</time>
               </span>
 
           
@@ -618,7 +695,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-17 23:20:41" itemprop="dateModified" datetime="2020-03-17T23:20:41-07:00">2020-03-17</time>
+                <time title="Modified: 2020-03-17 23:24:31" itemprop="dateModified" datetime="2020-03-17T23:24:31-07:00">2020-03-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -703,7 +780,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-17 23:20:41" itemprop="dateModified" datetime="2020-03-17T23:20:41-07:00">2020-03-17</time>
+                <time title="Modified: 2020-03-17 23:24:31" itemprop="dateModified" datetime="2020-03-17T23:24:31-07:00">2020-03-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -836,7 +913,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-17 23:20:41" itemprop="dateModified" datetime="2020-03-17T23:20:41-07:00">2020-03-17</time>
+                <time title="Modified: 2020-03-17 23:24:31" itemprop="dateModified" datetime="2020-03-17T23:24:31-07:00">2020-03-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -924,7 +1001,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-17 23:20:41" itemprop="dateModified" datetime="2020-03-17T23:20:41-07:00">2020-03-17</time>
+                <time title="Modified: 2020-03-17 23:24:31" itemprop="dateModified" datetime="2020-03-17T23:24:31-07:00">2020-03-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -952,94 +1029,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2017/11/23/LeetCode/2017-11-23-LeetCode-Permutation/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://zheyangc.github.io/2017/11/23/Algorithm/2017-11-22-Sort/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="zheyangc">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zheyang's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/23/Algorithm/2017-11-22-Sort/" class="post-title-link" itemprop="url">Sort</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-11-22 16:57:01" itemprop="dateCreated datePublished" datetime="2017-11-22T16:57:01-08:00">2017-11-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-17 23:20:41" itemprop="dateModified" datetime="2020-03-17T23:20:41-07:00">2020-03-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Sort总结"><a href="#Sort总结" class="headerlink" title="Sort总结"></a>Sort总结</h1><p>在计算机科学与数学中, 一个排序算法是一种能将一串数据依照特定排序方式进行排列的一种算法. 下面针对常见的排序进行一个总结. </p>
-<h2 id="Bubble-Sort-冒泡排序"><a href="#Bubble-Sort-冒泡排序" class="headerlink" title="Bubble Sort 冒泡排序"></a>Bubble Sort 冒泡排序</h2><p>冒泡排序是最基础的排序方法, 其过程可分为以下步骤</p>
-<ul>
-<li>比较相邻的元素. 如果第一个比第二个大, 就交换他们两个. </li>
-<li>对每一对相邻元素作同样的工作, 从开始第一对到结尾的最后一对. 这步做完后, 最后的元素会是最大的数. </li>
-<li>针对所有的元素重复以上的步骤, 除了最后一个. </li>
-<li>持续每次对越来越少的元素重复上面的步骤, 直到没有任何一对数字需要比较. </li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/11/23/Algorithm/2017-11-22-Sort/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1131,20 +1120,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
