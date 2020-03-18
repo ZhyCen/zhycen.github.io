@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"zheyangc.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"zheyangc.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="Stock Problems在刷题过程中遇到股票买卖一类的问题，把该类问题归类为线性查找的subarray问题，一般方法有two pointer, greedy, dynamic programming等。下面对该类题型进行总结和拓展。 Stock Problem I给定一列整数数组，表示每天股票的价格，求多次交易使得获利最大，有两个条件  卖出在买入之后 买入之后只有卖出之后才可再买入  For">
@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://zheyangc.github.io/images/stock-1.JPG">
 <meta property="og:image" content="http://zheyangc.github.io/images/stock-2.JPG">
 <meta property="og:image" content="http://zheyangc.github.io/images/stock-3.JPG">
-<meta property="og:updated_time" content="2020-03-18T04:36:54.381Z">
+<meta property="og:updated_time" content="2020-03-18T04:40:52.377Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode Stock Problems">
 <meta name="twitter:description" content="Stock Problems在刷题过程中遇到股票买卖一类的问题，把该类问题归类为线性查找的subarray问题，一般方法有two pointer, greedy, dynamic programming等。下面对该类题型进行总结和拓展。 Stock Problem I给定一列整数数组，表示每天股票的价格，求多次交易使得获利最大，有两个条件  卖出在买入之后 买入之后只有卖出之后才可再买入  For">
@@ -123,6 +123,16 @@
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
 
   </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
@@ -157,7 +167,7 @@
     <link itemprop="mainEntityOfPage" href="http://zheyangc.github.io/2018/01/15/LeetCode/2018-01-15-LeetCode-Stock-Problems/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="zheyangc">
       <meta itemprop="description" content="">
     </span>
@@ -184,7 +194,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-17 21:36:54" itemprop="dateModified" datetime="2020-03-17T21:36:54-07:00">2020-03-17</time>
+                <time title="Modified: 2020-03-17 21:40:52" itemprop="dateModified" datetime="2020-03-17T21:40:52-07:00">2020-03-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -357,6 +367,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="zheyangc"
+      src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">zheyangc</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -371,11 +383,13 @@
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
+          
         <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
+          
         <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
@@ -410,7 +424,7 @@
   <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
   </div>
 
         
@@ -431,7 +445,7 @@
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script>
 
 
