@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zheyangc.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Permutation 类题目的解法在面试和刷题中，有遇到很多permutation，其大致的就是数列的全排列。下面针对全排列对LeetCode上面此类题型进行一下总结。 解题基本思路">
+<meta name="keywords" content="String,Permutation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode Permutation">
+<meta property="og:url" content="http://zheyangc.github.io/2017/11/23/LeetCode/2017-11-23-LeetCode-Permutation/index.html">
+<meta property="og:site_name" content="Zheyang&#39;s Blog">
+<meta property="og:description" content="Permutation 类题目的解法在面试和刷题中，有遇到很多permutation，其大致的就是数列的全排列。下面针对全排列对LeetCode上面此类题型进行一下总结。 解题基本思路">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-03-22T01:54:51.388Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode Permutation">
+<meta name="twitter:description" content="Permutation 类题目的解法在面试和刷题中，有遇到很多permutation，其大致的就是数列的全排列。下面针对全排列对LeetCode上面此类题型进行一下总结。 解题基本思路">
+
+<link rel="canonical" href="http://zheyangc.github.io/2017/11/23/LeetCode/2017-11-23-LeetCode-Permutation/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>LeetCode Permutation | Zheyang's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Zheyang's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://zheyangc.github.io/2017/11/23/LeetCode/2017-11-23-LeetCode-Permutation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zheyangc">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zheyang's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LeetCode Permutation
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-11-23 15:23:40" itemprop="dateCreated datePublished" datetime="2017-11-23T15:23:40-08:00">2017-11-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-21 18:54:51" itemprop="dateModified" datetime="2020-03-21T18:54:51-07:00">2020-03-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Permutation-类题目的解法"><a href="#Permutation-类题目的解法" class="headerlink" title="Permutation 类题目的解法"></a>Permutation 类题目的解法</h1><p>在面试和刷题中，有遇到很多permutation，其大致的就是数列的全排列。下面针对全排列对LeetCode上面此类题型进行一下总结。</p>
+<h2 id="解题基本思路"><a href="#解题基本思路" class="headerlink" title="解题基本思路"></a>解题基本思路</h2><a id="more"></a>
+
+<h2 id="变种以及应对方法"><a href="#变种以及应对方法" class="headerlink" title="变种以及应对方法"></a>变种以及应对方法</h2><h2 id="需要避免踩的坑"><a href="#需要避免踩的坑" class="headerlink" title="需要避免踩的坑"></a>需要避免踩的坑</h2><h2 id="LeetCode题目详解"><a href="#LeetCode题目详解" class="headerlink" title="LeetCode题目详解"></a>LeetCode题目详解</h2><h3 id="31-Next-Permutation"><a href="#31-Next-Permutation" class="headerlink" title="31.Next Permutation"></a>31.Next Permutation</h3><p>Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.</p>
+<p>If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).</p>
+<p>The replacement must be in-place, do not allocate extra memory.</p>
+<p>Here are some examples. Inputs are in the left-hand column and its corresponding outputs are in the right-hand column.</p>
+<p><code>1,2,3 → 1,3,2</code><br><code>3,2,1 → 1,2,3</code><br><code>1,1,5 → 1,5,1</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="46-Permutations"><a href="#46-Permutations" class="headerlink" title="46.Permutations"></a>46.Permutations</h3><p>Given a collection of <strong>distinct</strong> numbers, return all possible permutations.</p>
+<p>For example,<br><code>[1,2,3]</code> have the following permutations:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [1,2,3],</span><br><span class="line">  [1,3,2],</span><br><span class="line">  [2,1,3],</span><br><span class="line">  [2,3,1],</span><br><span class="line">  [3,1,2],</span><br><span class="line">  [3,2,1]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permute(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[nums.length];</span><br><span class="line">        helper(nums, visited, <span class="keyword">new</span> ArrayList&lt;&gt;(), res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">boolean</span>[] visited, List&lt;Integer&gt; list, List&lt;List&lt;Integer&gt;&gt; res)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (list.size() == nums.length) &#123;</span><br><span class="line">            res.add(<span class="keyword">new</span> ArrayList(list));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                list.add(nums[i]);</span><br><span class="line">                visited[i] = <span class="keyword">true</span>;</span><br><span class="line">                helper(nums, visited, list, res);</span><br><span class="line">                visited[i] = <span class="keyword">false</span>;</span><br><span class="line">                list.remove(list.size() - <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="47-Permutations-II"><a href="#47-Permutations-II" class="headerlink" title="47.Permutations II"></a>47.Permutations II</h3><p>Given a collection of numbers that might contain duplicates, return all possible unique permutations.</p>
+<p>For example,<br><code>[1,1,2]</code> have the following unique permutations:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [1,1,2],</span><br><span class="line">  [1,2,1],</span><br><span class="line">  [2,1,1]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>和46相比，no duplicate第一反应是用set，但是对于非string和integer的object在使用hashset的时候要注意set的原理，有可能会涉及到hash函数和equals函数的override。</p>
+<p>思路是排序，然后对于重复出现的数字，如果前面一个重复的数字未被使用，则肯定存在一个较早重复排列组合。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permuteUnique(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[nums.length];</span><br><span class="line">        helper(nums, visited, <span class="keyword">new</span> ArrayList&lt;&gt;(), res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">boolean</span>[] visited, List&lt;Integer&gt; list, List&lt;List&lt;Integer&gt;&gt; res)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (list.size() == nums.length) &#123;</span><br><span class="line">            res.add(<span class="keyword">new</span> ArrayList(list));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i-<span class="number">1</span>] &amp;&amp; !visited[i-<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                list.add(nums[i]);</span><br><span class="line">                visited[i] = <span class="keyword">true</span>;</span><br><span class="line">                helper(nums, visited, list, res);</span><br><span class="line">                visited[i] = <span class="keyword">false</span>;</span><br><span class="line">                list.remove(list.size() - <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="60-Permutation-Sequence"><a href="#60-Permutation-Sequence" class="headerlink" title="60.Permutation Sequence"></a>60.Permutation Sequence</h3><p>The set [1,2,3,…,n] contains a total of n! unique permutations.</p>
+<p>By listing and labeling all of the permutations in order,<br>We get the following sequence (ie, for n = 3):</p>
+<p><code>&quot;123&quot;</code><br><code>&quot;132&quot;</code><br><code>&quot;213&quot;</code><br><code>&quot;231&quot;</code><br><code>&quot;312&quot;</code><br><code>&quot;321&quot;</code></p>
+<p>Given n and k, return the kth permutation sequence.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPermutation</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span>[] factorial = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>];</span><br><span class="line">        factorial[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            list.add(String.valueOf(i));</span><br><span class="line">            factorial[i] = factorial[i-<span class="number">1</span>] * i;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        k--;</span><br><span class="line">        <span class="comment">// understand why minus 1?</span></span><br><span class="line"></span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &gt;= <span class="number">1</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">int</span> index = (k / factorial[i-<span class="number">1</span>]);</span><br><span class="line">            sb.append(list.remove(index));</span><br><span class="line">            k -= index * factorial[i-<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="266-Palindrome-Permutation"><a href="#266-Palindrome-Permutation" class="headerlink" title="266.Palindrome Permutation"></a>266.Palindrome Permutation</h3><p>Given a string, determine if a permutation of the string could form a palindrome.</p>
+<p>For example,<br><code>&quot;code&quot; -&gt; False, &quot;aab&quot; -&gt; True, &quot;carerac&quot; -&gt; True.</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    String s = <span class="string">"carerac"</span>;</span><br><span class="line">    System.out.println(canPermutePalindrome(s));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">canPermutePalindrome</span> <span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    Set&lt;Character&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">char</span> chr : s.toCharArray()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (set.contains(chr)) &#123;</span><br><span class="line">            set.remove(chr);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            set.add(chr);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> set.size() &lt;= <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="267-Palindrome-Permutation-II"><a href="#267-Palindrome-Permutation-II" class="headerlink" title="267.Palindrome Permutation II"></a>267.Palindrome Permutation II</h3><p>Given a string s, return all the palindromic permutations (without duplicates) of it. Return an empty list if no palindromic permutation could be form.</p>
+<p>For example:</p>
+<p>Given s = <code>&quot;aabb&quot;</code>, return <code>[&quot;abba&quot;, &quot;baab&quot;]</code>.</p>
+<p>Given s = <code>&quot;abc&quot;</code>, return <code>[]</code>.</p>
+<h4 id="第一反应"><a href="#第一反应" class="headerlink" title="第一反应"></a>第一反应</h4><p>按照正常思路第一反应迅速把问题拆解成两个部分</p>
+<ul>
+<li>得到permutations</li>
+<li>check是否是回文的形式</li>
+</ul>
+<p>往往在面试高度紧张的时候会紧张从而导致想不出其他办法，因此把最简单的先想出来，确定可行然后慢慢再进一步深入思考。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">generatePalindromes</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        List&lt;String&gt; permutations = getPermutations(s);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (String permutation : permutations) &#123;</span><br><span class="line">            <span class="keyword">if</span> (checkPalindrome(permutation)) &#123;</span><br><span class="line">                res.add(permutation);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// getPermutations可以参考sumologic的代码</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">checkPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s.length() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> lo = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> hi = s.length() - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (lo &lt; hi) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s.charAt(lo) == s.charAt(hi))&#123;</span><br><span class="line">                lo++;</span><br><span class="line">                hi--;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="进一步思考"><a href="#进一步思考" class="headerlink" title="进一步思考"></a>进一步思考</h4><p>如果string中出现了两个及以上的单独的字符，那么一定无法行成回文</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Character&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span> (Character chr : s.toCharArray()) &#123;</span><br><span class="line">    <span class="keyword">if</span> (set.add(chr)) &#123;</span><br><span class="line">        set.remove(chr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当String很长的时候，permutation就会很多，在回溯的时候就会很久。</p>
+<h4 id="深入思考：构造permutation"><a href="#深入思考：构造permutation" class="headerlink" title="深入思考：构造permutation"></a>深入思考：构造permutation</h4><p>回溯找permutation的复杂度为O(N^2)，如果N减少一半则时间变成原来1/4。</p>
+<p>如果要构造palindrome permutation则只需要考虑一半的排列。</p>
+<p>例如考虑<code>aabbcc</code>的回文排列组合，只需要考虑<code>abc</code></p>
+<p>例如考虑<code>aabbccd</code>的回文只需要考虑<code>abc</code>然后把<code>d</code>放在中间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">the permutations of `abc` are</span><br><span class="line">[</span><br><span class="line">    [abc],</span><br><span class="line">    [acb],</span><br><span class="line">    [bca],</span><br><span class="line">    [bac],</span><br><span class="line">    [cab],</span><br><span class="line">    [cba]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">thus the corresponded string would be</span><br><span class="line">[</span><br><span class="line">    [abccba],</span><br><span class="line">    [acbbca],</span><br><span class="line">    [bcaabb],</span><br><span class="line">    [baccab],</span><br><span class="line">    [cabbac],</span><br><span class="line">    [cbaabc]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">generatePalindromes</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">        Set&lt;Character&gt; set = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (Character chr : s.toCharArray()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (set.contains(chr)) &#123;</span><br><span class="line">                set.remove(chr);</span><br><span class="line">                sb.append(chr);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                set.add(chr);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (set.size() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        String one = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">if</span> (set.size() == <span class="number">1</span>) &#123;</span><br><span class="line">            List&lt;Character&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            list.addAll(set);</span><br><span class="line">            one = String.valueOf(list.get(<span class="number">0</span>));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        List&lt;String&gt; permutations = getPermutations(sb.toString());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(String permutation : permutations) &#123;</span><br><span class="line">            StringBuilder psb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">            psb.append(permutation);</span><br><span class="line">            psb.reverse();</span><br><span class="line">            psb.append(one);</span><br><span class="line">            psb.append(permutation);</span><br><span class="line">            res.add(psb.toString());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">getPermutations</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; permutations = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[s.length()];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">char</span>[] arr = s.toCharArray();</span><br><span class="line">        Arrays.sort(arr);</span><br><span class="line">        helper(arr, permutations, visited, <span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> permutations;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(<span class="keyword">char</span>[] arr, List&lt;String&gt; permutations, <span class="keyword">boolean</span>[] visited, String curr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (curr.length() == arr.length) &#123;</span><br><span class="line">            permutations.add(curr);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; arr[i] == arr[i-<span class="number">1</span>] &amp;&amp; !visited[i-<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                visited[i] = <span class="keyword">true</span>;</span><br><span class="line">                String temp = curr + String.valueOf(arr[i]);</span><br><span class="line">                helper(arr, permutations, visited, temp);</span><br><span class="line">                visited[i] = <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="384-Shuffle-an-Array"><a href="#384-Shuffle-an-Array" class="headerlink" title="384.Shuffle an Array"></a>384.Shuffle an Array</h3><h3 id="444-Sequence-Reconstruction"><a href="#444-Sequence-Reconstruction" class="headerlink" title="444.Sequence Reconstruction"></a>444.Sequence Reconstruction</h3><h3 id="484-Find-Permutation"><a href="#484-Find-Permutation" class="headerlink" title="484.Find Permutation"></a>484.Find Permutation</h3><h3 id="567-Permutation-in-String"><a href="#567-Permutation-in-String" class="headerlink" title="567.Permutation in String"></a>567.Permutation in String</h3><h3 id="634-Find-the-Derangement-of-An-Array"><a href="#634-Find-the-Derangement-of-An-Array" class="headerlink" title="634.Find the Derangement of An Array"></a>634.Find the Derangement of An Array</h3><h3 id="Interview-Question-from-Sumo-Logic"><a href="#Interview-Question-from-Sumo-Logic" class="headerlink" title="Interview Question from Sumo Logic"></a>Interview Question from <strong>Sumo Logic</strong></h3><p>Given a haystack <code>h</code> and a needle <code>n</code>, check if haystack contains any permutations of needle</p>
+<p>Example</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">haystack: &quot;life appears to me too short to be spent&quot;</span><br><span class="line">needle: &quot;&quot;</span><br><span class="line">return true</span><br><span class="line"></span><br><span class="line">haystack: &quot;life appears to me too short to be spent&quot;</span><br><span class="line">needle: &quot;apple&quot;</span><br><span class="line">return false</span><br><span class="line"></span><br><span class="line">haystack: &quot;life appears to me too short to be spent&quot;</span><br><span class="line">needle: &quot;file&quot;</span><br><span class="line">return true</span><br></pre></td></tr></table></figure>
+
+<p>you should know and be able to calculate the comlexity of this problem.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SumoLogicInterview</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String haystack = <span class="string">"life appears to me too short to be spent"</span>;</span><br><span class="line">        String needle1 = <span class="string">""</span>;</span><br><span class="line">        String needle2 = <span class="string">"apple"</span>;</span><br><span class="line">        String needle3 = <span class="string">"file"</span>;</span><br><span class="line">        System.out.println(contains(haystack, needle3));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(String h, String n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (h.length() &lt; n.length()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (n.length() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">char</span>[] charArr = n.trim().toCharArray();</span><br><span class="line">        <span class="keyword">boolean</span>[] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[charArr.length];</span><br><span class="line">        List&lt;String&gt; permutations = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        Arrays.sort(charArr);</span><br><span class="line">        helper(charArr, permutations, visited, <span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (String permutation : permutations) &#123;</span><br><span class="line">            <span class="keyword">if</span> (check(h, permutation)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// note that strings are immutable</span></span><br><span class="line">    <span class="comment">// which means that when you pass a string into a function</span></span><br><span class="line">    <span class="comment">// it copy the string and create new variable, rather than the reference!!!</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">helper</span> <span class="params">(<span class="keyword">char</span>[] arr, List&lt;String&gt; permutations, <span class="keyword">boolean</span>[] visited, String curr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (curr.length() == arr.length) &#123;</span><br><span class="line">            permutations.add(curr);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; arr[i] == arr[i-<span class="number">1</span>] &amp;&amp; !visited[i-<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">                visited[i] = <span class="keyword">true</span>;</span><br><span class="line">                String temp = curr + String.valueOf(arr[i]);</span><br><span class="line">                helper (arr, permutations, visited, temp);</span><br><span class="line">                visited[i] = <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">check</span><span class="params">(String h, String n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; h.length() - n.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> hi = i;</span><br><span class="line">            <span class="keyword">int</span> ni = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (hi &lt; h.length() &amp;&amp; ni &lt; n.length() &amp;&amp; h.charAt(hi) == n.charAt(ni)) &#123;</span><br><span class="line">                hi++;</span><br><span class="line">                ni++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (ni == n.length()) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/String/" rel="tag"># String</a>
+              <a href="/tags/Permutation/" rel="tag"># Permutation</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/11/23/Algorithm/2017-11-22-Sort/" rel="prev" title="Sort">
+      <i class="fa fa-chevron-left"></i> Sort
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/11/26/Algorithm/2017-11-25-Edit-Distance/" rel="next" title="Edit Distance and Levenshtein Algorithm">
+      Edit Distance and Levenshtein Algorithm <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Permutation-类题目的解法"><span class="nav-number">1.</span> <span class="nav-text">Permutation 类题目的解法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解题基本思路"><span class="nav-number">1.1.</span> <span class="nav-text">解题基本思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变种以及应对方法"><span class="nav-number">1.2.</span> <span class="nav-text">变种以及应对方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需要避免踩的坑"><span class="nav-number">1.3.</span> <span class="nav-text">需要避免踩的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LeetCode题目详解"><span class="nav-number">1.4.</span> <span class="nav-text">LeetCode题目详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#31-Next-Permutation"><span class="nav-number">1.4.1.</span> <span class="nav-text">31.Next Permutation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#46-Permutations"><span class="nav-number">1.4.2.</span> <span class="nav-text">46.Permutations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#47-Permutations-II"><span class="nav-number">1.4.3.</span> <span class="nav-text">47.Permutations II</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#60-Permutation-Sequence"><span class="nav-number">1.4.4.</span> <span class="nav-text">60.Permutation Sequence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#266-Palindrome-Permutation"><span class="nav-number">1.4.5.</span> <span class="nav-text">266.Palindrome Permutation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#267-Palindrome-Permutation-II"><span class="nav-number">1.4.6.</span> <span class="nav-text">267.Palindrome Permutation II</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一反应"><span class="nav-number">1.4.6.1.</span> <span class="nav-text">第一反应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进一步思考"><span class="nav-number">1.4.6.2.</span> <span class="nav-text">进一步思考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#深入思考：构造permutation"><span class="nav-number">1.4.6.3.</span> <span class="nav-text">深入思考：构造permutation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#384-Shuffle-an-Array"><span class="nav-number">1.4.7.</span> <span class="nav-text">384.Shuffle an Array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#444-Sequence-Reconstruction"><span class="nav-number">1.4.8.</span> <span class="nav-text">444.Sequence Reconstruction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#484-Find-Permutation"><span class="nav-number">1.4.9.</span> <span class="nav-text">484.Find Permutation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#567-Permutation-in-String"><span class="nav-number">1.4.10.</span> <span class="nav-text">567.Permutation in String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#634-Find-the-Derangement-of-An-Array"><span class="nav-number">1.4.11.</span> <span class="nav-text">634.Find the Derangement of An Array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interview-Question-from-Sumo-Logic"><span class="nav-number">1.4.12.</span> <span class="nav-text">Interview Question from Sumo Logic</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zheyangc</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zheyangc</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

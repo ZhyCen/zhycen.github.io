@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zheyangc.github.io","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="midtern overview EIP EBP ESP指向的位置以及作用要理解 Process的几个函数需要知道fork(), exec(), wait(), exit()，PCB的流程，return code，zombie state等等 Process 中的Adress Space的结构，以及每个结构的作用是什么，通过code来解释每个结构中发生了什么事 execl的作用，以及如何将代码插入">
+<meta name="keywords" content="Kernel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kernel Notes">
+<meta property="og:url" content="http://zheyangc.github.io/2017/07/03/Others/2017-07-03-Kernel-Notes/index.html">
+<meta property="og:site_name" content="Zheyang&#39;s Blog">
+<meta property="og:description" content="midtern overview EIP EBP ESP指向的位置以及作用要理解 Process的几个函数需要知道fork(), exec(), wait(), exit()，PCB的流程，return code，zombie state等等 Process 中的Adress Space的结构，以及每个结构的作用是什么，通过code来解释每个结构中发生了什么事 execl的作用，以及如何将代码插入">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-03-22T01:54:51.388Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kernel Notes">
+<meta name="twitter:description" content="midtern overview EIP EBP ESP指向的位置以及作用要理解 Process的几个函数需要知道fork(), exec(), wait(), exit()，PCB的流程，return code，zombie state等等 Process 中的Adress Space的结构，以及每个结构的作用是什么，通过code来解释每个结构中发生了什么事 execl的作用，以及如何将代码插入">
+
+<link rel="canonical" href="http://zheyangc.github.io/2017/07/03/Others/2017-07-03-Kernel-Notes/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Kernel Notes | Zheyang's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Zheyang's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://zheyangc.github.io/2017/07/03/Others/2017-07-03-Kernel-Notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zheyangc">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zheyang's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Kernel Notes
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-07-03 00:00:00" itemprop="dateCreated datePublished" datetime="2017-07-03T00:00:00-07:00">2017-07-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-21 18:54:51" itemprop="dateModified" datetime="2020-03-21T18:54:51-07:00">2020-03-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Lecture/" itemprop="url" rel="index"><span itemprop="name">Lecture</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="midtern-overview"><a href="#midtern-overview" class="headerlink" title="midtern overview"></a>midtern overview</h1><ul>
+<li>EIP EBP ESP指向的位置以及作用要理解</li>
+<li>Process的几个函数需要知道<code>fork(), exec(), wait(), exit()</code>，PCB的流程，return code，zombie state等等</li>
+<li>Process 中的Adress Space的结构，以及每个结构的作用是什么，通过code来解释每个结构中发生了什么事</li>
+<li>execl的作用，以及如何将代码插入子进程中</li>
+<li>thread的几个函数 <code>pthread_create(), pthread_join(), pthread_exit()</code></li>
+<li>会使用guard command，注意用的是<strong>方括号</strong>不是圆括号</li>
+<li>了解semaphore的概念，以及binary和multiple的情况下的线程情况</li>
+<li>分析consumer和producer的例子，知道semaphore和mutex的区别，以及用mutex实现semaphore的不足之处，这也是为什么要用wait condition的原因</li>
+<li>了解<code>pthread_cond_wait()</code>的使用方法，以及mutex锁住的情况，什么时候锁，什么时候解锁</li>
+<li>reader和writer又是另外一情况（和semaphore相比），主要是reader不需要更改文件，只要没有writer，多个reader可以同时？了解此情况</li>
+<li>barrier问题是如何通过引入generation解决问题的？</li>
+<li>了解线程不安全的原因，大多数是全局变量，例如<code>errorno, stdout</code>等等，还有就是大小未知，课件中用ip地址来举例，了解如何让线程安全。</li>
+<li>了解signal handler的使用方法，清楚的意识到只是借用某一个线程而不是重新创建一个线程</li>
+<li>signal mask的作用以及如何创建mask</li>
+<li>注意signal是以进程为单位的，如果要应用到特定线程需要block signal. 但是不同的信号呢？需要mask吗？</li>
+<li>了解<code>sigwait()</code>是如何运作的，sigwait解决了上述mask的问题，使得mask可以不影响其他线程</li>
+<li>了解signal遇到system call的情况，课件中有读和写两个例子</li>
+<li>理解<code>pthread_cancel()</code>的作用，和<code>pthread_join(), pthread_exit()</code>之间的关系，以及需要注意cancel的时间和清理工作（如何？）</li>
+<li>cancellation的几个规则，以及cancellation常规点以及创建<code>pthread_testcancel()</code>，具体到clean handler里面的结构，其最终还是<code>pthread_exit()</code>，注意<code>pthread_cleanup_push()</code>和<code>pthread_cleanup_pop()</code>成对出现，pop这里的index的含义是什么？push和pop之间必须要lock。</li>
+<li>context在address space中是如何运作的，需要初步读懂汇编语言（用于cpu的执行），结合汇编语言知道每个stack frame的结构，从下至上分别是：<strong>arguments, eip, ebp, saved registers, local variables</strong></li>
+<li>了解thread <code>switch()</code>的运作方式，和cpu中的esp有关，注意switch function中的return是<strong>针对改变之后的那个线程</strong>。thread的switch是系统层面的，一个线程休眠，一个线程唤醒。CPU不知道线程。</li>
+<li>signal和interrupt的区别，signal是kernel层向user space层的中断，interrupt是从硬件层到kernel层的中断。了解trap以及interrupt中的HAL的作用，如何从系统的层面实现interrupt的。需要注意的是硬件和软件的interrupt在kernel以及HAL层的应对措施是完全相似的。</li>
+<li>了解interrupt在user space和kernel时候 interrupt handler（这个handler在哪？）借用kernel stack的情形。对应的context保存在stack的下方。注意区分context和kernel stack。interrupt可以套interrupt，但是必须要所有interrupt执行完之后才可以执行user/kernel thread。</li>
+<li>了解两种interrupt mask的形式：bit mask 和 hierarchical interrupt level，其中后者有优先级别，低于IPL的被锁住，高于的则不锁住。</li>
+<li>了解计算机结构，总线以及各个硬件的控制器的作用。总线上设备的分类：PIO/DMA，大致了解一下两种设备的区别，以及内部寄存器的结构。</li>
+<li>了解device driver和device controller的关系，driver和kernel的关系。driver提供了device和OS之间的interface，device 使之independent。</li>
+<li>了解first fit和best fit内存分配的机制，<strong>注意这里的内存指的的dynamic的内存</strong>，什么情况下哪种分配比较好，一般用first fit比较多。两种fragmentaton problem：internal（buddy system）和external（best-fit）的概念和区别。</li>
+<li>了解内存非配中可使用的内存列表的表示，用<code>doubly linkedlist</code>表示，如果空闲则有前后link，如果被使用，则没有flink或者blink；注意每个可用空间的前后都有一个block表明size。（为什么？便于前后追踪，因为不知道每一个你block的具体size），熟悉list空间大小的计算，注意size一栏的值，以及prev和next值得改动。（很有可能计算题）</li>
+<li>知道如何用buddy system表示以及计算，知道如何用slab allocation，weenix中有描述。</li>
+<li>了解linker和loader的作用，linker preforms <strong>relocation</strong> and <strong>symbol resolution</strong>, loader <strong>loads programs into memory</strong>. loader is evoked by <strong>exec()</strong></li>
+<li>了解.o文件描述的文件位置和参数等内容，以及reallocation的描述也在obj文件中。(这块内容不是很好懂，需要花时间理解透彻)</li>
+<li>系统启动需要一个简易的OS把kernel的代码加载到内存中去。了解bios系统启动的步骤，很可能考简答题。开机-cpu加载64kb-进入POST-初始化硬件-定位内存-寻找boot设备并复制到内存并运行boot program</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Kernel/" rel="tag"># Kernel</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2017/08/01/Others/2017-08-01-Operating-System-Concepts/" rel="next" title="OS Concepts and Notes">
+      OS Concepts and Notes <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#midtern-overview"><span class="nav-number">1.</span> <span class="nav-text">midtern overview</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">zheyangc</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zheyangc</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
