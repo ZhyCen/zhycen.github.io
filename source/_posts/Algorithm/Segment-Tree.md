@@ -4,7 +4,7 @@ date: 2018-03-23 22:52:56
 tags: 
     - Tree
     - Segment Tree
-categories: Data Structure
+categories: Algorithm
 ---
 
 # Segment Tree

@@ -4,7 +4,7 @@ date: 2018-03-20 22:16:07
 tags: 
     - LRU
     - Doubly LinkedList
-categories: Data Structure
+categories: Algorithm
 ---
 
 用hashmap和双向链表实现的LRU.

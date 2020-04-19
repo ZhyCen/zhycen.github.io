@@ -3,7 +3,7 @@ title: Graph Representation
 date: 2018-03-18 15:21:48
 tags: 
     - Graph
-categories: Data Structure
+categories: Algorithm
 ---
 
 # 图的表示
